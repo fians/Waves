@@ -1,0 +1,96 @@
+
+.waves-element {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+}
+
+.waves-element .waves-ripple {
+    position: absolute;
+    border-radius: 100%;
+    border-width:0px;
+    border-style:solid;
+    width:0px;
+    height:0px;
+    opacity:0;
+    border-color: rgba(0, 0, 0, 0.2);
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -0-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+}
+
+.waves-element.waves-light .waves-ripple {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.waves-notransition {
+    -webkit-transition: none !important;
+    transition: none !important;
+}
+
+.waves-button, 
+.waves-icon {
+    -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+}
+
+.waves-button {
+    padding:10px 15px;
+    border-radius:4px;
+}
+
+
+.waves-button a,
+.waves-button a:hover,
+.waves-button a:visited,
+.waves-button a:link,
+.waves-button button,
+.waves-button input[type="submit"],
+.waves-button input[type="button"] {
+    margin: 0;
+    padding:0;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border:none;
+    outline:none;
+    background:transparent;
+    color: inherit;
+    font-size:14px;
+    text-align: center;
+    text-decoration:none;
+}
+
+.waves-icon {
+  text-align:center;
+  width:2.5em;
+  height:2.5em;
+  line-height:2.5em;
+  border-radius:20px;
+}
+
+
+.waves-will-raise {
+    -webkit-mask-image:none;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.waves-will-raise:active {
+    -webkit-box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.26);
+    box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.26);
+}
+
+.waves-block {
+    display:block;
+}
+
