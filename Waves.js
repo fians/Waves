@@ -3,7 +3,7 @@
  * Waves v0.1.0
  * https://publicis.co.id/labs/opensource/Waves/
  *
- * Copyright 2014 Publicis Metro, PT. (Publicis Indonesia) and other contributors
+ * Copyright 2014 Publicis Metro Indonesia, PT. and other contributors
  * Released under the BSD license
  * https://github.com/publicis-indonesia/Waves/blob/master/LICENSE
  */
