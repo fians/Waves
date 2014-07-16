@@ -1,7 +1,7 @@
 
 /*!
  * Waves v0.1.0
- * https://publicis.co.id/labs/opensource/Waves/
+ * https://publicis-indonesia.github.io/Waves/
  *
  * Copyright 2014 Publicis Metro Indonesia, PT. and other contributors
  * Released under the BSD license
