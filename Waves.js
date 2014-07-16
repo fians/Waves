@@ -1,92 +1,120 @@
 
 /*!
- * Waves v0.1.0
- * https://publicis-indonesia.github.io/Waves/
+ * Waves v0.2.0
+ * https://publicis-indonesia.github.io/Waves
  *
  * Copyright 2014 Publicis Metro Indonesia, PT. and other contributors
  * Released under the BSD license
  * https://github.com/publicis-indonesia/Waves/blob/master/LICENSE
  */
 
-;(function(window, $) {
+;(function(window) {
+    'use strict';
 
-    var button = {};
+    function Waves() {
 
-    button.rippleShow = function(e) {
+        var $$ = document.querySelectorAll.bind(document);
 
-        var el = $(this);
+        var Effect = {
 
-        el.append('<div class="waves-ripple"></div>');
+            show: function(e) {
 
-        // Get click coordinate and element witdh
-        var offset      = el.offset();
-        var relativeX   = (e.pageX - offset.left);
-        var relativeY   = (e.pageY - offset.top);
-        var width       = el.outerWidth();
+                var el = this;
 
-        // Attach data to element
-        el.data('hold', Date.now());
-        el.data('relativeX', relativeX);
-        el.data('relativeY', relativeY);
+                // Create ripple
+                var ripple = document.createElement('div');
+                ripple.className = ripple.className + 'waves-ripple';
+                el.appendChild(ripple);
 
-        var ripple = el.find('.waves-ripple');
+                // Get click coordinate and element witdh
+                var relativeX   = (e.pageX - el.offsetLeft);
+                var relativeY   = (e.pageY - el.offsetTop);
+                var width       = el.clientWidth;
 
-        // Start ripple
-        ripple
-            .addClass('waves-notransition')
-            .css({'top' : relativeY, 'left': relativeX});
+                // Attach data to element
+                ripple.setAttribute('data-hold', Date.now());
+                ripple.setAttribute('data-x', relativeX);
+                ripple.setAttribute('data-y', relativeY);
 
-        ripple['context'].offsetHeight;
+                // Start ripple
+                var positionStyle = 'top:'+relativeY+'px;left:'+relativeX+'px;';
+                var flowStyle = 'border-width:'+width+'px;margin-top:-'+width+'px;margin-left:-'+width+'px;opacity:1;';
 
-        ripple
-            .removeClass('waves-notransition')
-                .css({
-                'border-width': width,
-                'margin-top': -width,
-                'margin-left': -width,
-                'opacity': 1
-            });
-    };
+                ripple.className = ripple.className + ' waves-notransition';
+                ripple.setAttribute('style', positionStyle);
+                ripple.offsetHeight;
+                ripple.className = ripple.className.replace('waves-notransition', '');
+                ripple.setAttribute('style', positionStyle+flowStyle);
+                
+            },
 
-    button.rippleHide = function() {
+            hide: function(e) {
+                
+                var el = this;
+                var width = el.clientWidth;
 
-        // Get element and ripple
-        var el = $(this);
-        var ripple = el.find('.waves-ripple');
+                console.log();
 
-        // Get delay beetween mousedown and mouse leave
-        var diff = Date.now() - el.data('hold');
-        var delay = 500 - diff;
+                // Get first ripple
+                var ripple = null;
 
-        if (delay < 0) {
-            delay = 0;
+                for (var a = 0; a < el.children.length; a++) {
+                    if (el.children[a].className.indexOf('waves-ripple') !== -1) {
+                        ripple = el.children[a];
+                        continue;
+                    }
+                }
+
+                if (!ripple) {
+                    return false;
+                }
+
+                var relativeX   = ripple.getAttribute('data-x');
+                var relativeY   = ripple.getAttribute('data-y');
+
+                // Get delay beetween mousedown and mouse leave
+                var diff = Date.now() - Number(ripple.getAttribute('data-hold'));
+                var delay = 500 - diff;
+
+                if (delay < 0) {
+                    delay = 0;
+                }
+
+                // Fade out ripple after delay
+                setTimeout(function() {
+
+                    var style = 'top:'+relativeY+'px;left:'+relativeX+'px;border-width:'+width+'px;margin-top:-'+width+'px;margin-left:-'+width+'px;opacity:0;';
+
+                    ripple.setAttribute('style', style);
+
+                    setTimeout(function() {
+                        try {
+                            el.removeChild(ripple);
+                        } catch(e) {
+                            return false;
+                        }
+                    }, 300);
+
+                }, delay);
+
+            },
+        };
+
+        return {
+            displayEffect: function() {
+
+                Array.prototype.forEach.call($$('.waves-effect'), function(i) {
+
+                    i.addEventListener('mousedown', Effect.show, false);
+                    i.addEventListener('mouseup', Effect.hide, false);
+                    i.addEventListener('mouseleave', Effect.hide, false);
+
+                });
+
+            }
         }
-
-        // Fade out ripple after delay
-        setTimeout(function() {
-
-            ripple.css({
-                'top' : el.data('relativeY'), 
-                'left': el.data('relativeX'),
-                'opacity': 0,
-            });
-
-            setTimeout(function() {
-                ripple.remove();
-            }, 300);
-
-        }, delay);
-
     }
 
-    // Attach event
-    $(document).on('ready', function() {
-        $(this)
-            .on('mousedown', '.waves-element', button.rippleShow)
-            .on('mouseup mouseleave', '.waves-element', button.rippleHide);
-    });
+    window.Waves = Waves;
 
-    
-
-})(window, jQuery);
-
+})(window);

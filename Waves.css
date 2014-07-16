@@ -1,14 +1,14 @@
 
 /*!
- * Waves v0.1.0
- * https://publicis-indonesia.github.io/Waves/
+ * Waves v0.2.0
+ * https://publicis-indonesia.github.io/Waves
  *
  * Copyright 2014 Publicis Metro Indonesia, PT. and other contributors
  * Released under the BSD license
  * https://github.com/publicis-indonesia/Waves/blob/master/LICENSE
  */
 
-.waves-element {
+.waves-effect {
     position: relative;
     cursor: pointer;
     display: inline-block;
@@ -23,7 +23,7 @@
     transition: all .3s ease-out;
 }
 
-.waves-element .waves-ripple {
+.waves-effect .waves-ripple {
     position: absolute;
     border-radius: 100%;
     border-width:0px;
@@ -38,7 +38,7 @@
     transition: all 0.5s ease-out;
 }
 
-.waves-element.waves-light .waves-ripple {
+.waves-effect.waves-light .waves-ripple {
     border-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -88,13 +88,13 @@
 }
 
 
-.waves-will-raise {
+.waves-raised {
     -webkit-mask-image:none;
     -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
 }
 
-.waves-will-raise:active {
+.waves-raised:active {
     -webkit-box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.26);
     box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.26);
 }
@@ -102,4 +102,3 @@
 .waves-block {
     display:block;
 }
-
