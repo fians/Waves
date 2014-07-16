@@ -105,6 +105,11 @@
 
                 Array.prototype.forEach.call($$('.waves-effect'), function(i) {
 
+                    if (window.Touch) {
+                        i.addEventListener('touchstart', Effect.show, false);
+                        i.addEventListener('touchend', Effect.hide, false);
+                    }
+
                     i.addEventListener('mousedown', Effect.show, false);
                     i.addEventListener('mouseup', Effect.hide, false);
                     i.addEventListener('mouseleave', Effect.hide, false);
