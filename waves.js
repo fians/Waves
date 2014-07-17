@@ -36,6 +36,45 @@
 
         var Effect = {
 
+            // Trigger element action if they are waves-button
+            action: function(e) {
+
+                var el = this;
+
+                if (el.className.indexOf('waves-button') !== -1) {
+
+                    // Get the child
+                    var child = el.childNodes[1];
+                    var tag = child.tagName.toLowerCase();
+
+                    // Redirect page based on href attribute
+                    if (tag === 'a') {
+
+                        if (!child.href.length) {
+                            return false;
+                        }
+
+                        if (child.target === '_blank') {
+                            var win = window.open(child.href, '_blank');
+                            return win.focus();
+                        }
+
+                        return window.location.href = child.href;
+                    }
+
+                    // Click the element or submit the form if exist
+                    if (tag === 'button' || tag === 'input') {
+                        
+                        if (child.submit) {
+                            return child.submit();
+                        }
+
+                        return child.click();
+                    }
+                }
+
+            },
+
             show: function(e) {
 
                 var el = this;
@@ -65,7 +104,7 @@
                 ripple.offsetHeight;
                 ripple.className = ripple.className.replace('waves-notransition', '');
                 ripple.setAttribute('style', positionStyle+flowStyle);
-                
+
             },
 
             hide: function(e) {
@@ -106,11 +145,14 @@
                     ripple.setAttribute('style', style);
 
                     setTimeout(function() {
+
                         try {
                             el.removeChild(ripple);
                         } catch(e) {
                             return false;
                         }
+
+                        
                     }, 300);
 
                 }, delay);
@@ -131,6 +173,7 @@
                     i.addEventListener('mousedown', Effect.show, false);
                     i.addEventListener('mouseup', Effect.hide, false);
                     i.addEventListener('mouseleave', Effect.hide, false);
+                    i.addEventListener('mouseup', Effect.action, false);
 
                 });
 
