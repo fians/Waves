@@ -176,6 +176,7 @@
                     if (window.Touch) {
                         i.addEventListener('touchstart', Effect.show, false);
                         i.addEventListener('touchend', Effect.hide, false);
+                        i.addEventListener('touchend', Effect.action, false);
                     }
 
                     i.addEventListener('mousedown', Effect.show, false);
