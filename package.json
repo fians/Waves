@@ -3,9 +3,6 @@
   "version": "0.2.1",
   "description": "Click effect insipired by Google Material Design",
   "main": "waves.js",
-  "dependencies": {
-    "gulp": "~3.8.6"
-  },
   "devDependencies": {
     "gulp": "~3.8.6",
     "gulp-uglify": "~0.3.1",
