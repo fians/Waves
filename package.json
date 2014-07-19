@@ -1,0 +1,24 @@
+{
+  "name": "Waves",
+  "version": "0.2.1",
+  "description": "Click effect insipired by Google Material Design",
+  "main": "waves.js",
+  "devDependencies": {
+    "gulp": "~3.8.6",
+    "gulp-uglify": "~0.3.1",
+    "gulp-minify-css": "~0.3.7",
+    "gulp-concat": "~2.3.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/publicis-indonesia/Waves.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/publicis-indonesia/Waves/issues"
+  },
+  "homepage": "https://github.com/publicis-indonesia/Waves"
+}
