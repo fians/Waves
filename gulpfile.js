@@ -35,7 +35,9 @@ gulp.task('uglify', function(){
 		this.emit('end');
 	}))
 	.pipe(concat('waves.min.js'))
-	.pipe(uglify())
+	.pipe(uglify({
+		preserveComments: 'some'
+	}))
 	.pipe(gulp.dest(path.js.dest));
 });
 

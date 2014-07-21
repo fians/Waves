@@ -1,6 +1,6 @@
 
 /*!
- * Waves v0.2.1
+ * Waves v0.3.0
  * https://publicis-indonesia.github.io/Waves
  *
  * Copyright 2014 Publicis Metro Indonesia, PT. and other contributors
@@ -39,7 +39,7 @@
 }
 
 .waves-effect.waves-light .waves-ripple {
-    border-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
 }
 
 .waves-notransition {
@@ -52,21 +52,12 @@
     -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
 }
 
-.waves-button {
-    padding:10px 15px;
-    border-radius:4px;
-}
-
-
-.waves-button a,
-.waves-button a:hover,
-.waves-button a:visited,
-.waves-button a:link,
-.waves-button button,
-.waves-button input[type="submit"],
-.waves-button input[type="button"] {
-    margin: 0;
-    padding:0;
+a.waves-button,
+a.waves-button:hover,
+a.waves-button:visited,
+a.waves-button:link,
+button.waves-button,
+input.waves-button-input {
     white-space: nowrap;
     vertical-align: middle;
     cursor: pointer;
@@ -79,24 +70,49 @@
     text-decoration:none;
 }
 
+.waves-button {
+    padding:10px 15px;
+    border-radius:2px;
+}
+
+.waves-button-input {
+    margin:0;
+    padding:10px 15px;
+}
+
+.waves-input-wrapper {
+    border-radius:2px;
+    vertical-align: bottom;
+}
+
+.waves-input-wrapper.waves-button {
+    padding:0;
+}
+
+.waves-input-wrapper .waves-button-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
 .waves-icon {
   text-align:center;
   width:2.5em;
   height:2.5em;
   line-height:2.5em;
-  border-radius:20px;
+  border-radius:50%;
 }
 
-
-.waves-raised {
+.waves-float {
     -webkit-mask-image:none;
-    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    -webkit-box-shadow:  0px 1px 1.5px 1px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 1px 1.5px 1px rgba(0, 0, 0, 0.12);
 }
 
-.waves-raised:active {
-    -webkit-box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.26);
-    box-shadow: 0px 7px 10px 0px rgba(0, 0, 0, 0.26);
+.waves-float:active {
+    -webkit-box-shadow: 0px 8px 20px 1px rgba(0, 0, 0, 0.30);
+    box-shadow: 0px 8px 20px 1px rgba(0, 0, 0, 0.30);
 }
 
 .waves-block {
