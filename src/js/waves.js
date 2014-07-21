@@ -48,7 +48,7 @@
             var pos         = position(el);
             var relativeY   = (e.pageY - pos.top);
             var relativeX   = (e.pageX - pos.left);
-            var width       = el.clientWidth;
+            var radius      = el.clientWidth + el.clientHeight;
 
             // Attach data to element
             ripple.setAttribute('data-hold', Date.now());
@@ -57,7 +57,7 @@
 
             // Start ripple
             var positionStyle = 'top:'+relativeY+'px;left:'+relativeX+'px;';
-            var flowStyle = 'border-width:'+width+'px;margin-top:-'+width+'px;margin-left:-'+width+'px;opacity:1;';
+            var flowStyle = 'border-width:'+radius+'px;margin-top:-'+radius+'px;margin-left:-'+radius+'px;opacity:1;';
 
             ripple.className = ripple.className + ' waves-notransition';
             ripple.setAttribute('style', positionStyle);
