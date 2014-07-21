@@ -48,7 +48,7 @@
             var pos         = position(el);
             var relativeY   = (e.pageY - pos.top);
             var relativeX   = (e.pageX - pos.left);
-            var width       = el.clientWidth;
+            var width       = el.clientWidth * 1.4;
 
             // Attach data to element
             ripple.setAttribute('data-hold', Date.now());
@@ -71,7 +71,7 @@
             
             var el = this;
 
-            var width = el.clientWidth;
+            var width = el.clientWidth * 1.4;
             
             // Get first ripple
             var ripple = null;
