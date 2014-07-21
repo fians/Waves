@@ -34,7 +34,7 @@
     border-color: rgba(0, 0, 0, 0.2);
     -webkit-transition: all 0.5s ease-out;
     -moz-transition: all 0.5s ease-out;
-    -0-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
     transition: all 0.5s ease-out;
 }
 
