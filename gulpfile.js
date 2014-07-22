@@ -58,4 +58,4 @@ gulp.task('watch', function(){
 	gulp.watch(path.js.files, ['uglify']);
 });
 
-gulp.task('default', ['cssmin', 'uglify']);
+gulp.task('default', ['cssmin', 'uglify', 'watch']);
