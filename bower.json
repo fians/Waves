@@ -1,0 +1,20 @@
+{
+    "name": "Waves",
+    "version": "0.3.0",
+    "main": "src/js/waves.js",
+    "ignore": [
+        ".bowerrc",
+        ".gitignore",
+        ".jshintignore",
+        ".jshintrc",
+        "bower.json",
+        "gulpfile.js",
+        "package.json",
+        "LICENSE",
+        "README.md"
+    ],
+    "dependencies": {
+    },
+    "devDependencies": {
+    }
+}
