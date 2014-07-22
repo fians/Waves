@@ -10,7 +10,8 @@
     "gulp-minify-css": "~0.3.7",
     "gulp-concat": "~2.3.3",
     "gulp-plumber": "~0.6.4",
-    "gulp-sourcemaps": "~1.1.0"
+    "gulp-sourcemaps": "~1.1.0",
+    "gulp-jshint": "~1.7.1"
   },
   "scripts": {
     "test": ""

@@ -33,7 +33,23 @@
         };
     }
 
+    function convertStyle(obj) {
+
+        var style = '';
+
+        for (var a in obj) {
+            if (obj.hasOwnProperty(a)) {
+                style += (a + ':' + obj[a] + ';');
+            }
+        }
+
+        return style;
+    }
+
     var Effect = {
+
+        // Effect delay
+        duration: 500,
 
         show: function(e) {
 
@@ -55,15 +71,28 @@
             ripple.setAttribute('data-x', relativeX);
             ripple.setAttribute('data-y', relativeY);
 
-            // Start ripple
-            var positionStyle = 'top:'+relativeY+'px;left:'+relativeX+'px;';
-            var flowStyle = 'border-width:'+width+'px;margin-top:-'+width+'px;margin-left:-'+width+'px;opacity:1;';
-
+            // Set ripple position
+            var rippleStyle = {
+                'top': relativeY+'px',
+                'left': relativeX+'px'
+            };
+            
             ripple.className = ripple.className + ' waves-notransition';
-            ripple.setAttribute('style', positionStyle);
+            ripple.setAttribute('style', convertStyle(rippleStyle));
             ripple.offsetHeight;
             ripple.className = ripple.className.replace('waves-notransition', '');
-            ripple.setAttribute('style', positionStyle+flowStyle);
+
+            rippleStyle['border-width'] = width+'px';
+            rippleStyle['margin-top']   = '-'+width+'px';
+            rippleStyle['margin-left']  = '-'+width+'px';
+            rippleStyle['opacity']      = '1';
+
+            rippleStyle['-webkit-transition-duration'] = Effect.duration + 'ms';
+            rippleStyle['-moz-transition-duration']    = Effect.duration + 'ms';
+            rippleStyle['-o-transition-duration']      = Effect.duration + 'ms';
+            rippleStyle['transition-duration']         = Effect.duration + 'ms';
+
+            ripple.setAttribute('style', convertStyle(rippleStyle));
 
         },
 
@@ -101,9 +130,22 @@
             // Fade out ripple after delay
             setTimeout(function() {
 
-                var style = 'top:'+relativeY+'px;left:'+relativeX+'px;border-width:'+width+'px;margin-top:-'+width+'px;margin-left:-'+width+'px;opacity:0;';
+                var style = {
+                    'top': relativeY+'px',
+                    'left': relativeX+'px',
+                    'border-width': width+'px',
+                    'margin-top': '-'+width+'px',
+                    'margin-left': '-'+width+'px',
+                    'opacity': '0',
 
-                ripple.setAttribute('style', style);
+                    // Duration
+                    '-webkit-transition-duration': Effect.duration + 'ms',
+                    '-moz-transition-duration': Effect.duration + 'ms',
+                    '-o-transition-duration': Effect.duration + 'ms',
+                    'transition-duration': Effect.duration + 'ms',
+                };
+
+                ripple.setAttribute('style', convertStyle(style));
 
                 setTimeout(function() {
 
@@ -162,7 +204,13 @@
         }
     };
 
-    Waves.displayEffect = function() {
+    Waves.displayEffect = function(options) {
+
+        options = options || {};
+
+        if ('duration' in options) {
+            Effect.duration = options.duration;
+        }
         
         //Wrap input inside <i> tag
         Effect.wrapInput($$('.waves-effect'));

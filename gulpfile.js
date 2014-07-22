@@ -9,6 +9,7 @@ var uglify 		= require('gulp-uglify');
 var concat 		= require('gulp-concat');
 var minifyCSS 	= require('gulp-minify-css');
 var sourcemaps 	= require('gulp-sourcemaps');
+var jshint 		= require('gulp-jshint');
 
 var path = {
 	css: {
@@ -41,6 +42,8 @@ gulp.task('uglify', function(){
 				console.log(err.message);
 				this.emit('end');
 			}))
+			.pipe(jshint())
+  			.pipe(jshint.reporter('default'))
     		.pipe(sourcemaps.init())
 			.pipe(gulp.dest(path.js.dest))
 			.pipe(concat('./waves.min.js'))
