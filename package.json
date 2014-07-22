@@ -1,25 +1,26 @@
 {
-    "name": "Waves",
-    "version": "0.3.1",
-    "description": "Click effect insipired by Google Material Design",
-    "author": "Alfiana E. Sibuea <alfian.sibuea@gmail.com>",
-    "main": "waves.js",
-    "devDependencies": {
-        "gulp": "~3.8.6",
-        "gulp-uglify": "~0.3.1",
-        "gulp-minify-css": "~0.3.7",
-        "gulp-concat": "~2.3.3",
-        "gulp-plumber": "~0.6.4"
-    },
-    "scripts": {
-        "test": ""
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/publicis-indonesia/Waves.git"
-    },
-    "bugs": {
-        "url": "https://github.com/publicis-indonesia/Waves/issues"
-    },
-    "homepage": "http://publicis-indonesia.github.io/Waves"
+  "name": "Waves",
+  "version": "0.3.1",
+  "description": "Click effect insipired by Google Material Design",
+  "author": "Alfiana E. Sibuea <alfian.sibuea@gmail.com>",
+  "main": "waves.js",
+  "devDependencies": {
+    "gulp": "~3.8.6",
+    "gulp-uglify": "~0.3.1",
+    "gulp-minify-css": "~0.3.7",
+    "gulp-concat": "~2.3.3",
+    "gulp-plumber": "~0.6.4",
+    "gulp-sourcemaps": "~1.1.0"
+  },
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/publicis-indonesia/Waves.git"
+  },
+  "bugs": {
+    "url": "https://github.com/publicis-indonesia/Waves/issues"
+  },
+  "homepage": "http://publicis-indonesia.github.io/Waves"
 }
