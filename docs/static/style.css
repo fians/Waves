@@ -59,7 +59,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'open_sanslight';
+	font-family: 'open_sanslight', "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
 a, 
@@ -81,6 +81,20 @@ strong {
 
 p {
   padding:10px;
+}
+
+ul {
+  list-style:initial;
+  padding:10px;
+}
+
+ul li {
+  margin-left:30px;
+}
+
+.code-head,
+.code {
+  font-family: Consolas, monaco, monospace;
 }
 
 .text-center {
