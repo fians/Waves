@@ -6,7 +6,7 @@
     "Alfiana E. Sibuea <alfian.sibuea@gmail.com>"
   ],
   "description": "Click effect inspired by Google's Material Design",
-  "main": "waves.min.js",
+  "main": "dist/waves.min.js",
   "keywords": [
     "click",
     "material-design"
@@ -16,7 +16,12 @@
     "**/.*",
     "node_modules",
     "bower_components",
+    "src",
     "test",
-    "tests"
+    "tests",
+    "bower.json",
+    "gulpfile.js",
+    "package.json",
+    "README.md"
   ]
 }
