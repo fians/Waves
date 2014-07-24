@@ -28,7 +28,7 @@ gulp.task('cssmin', function(){
 	return gulp.src(path.css.src)
 			.pipe(plumber(function(err){
 				console.log(err.message);
-				this.emit('end'); // https://github.com/floatdrop/gulp-plumber/issues/8#issuecomment-41465386
+				this.emit('end');
 			}))
 			.pipe(gulp.dest(path.css.dest))
 			.pipe(concat('waves.min.css'))
