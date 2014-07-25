@@ -1,6 +1,6 @@
 
 /*!
- * Waves v0.4.0
+ * Waves v0.4.1
  * https://publicis-indonesia.github.io/Waves
  *
  * Copyright 2014 Publicis Metro Indonesia, PT. and other contributors
@@ -211,6 +211,8 @@
         if ('duration' in options) {
             Effect.duration = options.duration;
         }
+
+        console.log('hello');
         
         //Wrap input inside <i> tag
         Effect.wrapInput($$('.waves-effect'));
