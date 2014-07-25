@@ -211,8 +211,6 @@
         if ('duration' in options) {
             Effect.duration = options.duration;
         }
-
-        console.log('hello');
         
         //Wrap input inside <i> tag
         Effect.wrapInput($$('.waves-effect'));
