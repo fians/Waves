@@ -52,12 +52,11 @@
     -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
 }
 
-a.waves-button,
-a.waves-button:hover,
-a.waves-button:visited,
-a.waves-button:link,
-button.waves-button,
-input.waves-button-input {
+.waves-button,
+.waves-button:hover,
+.waves-button:visited,
+.waves-button:link,
+.waves-button-input {
     white-space: nowrap;
     vertical-align: middle;
     cursor: pointer;
@@ -68,6 +67,7 @@ input.waves-button-input {
     font-size:14px;
     text-align: center;
     text-decoration:none;
+    z-index:1;
 }
 
 .waves-button {
