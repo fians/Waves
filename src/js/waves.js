@@ -24,7 +24,7 @@
             do {
                 left += obj.offsetLeft;
                 top += obj.offsetTop;
-            } while (obj = obj.offsetParent);
+            } while (obj === obj.offsetParent);
         }
 
         return {
@@ -79,13 +79,12 @@
             
             ripple.className = ripple.className + ' waves-notransition';
             ripple.setAttribute('style', convertStyle(rippleStyle));
-            ripple.offsetHeight;
             ripple.className = ripple.className.replace('waves-notransition', '');
 
             rippleStyle['border-width'] = width+'px';
             rippleStyle['margin-top']   = '-'+width+'px';
             rippleStyle['margin-left']  = '-'+width+'px';
-            rippleStyle['opacity']      = '1';
+            rippleStyle.opacity         = '1';
 
             rippleStyle['-webkit-transition-duration'] = Effect.duration + 'ms';
             rippleStyle['-moz-transition-duration']    = Effect.duration + 'ms';
@@ -96,7 +95,7 @@
 
         },
 
-        hide: function(e) {
+        hide: function() {
             
             var el = this;
 
@@ -105,7 +104,9 @@
             // Get first ripple
             var ripple = null;
 
-            for (var a = 0; a < el.children.length; a++) {
+            var childrenLength = el.children.length;
+
+            for (var a = 0; a < childrenLength; a++) {
                 if (el.children[a].className.indexOf('waves-ripple') !== -1) {
                     ripple = el.children[a];
                     continue;
