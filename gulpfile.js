@@ -10,8 +10,14 @@ var concat 		= require('gulp-concat');
 var minifyCSS 	= require('gulp-minify-css');
 var sourcemaps 	= require('gulp-sourcemaps');
 var jshint 		= require('gulp-jshint');
+var sass = require('gulp-sass');
 
 var path = {
+	scss: {
+		src: 'src/scss/*.scss',
+		files: 'src/scss/**/*.scss',
+		dest: './dist/'
+	},
 	css: {
 		src: 'src/css/*.css',
 		files: 'src/css/**/*.css',
@@ -25,12 +31,13 @@ var path = {
 }
 
 gulp.task('cssmin', function(){
-	return gulp.src(path.css.src)
+	return gulp.src(path.scss.src)
 			.pipe(plumber(function(err){
 				console.log(err.message);
 				this.emit('end');
 			}))
-			.pipe(gulp.dest(path.css.dest))
+			.pipe(sass())
+			.pipe(gulp.dest(path.scss.dest))
 			.pipe(concat('waves.min.css'))
 			.pipe(minifyCSS())
 			.pipe(gulp.dest(path.css.dest));
@@ -57,7 +64,7 @@ gulp.task('uglify', function(){
 });
 
 gulp.task('watch', function(){
-	gulp.watch(path.css.files, ['cssmin']);
+	gulp.watch(path.scss.files, ['cssmin']);
 	gulp.watch(path.js.files, ['uglify']);
 });
 
