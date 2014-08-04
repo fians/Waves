@@ -26,21 +26,24 @@
 .waves-effect .waves-ripple {
     position: absolute;
     border-radius: 50%;
-    border-width:0px;
-    border-style:solid;
     width:100px;
     height:100px;
     opacity:0;
-    border-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.2);
     -webkit-transition: all 0.5s ease-out;
     -moz-transition: all 0.5s ease-out;
     -o-transition: all 0.5s ease-out;
     transition: all 0.5s ease-out;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
 }
 
 
 .waves-effect.waves-light .waves-ripple {
-    border-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
 .waves-notransition {
