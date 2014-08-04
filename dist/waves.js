@@ -1,6 +1,6 @@
 
 /*!
- * Waves v0.4.2
+ * Waves v0.5.0-dev
  * https://publicis-indonesia.github.io/Waves
  *
  * Copyright 2014 Publicis Metro Indonesia, PT. and other contributors
@@ -11,6 +11,9 @@
 ;(function(window) {
     'use strict';
 
+    var circleBlack = '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAT9JREFUeNrsmu0NgyAQhm0ncIMyihvoBh2hbtQRiBPoBq5gJ2AEKgkmlFCjFsq9Fy95f4o83PF1R1EwsUuCNqtZwipkk9VAbTBMh9tZ/Sy9U739VuQEMCMvD3T+m6Rt868eiAkQAkruIRMGKiHEImX/Fd3KxF5Y804ZE2LMALFojAGTGyIKDBWIn2EkIQh3zuxenTRRtXv2CUUYRG3dZyRhiM0hVgFALPo4zlw9kAfQyf2+Njc0mETIIw3gfaoJgdSAIHXohqiRb7lXZ7VCtcoFEcAggiUIvLEDuXEBeZ2hRQxkAmaYWIGwO6IYGwAhhtBk7wBBOnYXK8TEw6YEBGzygW06iFWCjk3KlHKIySNrNJuyAiUYFlWrKBAuDHwx1F/NoMvT/j4D/2DAP87EBHrmzniKgsCjmvOZEzV7CzAAfRfSinqQv9YAAAAASUVORK5CYII="/>';
+    var circleWhite = '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAZRJREFUeNrsmgttwzAQhu0hCIN5DDYGLYKWwSAsFIqgKoJASIogYZAxWIZgZeBdpFsVWW4ek93cb/WXTpGqPPz1zo87W6lEpEO/0Fq7oYth86nrTWvdiPonqOGGLCer7XLV/KxZE2BDVtpwKtmbd/VASAAfkIkN0YfBj42v/ht5DIAsshfGvJOFhGjtemrnwOgpCLrUZK8rD46fZFsasi+LQQRBzIJ5GnmwEAShuC3Ff0YnqcpnhRaP4S1ZpmSqD603CrFuKrSOgiEUt+046hFeItQgC97tcOHpeuQDaOX+7vUI940vsDTk5a+vDD2yB8yn9r7Q2gGC7HyhZSFTXNLVI3dNaOKk1tfQMgpXJkkQeCUH8pwKyPcjtISBdMAMXVIgaS1RWA0ghzexOgOCnNNNrPiHCgiiGlZS3HnkBARyujkhclWiAvFG4y0+OH0Fv0DHNxwEe+PgQkylkKXAum95c2IcAYHaVkhmo2dOiEFsvS2Bwd4MdYCwt6fdeQb+wIADFPoIR7FqxVPKoZrHMSdp+hVgAFDueSKuGHB/AAAAAElFTkSuQmCC"/>';
+    
     var Waves = Waves || {};
     var $$ = document.querySelectorAll.bind(document);
 
@@ -57,7 +60,7 @@
 
             // Create ripple
             var ripple = document.createElement('div');
-            ripple.className = ripple.className + 'waves-ripple';
+            ripple.className = 'waves-ripple';
             el.appendChild(ripple);
 
             // Get click coordinate and element witdh

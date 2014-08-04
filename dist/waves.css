@@ -1,6 +1,6 @@
 
 /*!
- * Waves v0.4.2
+ * Waves v0.5.0-dev
  * https://publicis-indonesia.github.io/Waves
  *
  * Copyright 2014 Publicis Metro Indonesia, PT. and other contributors
@@ -25,11 +25,11 @@
 
 .waves-effect .waves-ripple {
     position: absolute;
-    border-radius: 100%;
+    border-radius: 50%;
     border-width:0px;
     border-style:solid;
-    width:0px;
-    height:0px;
+    width:100px;
+    height:100px;
     opacity:0;
     border-color: rgba(0, 0, 0, 0.2);
     -webkit-transition: all 0.5s ease-out;
@@ -37,6 +37,7 @@
     -o-transition: all 0.5s ease-out;
     transition: all 0.5s ease-out;
 }
+
 
 .waves-effect.waves-light .waves-ripple {
     border-color: rgba(255, 255, 255, 0.4);
