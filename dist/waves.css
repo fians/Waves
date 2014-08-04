@@ -52,7 +52,7 @@
 }
 
 .waves-button, 
-.waves-icon {
+.waves-circle {
     -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
 }
 
@@ -100,7 +100,7 @@
     z-index: 1;
 }
 
-.waves-icon {
+.waves-circle {
   text-align:center;
   width:2.5em;
   height:2.5em;
