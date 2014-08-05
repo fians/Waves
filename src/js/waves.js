@@ -1,6 +1,6 @@
 
 /*!
- * Waves v0.4.2
+ * Waves v0.5.0
  * https://publicis-indonesia.github.io/Waves
  *
  * Copyright 2014 Publicis Metro Indonesia, PT. and other contributors
@@ -57,17 +57,18 @@
 
             // Create ripple
             var ripple = document.createElement('div');
-            ripple.className = ripple.className + 'waves-ripple';
+            ripple.className = 'waves-ripple';
             el.appendChild(ripple);
 
             // Get click coordinate and element witdh
             var pos         = position(el);
-            var relativeY   = (e.pageY - pos.top);
-            var relativeX   = (e.pageX - pos.left);
-            var width       = el.clientWidth * 1.4;
+            var relativeY   = (e.pageY - pos.top) - 45;
+            var relativeX   = (e.pageX - pos.left) - 45;
+            var scale       = 'scale('+((el.clientWidth / 100) * 2.5)+')';
 
             // Attach data to element
             ripple.setAttribute('data-hold', Date.now());
+            ripple.setAttribute('data-scale', scale);
             ripple.setAttribute('data-x', relativeX);
             ripple.setAttribute('data-y', relativeY);
 
@@ -81,10 +82,13 @@
             ripple.setAttribute('style', convertStyle(rippleStyle));
             ripple.className = ripple.className.replace('waves-notransition', '');
 
-            rippleStyle['border-width'] = width+'px';
-            rippleStyle['margin-top']   = '-'+width+'px';
-            rippleStyle['margin-left']  = '-'+width+'px';
-            rippleStyle.opacity         = '1';
+            // Scale the ripple
+            rippleStyle['-webkit-transform'] = scale;
+            rippleStyle['-moz-transform'] = scale;
+            rippleStyle['-ms-transform'] = scale;
+            rippleStyle['-o-transform'] = scale;
+            rippleStyle.transform = scale;
+            rippleStyle.opacity   = '1';
 
             rippleStyle['-webkit-transition-duration'] = Effect.duration + 'ms';
             rippleStyle['-moz-transition-duration']    = Effect.duration + 'ms';
@@ -119,6 +123,7 @@
 
             var relativeX   = ripple.getAttribute('data-x');
             var relativeY   = ripple.getAttribute('data-y');
+            var scale       = ripple.getAttribute('data-scale');
 
             // Get delay beetween mousedown and mouse leave
             var diff = Date.now() - Number(ripple.getAttribute('data-hold'));
@@ -134,9 +139,6 @@
                 var style = {
                     'top': relativeY+'px',
                     'left': relativeX+'px',
-                    'border-width': width+'px',
-                    'margin-top': '-'+width+'px',
-                    'margin-left': '-'+width+'px',
                     'opacity': '0',
 
                     // Duration
@@ -144,6 +146,11 @@
                     '-moz-transition-duration': Effect.duration + 'ms',
                     '-o-transition-duration': Effect.duration + 'ms',
                     'transition-duration': Effect.duration + 'ms',
+                    '-webkit-transform': scale,
+                    '-moz-transform': scale,
+                    '-ms-transform': scale,
+                    '-o-transform': scale,
+                    'transform': scale,
                 };
 
                 ripple.setAttribute('style', convertStyle(style));
@@ -157,7 +164,7 @@
                     }
 
                     
-                }, 300);
+                }, Effect.duration);
 
             }, delay);
 
