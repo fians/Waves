@@ -8,6 +8,26 @@
  * https://github.com/publicis-indonesia/Waves/blob/master/LICENSE
  */
 
+.transition (@transition) {
+    -webkit-transition: @transition;  
+    -moz-transition: @transition; 
+    -o-transition: @transition;
+    transition: @transition;  
+}
+
+.transform(@string) {
+    -webkit-transform: @string;
+    -moz-transform: @string;
+    -ms-transform: @string;
+    -o-transform: @string;
+    transform: @string;
+}
+
+.box-shadow(@shadow) {
+    -webkit-box-shadow:  @shadow;
+    box-shadow: @shadow;
+}
+
 .waves-effect {
     position: relative;
     cursor: pointer;
@@ -17,42 +37,33 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    -webkit-transition: all .3s ease-out;
-    -moz-transition: all .3s ease-out;
-    -o-transition: all .3s ease-out;
-    transition: all .3s ease-out;
-}
+    .transition(all .3s ease-out);
+    
+    .waves-ripple {
+        position: absolute;
+        border-radius: 50%;
+        width:100px;
+        height:100px;
+        opacity:0;
+        background-color: rgba(0, 0, 0, 0.2);
+        .transition(all 0.5s ease-out);
+        .transform(scale(0));
+    }
 
-.waves-effect .waves-ripple {
-    position: absolute;
-    border-radius: 50%;
-    width:100px;
-    height:100px;
-    opacity:0;
-    background-color: rgba(0, 0, 0, 0.2);
-    -webkit-transition: all 0.5s ease-out;
-    -moz-transition: all 0.5s ease-out;
-    -o-transition: all 0.5s ease-out;
-    transition: all 0.5s ease-out;
-    -webkit-transform: scale(0);
-    -moz-transform: scale(0);
-    -ms-transform: scale(0);
-    -o-transform: scale(0);
-    transform: scale(0);
-}
-
-
-.waves-effect.waves-light .waves-ripple {
-    background-color: rgba(255, 255, 255, 0.4);
+    &.waves-light .waves-ripple {
+        background-color: rgba(255, 255, 255, 0.4);
+    }
 }
 
 .waves-notransition {
-    -webkit-transition: none !important;
-    transition: none !important;
+    -webkit-transition: none !important;  
+    -moz-transition: none !important; 
+    -o-transition: none !important;
+    transition: none !important; 
 }
 
 .waves-button, 
-.waves-circle {
+.waves-icon {
     -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
 }
 
@@ -87,36 +98,34 @@
 .waves-input-wrapper {
     border-radius:2px;
     vertical-align: bottom;
-}
 
-.waves-input-wrapper.waves-button {
-    padding:0;
-}
+    &.waves-button {
+        padding:0;
+    }
 
-.waves-input-wrapper .waves-button-input {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
+    .waves-button-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
 }
 
 .waves-circle {
-  text-align:center;
-  width:2.5em;
-  height:2.5em;
-  line-height:2.5em;
-  border-radius:50%;
+    text-align:center;
+    width:2.5em;
+    height:2.5em;
+    line-height:2.5em;
+    border-radius:50%;
 }
 
 .waves-float {
     -webkit-mask-image:none;
-    -webkit-box-shadow:  0px 1px 1.5px 1px rgba(0, 0, 0, 0.12);
-    box-shadow: 0px 1px 1.5px 1px rgba(0, 0, 0, 0.12);
-}
+    .box-shadow(0px 1px 1.5px 1px rgba(0, 0, 0, 0.12));
 
-.waves-float:active {
-    -webkit-box-shadow: 0px 8px 20px 1px rgba(0, 0, 0, 0.30);
-    box-shadow: 0px 8px 20px 1px rgba(0, 0, 0, 0.30);
+    &:active {
+        .box-shadow(0px 8px 20px 1px rgba(0, 0, 0, 0.30));
+    }
 }
 
 .waves-block {
