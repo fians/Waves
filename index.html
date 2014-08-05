@@ -11,6 +11,7 @@
         <title>Waves</title>
         <meta name="description" content="Waves - Click effect inspired by Google's Material Design" />
 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="https://publicis.co.id/assets/font/opensans_light/main.css">
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="./docs/static/prims.css">
@@ -443,7 +444,27 @@
                     effect when you tapping a link or button and this highlight will shadowed Waves effect. To prevent this thing happen, you will need to add <code>msapplication-tap-highlight</code> meta tag on your header.
                 </p>
      
-                <pre data-src="./docs/sources/example-html-quick-fix-ie-tap-highlight.html"></pre>
+<script class="sourceCode" data-lang="markup" type="text/plain">
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Remove Tap Highlight on Windows Phone IE -->
+        <meta name="msapplication-tap-highlight" content="no"/> 
+
+        <title>Your Web Page</title>
+
+        <link rel="stylesheet" type="text/css" href="/path/to/waves.css" />
+    </head>
+    <body>
+
+        <script type="text/javascript" src="/path/to/waves.js"></script>
+        <script type="text/javascript">
+            var w = new Waves();
+            w.displayEffect();
+        </script>
+    </body>
+</html>
+</script>
             </div>
 
             <footer class="text-center">
@@ -452,7 +473,7 @@
                 2014 &copy; <a href="https://publicis.co.id" target="blank">Publicis Indonesia</a>. All Right Reserved.
             </footer>
 
-            <a href="https://github.com/publicis-indonesia/Waves" target="_blank"><img style="position: fixed; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+            <a id="github-ribbon" href="https://github.com/publicis-indonesia/Waves" target="_blank"><img style="position: fixed; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 
             
             <script type="text/javascript" src="./docs/static/prims.js"></script>
