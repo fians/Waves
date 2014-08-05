@@ -1,5 +1,5 @@
 /*!
- * Waves v0.5.0-dev
+ * Waves v0.5.0
  * https://publicis-indonesia.github.io/Waves
  *
  * Copyright 2014 Publicis Metro Indonesia, PT. and other contributors

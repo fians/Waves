@@ -1,6 +1,6 @@
 {
   "name": "Waves",
-  "version": "0.5.0-dev",
+  "version": "0.5.0",
   "description": "Click effect insipired by Google Material Design",
   "author": "Alfiana E. Sibuea <alfian.sibuea@gmail.com>",
   "main": "waves.js",
