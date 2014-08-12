@@ -1,6 +1,6 @@
 
 /*!
- * Waves v0.5.0
+ * Waves v0.5.1
  * https://publicis-indonesia.github.io/Waves
  *
  * Copyright 2014 Publicis Metro Indonesia, PT. and other contributors
@@ -15,21 +15,29 @@
     var $$ = document.querySelectorAll.bind(document);
 
     // Find exact position of element
-    function position(obj) {
+    function isWindow(obj) {
+        return obj !== null && obj === obj.window;
+    }
 
-        var left = 0;
-        var top = 0;
-        
-        if (obj.offsetParent) {
-            do {
-                left += obj.offsetLeft;
-                top += obj.offsetTop;
-            } while (obj === obj.offsetParent);
+    function getWindow(elem) {
+        return isWindow(elem) ? elem : elem.nodeType === 9 && elem.defaultView;
+    }
+
+    function offset(elem) {
+
+        var docElem, win,
+            box = {top: 0, left: 0},
+            doc = elem && elem.ownerDocument;
+
+        docElem = doc.documentElement;
+
+        if (typeof elem.getBoundingClientRect !== typeof undefined) {
+            box = elem.getBoundingClientRect();
         }
-
+        win = getWindow(doc);
         return {
-            top: top, 
-            left: left
+            top: box.top + win.pageYOffset - docElem.clientTop,
+            left: box.left + win.pageXOffset - docElem.clientLeft
         };
     }
 
@@ -61,7 +69,7 @@
             el.appendChild(ripple);
 
             // Get click coordinate and element witdh
-            var pos         = position(el);
+            var pos         = offset(el);
             var relativeY   = (e.pageY - pos.top) - 45;
             var relativeX   = (e.pageX - pos.left) - 45;
             var scale       = 'scale('+((el.clientWidth / 100) * 2.5)+')';

@@ -1,6 +1,6 @@
 {
   "name": "Waves",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "homepage": "http://publicis-indonesia.github.io/Waves",
   "authors": [
     "Alfiana E. Sibuea <alfian.sibuea@gmail.com>"
@@ -19,8 +19,7 @@
     "src",
     "test",
     "tests",
-    "bower.json",
-    "gulpfile.js",
+    "Gruntfile.js",
     "package.json",
     "README.md"
   ]
