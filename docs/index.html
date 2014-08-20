@@ -50,12 +50,12 @@
                 </p>
 
 <div id="plainButtonCode" class="hide">
-<script class="sourceCode" data-lang="markup" type="text/plain">
+{{#code class="lang-markup"}}
 <a class="waves-effect waves-button">Button A</a>
 <button class="waves-effect waves-button">Button B</button>
 <input class="waves-effect waves-button" type="submit" value="Button C">
 <input class="waves-effect waves-button" type="button" value="Button D">
-</script>
+{{/code}}
 </div>
 
                 <p class="text-center">
@@ -71,7 +71,7 @@
                 </p>
 
 <div id="raisedButtonCode" class="hide">
-<script class="sourceCode" data-lang="markup" type="text/plain">
+{{#code class="lang-markup"}}
 <a class="waves-effect waves-button waves-float" style="background: #01BCFF;color:#fff">
     Button A
 </a>
@@ -80,7 +80,7 @@
 </button>
 <input class="waves-effect waves-button waves-float" style="background: #ff4f0f;color:#fff" type="submit" value="Button C">
 <input class="waves-effect waves-button waves-light waves-float" style="background: #666;color:#fff" type="button" value="Button D">
-</script>
+{{/code}}
 </div>
 
                 <p class="text-center">
@@ -100,7 +100,7 @@
                 </p>
 
 <div id="plainIconCode" class="hide">
-<script class="sourceCode" data-lang="markup" type="text/plain">
+{{#code class="lang-markup"}}
 <i class="fa fa-bars        waves-effect waves-circle"></i>
 <i class="fa fa-bookmark    waves-effect waves-circle"></i>
 <i class="fa fa-calendar    waves-effect waves-circle"></i>
@@ -110,7 +110,7 @@
 <i class="fa fa-gear        waves-effect waves-circle"></i>
 <i class="fa fa-image       waves-effect waves-circle"></i>
 <i class="fa fa-user        waves-effect waves-circle"></i>
-</script>
+{{/code}}
 </div>
 
                 <p class="text-center">
@@ -131,7 +131,7 @@
                 </p>
 
 <div id="coloredIconCode" class="hide">
-<script class="sourceCode" data-lang="markup" type="text/plain">
+{{#code class="lang-markup"}}
 <i  class="fa fa-bars waves-effect waves-circle" 
     style="background: #ff6400;color:#fff;"></i>
 
@@ -158,7 +158,7 @@
 
 <i  class="fa fa-user waves-effect waves-circle" 
     style="background:#8ee05e;color:#fff;"></i>
-</script>
+{{/code}}
 </div>
 
                 <p class="text-center">
@@ -184,12 +184,12 @@
                 </p>
 
 <div id="divOtherCode" class="hide">
-<script class="sourceCode" data-lang="markup" type="text/plain">
+{{#code class="lang-markup"}}
 <div class="box waves-effect waves-block">Plain Box</div>
 <div class="box colored-box waves-effect waves-light waves-block">Colored Box</div>
 <div class="box raised-box waves-effect waves-float waves-block">Raised Box</div>
 <pre data-src="./docs/sources/other-div.html"></pre>
-</script>
+{{/code}}
 </div>
 
                 <div class="box waves-effect waves-block">Plain Box</div>
@@ -203,7 +203,7 @@
                 </p>
 
 <div id="imagesOtherCode" class="hide">
-<script class="sourceCode" data-lang="markup" type="text/plain">
+{{#code class="lang-markup"}}
 <span class="waves-effect">
     <img src="https://farm2.staticflickr.com/1297/1091511802_2fb2451ecc_n.jpg">
 </span>
@@ -211,7 +211,7 @@
 <span class="waves-effect waves-light waves-float">
     <img src="https://farm3.staticflickr.com/2861/11189362895_38bf66c0bf_n.jpg">
 </span>
-</script>
+{{/code}}
 </div>
 
                 <p class="text-center">
@@ -240,7 +240,7 @@
                     It's easy to use Waves. Download the latest version of Waves from <a href="https://github.com/publicis-indonesia/Waves/releases">Github repository</a>. Just include waves.min.css and waves.min.js to your HTML file. And Waves is ready to use!
                 </p>
 
-<script class="sourceCode" data-lang="markup" type="text/plain">
+{{#code class="lang-markup"}}
 <!DOCTYPE html>
 <html>
     <head>
@@ -255,10 +255,10 @@
         <script type="text/javascript" src="/path/to/waves.min.js">\</script\>
         <script type="text/javascript">
             Waves.displayEffect();
-        \</script\>
+        </script>
     </body>
 </html>
-</script>
+{{/code}}
 
                 <p>
                     <strong>Advanced:</strong> <br>
@@ -269,20 +269,20 @@
                     To put Waves effect on your buttons, just add <code class="language-css">.waves-effect</code> and <code class="language-css">.waves-button</code> class to your buttons.
                 </p>
 
-<script class="sourceCode" data-lang="markup" type="text/plain">
+{{#code class="lang-markup"}}
 <button class="waves-effect waves-button">Click Here</button>
 
 <!-- It also support a, input submit and input button tag -->
 <a href="#" class="waves-effect waves-button">A Tag</a>
 <input type="submit" class="waves-effect waves-button" value="Input Submit">
 <input type="button" class="waves-effect waves-button" value="Input Button">
-</script>
+{{/code}}
 
                 <p>
                     Normally, the effect will not work on single tag element like <code class="language-markup">&lt;input&gt;</code>. That's why Waves will wrap <code class="language-markup">&lt;input&gt;</code> inside <code class="language-markup">&lt;i&gt;</code> automatically if you display the effect.
                 </p>
 
-<script class="sourceCode" data-lang="markup" type="text/plain">
+{{#code class="lang-markup"}}
 <!-- Before displaying the effect -->
 <input class="waves-button-input" type="submit" value="Button C">
 
@@ -290,21 +290,21 @@
 <i class="waves-effect waves-button waves-input-wrapper" style="width:85px;height:36px;">
     <input class="waves-button-input" type="submit" value="Button C">
 </i>
-</script>
+{{/code}}
 
                 <p>
                     Waves can also be applied with icons (like FontAwesome) by using <code class="language-css">waves-circle</code>, so you can give the icons Waves effect. It's simple, just give additional <code class="language-css">.waves-effect</code> and <code class="language-css">.waves-circle</code> class to your <code class="language-markup">&lt;i&gt;</code> tags and Waves will wrap icon inside circle spot that will prevent Waves effect spreading.
                 </p>
 
-<script class="sourceCode" data-lang="markup" type="text/plain">
+{{#code class="lang-markup"}}
 <i class="fa fa-gear waves-effect waves-circle"></i>
-</script>
+{{/code}}
 
                 <p>
                     You can also give Waves effect to other element tag like <code class="language-markup">&lt;div&gt;</code> or <code class="language-markup">&lt;img&gt;</code>. All you need to do is just put <code class="language-css">.waves-effect</code> class. For element that not have closing tag like <code class="language-markup">&lt;img&gt;</code>, you have to wrap it inside <code class="language-markup">&lt;span&gt;</code>, and for element that have blocky display like <code class="language-markup">&lt;div&gt;</code>, you need to put <code class="language-css">.waves-block</code> class to keep its shape.
                 </p>
 
-<script class="sourceCode" data-lang="markup" type="text/plain">
+{{#code class="lang-markup"}}
 <!-- For single tag element -->
 <span class="waves-effect">
     <img src="/path/to/images.jpg">
@@ -314,7 +314,7 @@
 <div class="waves-effect waves-block">
     Block A
 </div>
-</script>
+{{/code}}
 
             </div>
 
@@ -325,7 +325,7 @@
                     Waves give you capabilities to color your <code class="language-css">.waves-effect</code>. You can do this by set up the color and background-color/background properties on your element style (or CSS file).
                 </p>
 
-<script class="sourceCode" data-lang="markup" type="text/plain">
+{{#code class="lang-markup"}}
 <!-- Put color in inline style -->
 <span class="waves-effect waves-button" style="background: #01BCFF;color: #fff;">
     <button>Button B</button>
@@ -342,13 +342,13 @@
 <span class="waves-effect waves-button blue-button">
     <button>Button B</button>
 </span>
-</script>
+{{/code}}
 
                 <p>
                     By default, Waves ripple is darker. If you want the ripple is lighter, you can set <code class="language-css">.waves-light</code> along side <code class="language-css">.waves-effect</code> class. Make sure the element has been colored, because if it haven't colored yet, you cannot see the light ripple.
                 </p>
 
-<script class="sourceCode" data-lang="markup" type="text/plain">
+{{#code class="lang-markup"}}
 <style>
     .blue-button {
         background: #01BCFF;
@@ -359,14 +359,14 @@
 <span class="waves-effect waves-button waves-light blue-button">
     <button>Button B</button>
 </span>
-</script>
+{{/code}}
 
                 <p>
                     Not only give your "Waves effect", Waves also provide float effect when you click an element
                     by adding <code class="language-css">.waves-float</code> class to the element. Once again, before put float effect, your have to make sure the element has been colored, to prevent weird shadow on the element.
                 </p>
 
-<script class="sourceCode" data-lang="markup" type="text/plain">
+{{#code class="lang-markup"}}
 <style>
     .blue-button {
         background: #01BCFF;
@@ -377,7 +377,7 @@
 <span class="waves-effect waves-button waves-float blue-button">
     <button>Button B</button>
 </span>
-</script>
+{{/code}}
 
             </div>
 
@@ -394,13 +394,13 @@
                     <li><span class="code">config</span> - (optional) Configuration object for displaying Waves effect.</li>
                 </ul>
 
-<script class="sourceCode" data-lang="javascript" type="text/plain">
+{{#code class="lang-javascript"}}
 {
     // How long Waves effect duration 
     // when its clicked (in milisecond)
     duration: 500
 }
-</script>
+{{/code}}
                 
             </div>
 
@@ -408,19 +408,11 @@
                 <h2>FAQ</h2>
 
                 <p>
-                    <strong>What browsers support Waves?</strong>
+                    <strong>Browser support?</strong>
                 </p>
 
                 <p>
                     Waves works in latest modern browser (i.e. Chrome, Firefox, Opera and Safari) and also IE10+. More browser support will comming.
-                </p>
-                
-                <p>
-                    <strong>Does Waves support mobile devices?</strong>
-                </p>
-
-                <p>
-                    Waves is partially support mobile device by using <code class="languange-js">touchstart</code> and <code class="languange-js">touchend</code> event.
                 </p>
 
                 <p>
@@ -444,7 +436,7 @@
                     effect when you tapping a link or button and this highlight will shadowed Waves effect. To prevent this thing happen, you will need to add <code>msapplication-tap-highlight</code> meta tag on your header.
                 </p>
      
-<script class="sourceCode" data-lang="markup" type="text/plain">
+{{#code class="lang-markup"}}
 <!DOCTYPE html>
 <html>
     <head>
@@ -461,10 +453,10 @@
         <script type="text/javascript">
             var w = new Waves();
             w.displayEffect();
-        \</script\>
+        </script>
     </body>
 </html>
-</script>
+{{/code}}
             </div>
 
             <footer class="text-center">
@@ -487,21 +479,6 @@
             <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
             <script type="text/javascript">
                 $(document).on('ready', function() {
-
-                    $('.sourceCode').each(function(i, el) {
-                        var type = 'language-'+$(this).data('lang');
-                        var source = $(this).html()
-                                        .replace(/\n/, "")
-                                        .replace(/\\/g, "")
-                                        .replace(/&/g, "&amp;")
-                                        .replace(/</g, "&lt;")
-                                        .replace(/>/g, "&gt;")
-                                        .replace(/"/g, "&quot;")
-                                        .replace(/'/g, "&#039;");
-
-                        var a = $('<pre class="'+type+'"><code class="'+type+'">'+source+'</code></pre>').insertAfter($(this));
-                        Prism.highlightElement(a[0]);
-                    });
                     $('a.toggle-code').on('click', function() {
 
                         var link = $(this);
