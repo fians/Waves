@@ -1,7 +1,7 @@
 # Waves
 
 Click effect inspired by Google's Material Design
-http://publicis-indonesia.github.io/Waves/
+http://fian.my.id/Waves/
 
 ## Documentation
 
