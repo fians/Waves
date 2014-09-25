@@ -1,7 +1,7 @@
 {
   "name": "Waves",
   "version": "0.5.3",
-  "homepage": "http://publicis-indonesia.github.io/Waves",
+  "homepage": "http://fian.my.id/Waves",
   "authors": [
     "Alfiana E. Sibuea <alfian.sibuea@gmail.com>"
   ],
@@ -24,3 +24,6 @@
     "README.md"
   ]
 }
+
+
+
