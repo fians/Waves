@@ -1,6 +1,6 @@
 {
   "name": "Waves",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Click effect insipired by Google Material Design",
   "author": "Alfiana E. Sibuea <alfian.sibuea@gmail.com>",
   "main": "waves.js",
@@ -19,10 +19,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/publicis-indonesia/Waves.git"
+    "url": "https://github.com/fians/Waves.git"
   },
   "bugs": {
-    "url": "https://github.com/publicis-indonesia/Waves/issues"
+    "url": "https://github.com/fians/Waves/issues"
   },
-  "homepage": "http://publicis-indonesia.github.io/Waves"
+  "homepage": "http://fian.my.id/Waves"
 }
