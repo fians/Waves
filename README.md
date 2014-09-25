@@ -3,10 +3,6 @@
 Click effect inspired by Google's Material Design
 http://fian.my.id/Waves/
 
-## Notes
-
-Waves has been moved to new repository. This happen because the company cannot maintain this library anymore and they are trusting me to do it.
-
 ## Documentation
 
 Waves using [Situs](https://github.com/fians/situs) to generate documentation. 
@@ -18,8 +14,12 @@ Here is some steps to run documentation locally on your computer,
 4. Go to Waves directory and just start Situs server (`situs server`).
 5. Then visit [http://localhost:4000/](http://localhost:4000/) on your browser.
 
+## Notes
+
+Waves has been moved to new repository. This happen because the company cannot maintain this library anymore and they are trusting me to do it. They also give all the copyright to me, so Waves is re-licensed into MIT license to give more flexibility.
+
 
 ## License
-Waves created by [Alfiana Sibuea](http://fian.my.id), and released under [BSD license](https://github.com/fians/Waves/blob/master/LICENSE). 
+Waves created by [Alfiana Sibuea](http://fian.my.id), and released under [MIT license](https://github.com/fians/Waves/blob/master/LICENSE). 
 
-Copyright 2014 Publicis Indonesia, PT. All rights reserved.
+Copyright (c) 2014 Alfiana E. Sibuea. All rights reserved.
