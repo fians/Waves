@@ -61,6 +61,11 @@
 
         show: function(e) {
 
+            // Disable right click
+            if (e.button === 2) {
+                return false;
+            }
+
             var el = this;
 
             // Create ripple
