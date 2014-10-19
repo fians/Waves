@@ -1,6 +1,6 @@
 {
   "name": "Waves",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "homepage": "http://fian.my.id/Waves",
   "authors": [
     "Alfiana E. Sibuea <alfian.sibuea@gmail.com>"
@@ -11,7 +11,7 @@
     "click",
     "material-design"
   ],
-  "license": "BSD",
+  "license": "MIT",
   "ignore": [
     "**/.*",
     "node_modules",
