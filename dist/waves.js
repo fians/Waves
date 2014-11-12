@@ -78,6 +78,12 @@
             var relativeY   = (e.pageY - pos.top) - 45;
             var relativeX   = (e.pageX - pos.left) - 45;
             var scale       = 'scale('+((el.clientWidth / 100) * 2.5)+')';
+            
+            // Support for touch devices
+            if ('touches' in e) {
+              relativeY   = (e.touches[0].pageY - pos.top) - 45;
+              relativeX   = (e.touches[0].pageX - pos.left) - 45;
+            }
 
             // Attach data to element
             ripple.setAttribute('data-hold', Date.now());
@@ -237,10 +243,16 @@
         Effect.wrapInput($$('.waves-effect'));
 
         Array.prototype.forEach.call($$('.waves-effect'), function(i) {
-
-            i.addEventListener('mousedown', Effect.show, false);
-            i.addEventListener('mouseup', Effect.hide, false);
-            i.addEventListener('mouseleave', Effect.hide, false);
+          
+            if ('ontouchstart' in window) {
+              i.addEventListener('touchstart', Effect.show, false);
+              i.addEventListener('touchend',   Effect.hide, false);
+              i.addEventListener('touchcancel',   Effect.hide, false);
+            } else {
+              i.addEventListener('mousedown', Effect.show, false);
+              i.addEventListener('mouseup', Effect.hide, false);
+              i.addEventListener('mouseleave', Effect.hide, false);
+            }
 
         });
 
