@@ -16,7 +16,7 @@ Here is some steps to run documentation locally on your computer,
 
 ## Notes
 
-Waves has been moved to new repository. This happen because the company cannot maintain this library anymore and they are trusting me to do it. They also give all the copyright to me, so Waves is re-licensed into MIT license to give more flexibility.
+Thanks for [BrowserStack](http://www.browserstack.com/) by providing a great testing tools for this projects.
 
 
 ## License
