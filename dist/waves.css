@@ -16,6 +16,7 @@
   -ms-user-select: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
@@ -29,11 +30,13 @@
   margin-left: -50px;
   opacity: 0;
   background-color: rgba(0, 0, 0, 0.2);
+  -webkit-transition: all 0.5s ease-out;
   -moz-transition: all 0.5s ease-out;
   -o-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
   -webkit-transition-property: -webkit-transform, opacity;
   -moz-transition-property: -moz-transform, opacity;
+  -o-transition-property: -o-transform, opacity;
   transition-property: transform, opacity;
   -webkit-transform: scale(0);
   -moz-transform: scale(0);
@@ -45,6 +48,7 @@
   background-color: rgba(255, 255, 255, 0.4);
 }
 .waves-notransition {
+  -webkit-transition: none !important;
   -moz-transition: none !important;
   -o-transition: none !important;
   transition: none !important;
