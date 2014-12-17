@@ -39,9 +39,15 @@
     border-radius: 50%
     width: 100px
     height: 100px
+    margin-top: -50px
+    margin-left: -50px
     opacity: 0
     background-color: rgba(0, 0, 0, 0.2)
     +transition(all 0.5s ease-out)
+    -webkit-transition-property: -webkit-transform, opacity
+    -moz-transition-property: -moz-transform, opacity
+    -o-transition-property: -o-transform, opacity
+    transition-property: transform, opacity
     +transform(scale(0))
   &.waves-light .waves-ripple
     background-color: rgba(255, 255, 255, 0.4)
