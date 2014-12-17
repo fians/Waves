@@ -43,6 +43,7 @@
   -ms-transform: scale(0);
   -o-transform: scale(0);
   transform: scale(0);
+  pointer-events: none;
 }
 .waves-effect.waves-light .waves-ripple {
   background-color: rgba(255, 255, 255, 0.4);
