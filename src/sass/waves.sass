@@ -39,23 +39,27 @@
     border-radius: 50%
     width: 100px
     height: 100px
+    margin-top: -50px
+    margin-left: -50px
     opacity: 0
     background-color: rgba(0, 0, 0, 0.2)
     +transition(all 0.5s ease-out)
+    -webkit-transition-property: -webkit-transform, opacity
+    -moz-transition-property: -moz-transform, opacity
+    -o-transition-property: -o-transform, opacity
+    transition-property: transform, opacity
     +transform(scale(0))
+    pointer-events: none;
   &.waves-light .waves-ripple
     background-color: rgba(255, 255, 255, 0.4)
 
 .waves-notransition
-  -webkit-transition: none !important
-  -moz-transition: none !important
-  -o-transition: none !important
-  transition: none !important
+  +transition(none !important)
 
 .waves-button,
 .waves-circle
   -webkit-transform: translateZ(0)
-  -webkit-image-mask: -webkit-radial-gradient(circle, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0))
+    -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%)
 
 .waves-button,
 .waves-button:hover,

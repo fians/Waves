@@ -75,14 +75,14 @@
 
             // Get click coordinate and element witdh
             var pos         = offset(el);
-            var relativeY   = (e.pageY - pos.top) - 45;
-            var relativeX   = (e.pageX - pos.left) - 45;
+            var relativeY   = (e.pageY - pos.top);
+            var relativeX   = (e.pageX - pos.left);
             var scale       = 'scale('+((el.clientWidth / 100) * 2.5)+')';
             
             // Support for touch devices
             if ('touches' in e) {
-              relativeY   = (e.touches[0].pageY - pos.top) - 45;
-              relativeX   = (e.touches[0].pageX - pos.left) - 45;
+              relativeY   = (e.touches[0].pageY - pos.top);
+              relativeX   = (e.touches[0].pageX - pos.left);
             }
 
             // Attach data to element
