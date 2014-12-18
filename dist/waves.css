@@ -29,7 +29,7 @@
   margin-top: -50px;
   margin-left: -50px;
   opacity: 0;
-  background-color: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.2);
   background: -webkit-radial-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
   /* Safari 5.1-6.0 */
   background: -o-radial-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
@@ -53,7 +53,7 @@
   pointer-events: none;
 }
 .waves-effect.waves-light .waves-ripple {
-  background-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.4);
   background: -webkit-radial-gradient(rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.4));
   /* Safari 5.1-6.0 */
   background: -o-radial-gradient(rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.4));
