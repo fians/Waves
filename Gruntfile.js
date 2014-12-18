@@ -1,10 +1,19 @@
 module.exports = function(grunt) {
     grunt.initConfig({
 
-        cssmin: {
-            minify: {
+        less: {
+            build: {
+                options: {},
                 files: {
-                    'dist/waves.min.css': ['src/css/waves.css']
+                    'dist/waves.css': 'src/less/waves.less'
+                }
+            },
+            minified: {
+                options: {
+                    cleancss:true
+                },
+                files: {
+                    'dist/waves.min.css': 'src/less/waves.less'
                 }
             }
         },
@@ -45,12 +54,6 @@ module.exports = function(grunt) {
 				src: 'waves.js',
 				dest: 'dist/'
 			},
-			css: {
-                expand: true,
-                cwd: 'src/css',
-				src: 'waves.css',
-				dest: 'dist/'
-			},
             docs: {
                 expand: true,
                 cwd: 'dist',
@@ -66,7 +69,7 @@ module.exports = function(grunt) {
                     event: ['added', 'deleted', 'changed']
                 },
                 files: ['src/**/*'],
-                tasks: ['cssmin', 'jshint', 'uglify', 'copy']
+                tasks: ['less', 'jshint', 'uglify', 'copy']
             },
             grunt: {
                 files: ['Gruntfile.js']
@@ -76,13 +79,13 @@ module.exports = function(grunt) {
     
     // Load module
     grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
     
     // Create grunt task
-    grunt.registerTask('build', ['cssmin', 'jshint', 'uglify', 'copy']);
+    grunt.registerTask('build', ['less', 'jshint', 'uglify', 'copy']);
     grunt.registerTask('default', ['watch']);
 };

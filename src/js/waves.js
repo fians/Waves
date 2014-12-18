@@ -1,11 +1,10 @@
-
 /*!
- * Waves v0.5.1
- * https://publicis-indonesia.github.io/Waves
- *
- * Copyright 2014 Publicis Metro Indonesia, PT. and other contributors
- * Released under the BSD license
- * https://github.com/publicis-indonesia/Waves/blob/master/LICENSE
+ * Waves v0.5.5
+ * http://fian.my.id/Waves 
+ * 
+ * Copyright 2014 Alfiana E. Sibuea and other contributors 
+ * Released under the MIT license 
+ * https://github.com/fians/Waves/blob/master/LICENSE 
  */
 
 ;(function(window) {
@@ -61,6 +60,11 @@
 
         show: function(e) {
 
+            // Disable right click
+            if (e.button === 2) {
+                return false;
+            }
+
             var el = this;
 
             // Create ripple
@@ -70,9 +74,15 @@
 
             // Get click coordinate and element witdh
             var pos         = offset(el);
-            var relativeY   = (e.pageY - pos.top) - 45;
-            var relativeX   = (e.pageX - pos.left) - 45;
+            var relativeY   = (e.pageY - pos.top);
+            var relativeX   = (e.pageX - pos.left);
             var scale       = 'scale('+((el.clientWidth / 100) * 2.5)+')';
+            
+            // Support for touch devices
+            if ('touches' in e) {
+              relativeY   = (e.touches[0].pageY - pos.top);
+              relativeX   = (e.touches[0].pageX - pos.left);
+            }
 
             // Attach data to element
             ripple.setAttribute('data-hold', Date.now());
@@ -199,13 +209,12 @@
                     wrapper.className = el.className + ' waves-input-wrapper';
 
                     var elementStyle = el.getAttribute('style');
-                    var dimensionStyle = 'width:'+el.offsetWidth+'px;height:'+el.clientHeight+'px;';
 
                     if (!elementStyle) {
                         elementStyle = '';
                     }
 
-                    wrapper.setAttribute('style', dimensionStyle+elementStyle);
+                    wrapper.setAttribute('style', elementStyle);
                     
                     el.className = 'waves-button-input';
                     el.removeAttribute('style');
@@ -232,15 +241,16 @@
         Effect.wrapInput($$('.waves-effect'));
 
         Array.prototype.forEach.call($$('.waves-effect'), function(i) {
-            
-            if (window.Touch) {
-                i.addEventListener('touchstart', Effect.show, false);
-                i.addEventListener('touchend', Effect.hide, false);
+          
+            if ('ontouchstart' in window) {
+              i.addEventListener('touchstart', Effect.show, false);
+              i.addEventListener('touchend',   Effect.hide, false);
+              i.addEventListener('touchcancel',   Effect.hide, false);
+            } else {
+              i.addEventListener('mousedown', Effect.show, false);
+              i.addEventListener('mouseup', Effect.hide, false);
+              i.addEventListener('mouseleave', Effect.hide, false);
             }
-
-            i.addEventListener('mousedown', Effect.show, false);
-            i.addEventListener('mouseup', Effect.hide, false);
-            i.addEventListener('mouseleave', Effect.hide, false);
 
         });
 
