@@ -145,7 +145,7 @@
 
             // Get delay beetween mousedown and mouse leave
             var diff = Date.now() - Number(ripple.getAttribute('data-hold'));
-            var delay = 500 - diff;
+            var delay = 350 - diff;
 
             if (delay < 0) {
                 delay = 0;
