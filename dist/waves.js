@@ -1,6 +1,5 @@
-
 /*!
- * Waves v0.5.4
+ * Waves v0.5.5
  * http://fian.my.id/Waves 
  * 
  * Copyright 2014 Alfiana E. Sibuea and other contributors 
