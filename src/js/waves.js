@@ -210,13 +210,12 @@
                     wrapper.className = el.className + ' waves-input-wrapper';
 
                     var elementStyle = el.getAttribute('style');
-                    var dimensionStyle = 'width:'+el.offsetWidth+'px;height:'+el.clientHeight+'px;';
 
                     if (!elementStyle) {
                         elementStyle = '';
                     }
 
-                    wrapper.setAttribute('style', dimensionStyle+elementStyle);
+                    wrapper.setAttribute('style', elementStyle);
                     
                     el.className = 'waves-button-input';
                     el.removeAttribute('style');
