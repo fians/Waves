@@ -54,13 +54,13 @@
 }
 .waves-effect.waves-light .waves-ripple {
   background: rgba(255, 255, 255, 0.4);
-  background: -webkit-radial-gradient(rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.4));
+  background: -webkit-radial-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.4));
   /* Safari 5.1-6.0 */
-  background: -o-radial-gradient(rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.4));
+  background: -o-radial-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.4));
   /* For Opera 11.6-12.0 */
-  background: -moz-radial-gradient(rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.4));
+  background: -moz-radial-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.4));
   /* For Firefox 3.6-15 */
-  background: radial-gradient(rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.4));
+  background: radial-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.4));
 }
 .waves-notransition {
   -webkit-transition: none !important;
