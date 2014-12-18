@@ -31,5 +31,5 @@ node_modules
 # Situs compiled dir
 situs
 
-# Apple nonsense
+# Apple stuff
 .DS_Store
