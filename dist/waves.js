@@ -174,14 +174,11 @@
                 ripple.setAttribute('style', convertStyle(style));
 
                 setTimeout(function() {
-
                     try {
                         el.removeChild(ripple);
                     } catch(e) {
                         return false;
                     }
-
-                    
                 }, Effect.duration);
 
             }, delay);
