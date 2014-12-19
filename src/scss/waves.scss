@@ -1,11 +1,11 @@
 
 /*!
- * Waves v0.5.1
- * https://publicis-indonesia.github.io/Waves
- *
- * Copyright 2014 Publicis Metro Indonesia, PT. and other contributors
- * Released under the BSD license
- * https://github.com/publicis-indonesia/Waves/blob/master/LICENSE
+ * Waves v0.6.0-dev
+ * http://fian.my.id/Waves 
+ * 
+ * Copyright 2014 Alfiana E. Sibuea and other contributors 
+ * Released under the MIT license 
+ * https://github.com/fians/Waves/blob/master/LICENSE 
  */
 
 @mixin transition ($transition) {
@@ -45,27 +45,42 @@
         border-radius: 50%;
         width:100px;
         height:100px;
+        margin-top:-50px;
+        margin-left:-50px;
         opacity:0;
-        background-color: rgba(0, 0, 0, 0.2);
+        background: rgba(0,0,0,0.4);
+        $gradient: rgba(0,0,0,0.1), rgba(0,0,0,0.4);
+        background: -webkit-radial-gradient($gradient); /* Safari 5.1-6.0 */
+        background: -o-radial-gradient($gradient); /* For Opera 11.6-12.0 */
+        background: -moz-radial-gradient($gradient); /* For Firefox 3.6-15 */
+        background: radial-gradient($gradient);
         @include transition(all 0.5s ease-out);
+        -webkit-transition-property: -webkit-transform, opacity;
+        -moz-transition-property: -moz-transform, opacity;
+        -o-transition-property: -o-transform, opacity;
+        transition-property: transform, opacity;
         @include transform(scale(0));
+        pointer-events: none;
     }
 
     &.waves-light .waves-ripple {
-        background-color: rgba(255, 255, 255, 0.4);
+        background: rgba(255,255,255,0.4);
+        $gradient: rgba(255,255,255,0.1), rgba(255,255,255,0.4);
+        background: -webkit-radial-gradient($gradient); /* Safari 5.1-6.0 */
+        background: -o-radial-gradient($gradient); /* For Opera 11.6-12.0 */
+        background: -moz-radial-gradient($gradient); /* For Firefox 3.6-15 */
+        background: radial-gradient($gradient);
     }
 }
 
 .waves-notransition {
-    -webkit-transition: none !important;  
-    -moz-transition: none !important; 
-    -o-transition: none !important;
-    transition: none !important; 
+    @include transition(none !important);
 }
 
 .waves-button, 
-.waves-icon {
-    -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+.waves-circle {
+    -webkit-transform: translateZ(0);
+    -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
 }
 
 .waves-button,
