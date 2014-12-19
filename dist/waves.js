@@ -56,7 +56,7 @@
     var Effect = {
 
         // Effect delay
-        duration: 500,
+        duration: 750,
 
         show: function(e) {
 
@@ -76,7 +76,7 @@
             var pos         = offset(el);
             var relativeY   = (e.pageY - pos.top);
             var relativeX   = (e.pageX - pos.left);
-            var scale       = 'scale('+((el.clientWidth / 100) * 2.5)+')';
+            var scale       = 'scale('+((el.clientWidth / 100) * 3)+')';
             
             // Support for touch devices
             if ('touches' in e) {

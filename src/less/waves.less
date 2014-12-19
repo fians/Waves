@@ -48,11 +48,11 @@
         margin-top:-50px;
         margin-left:-50px;
         opacity: 0;
-        background: rgba(0, 0, 0, 0.2);
-        @gradient: rgba(0,0,0,0.1), rgba(0,0,0,0.2);
-        background: -webkit-radial-gradient(@gradient); /* Safari 5.1-6.0 */
-        background: -o-radial-gradient(@gradient); /* For Opera 11.6-12.0 */
-        background: -moz-radial-gradient(@gradient); /* For Firefox 3.6-15 */
+        background: rgba(0,0,0,0.2);
+        @gradient: rgba(0,0,0,0.15) 0,rgba(0,0,0,.3) 40%,rgba(0,0,0,.4) 50%,rgba(0,0,0,.4) 60%,rgba(0,0,0,0) 70%;
+        background: -webkit-radial-gradient(@gradient);
+        background: -o-radial-gradient(@gradient);
+        background: -moz-radial-gradient(@gradient);
         background: radial-gradient(@gradient);
         .transition(all 0.5s ease-out);
         -webkit-transition-property: -webkit-transform, opacity;
@@ -64,12 +64,20 @@
     }
 
     &.waves-light .waves-ripple {
-        background: rgba(255, 255, 255, 0.4);
-        @gradient: rgba(255,255,255,0.1), rgba(255,255,255,0.4);
-        background: -webkit-radial-gradient(@gradient); /* Safari 5.1-6.0 */
-        background: -o-radial-gradient(@gradient); /* For Opera 11.6-12.0 */
-        background: -moz-radial-gradient(@gradient); /* For Firefox 3.6-15 */
+        background: rgba(255,255,255,0.4);
+        @gradient: rgba(255,255,255,0.15) 0,rgba(255,255,255,.3) 40%,rgba(255,255,255,.4) 50%,rgba(255,255,255,.4) 60%,rgba(255,255,255,0) 70%;
+        background: -webkit-radial-gradient(@gradient);
+        background: -o-radial-gradient(@gradient);
+        background: -moz-radial-gradient(@gradient);
         background: radial-gradient(@gradient);
+    }
+    
+    &.waves-classic .waves-ripple {
+        background: rgba(0,0,0,0.2);
+    }
+    
+    &.waves-classic.waves-light .waves-ripple {
+        background: rgba(255,255,255,0.4);
     }
 }
 
