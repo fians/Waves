@@ -89,21 +89,22 @@
   outline: none;
   color: inherit;
   background-color: rgba(0, 0, 0, 0);
-  font-size: 14px;
+  font-size: 1em;
+  line-height: 1em;
   text-align: center;
   text-decoration: none;
   z-index: 1;
 }
 .waves-button {
-  padding: 10px 15px;
-  border-radius: 2px;
+  padding: 0.85em 1.1em;
+  border-radius: 0.2em;
 }
 .waves-button-input {
   margin: 0;
-  padding: 10px 15px;
+  padding: 0.85em 1.1em;
 }
 .waves-input-wrapper {
-  border-radius: 2px;
+  border-radius: 0.2em;
   vertical-align: bottom;
 }
 .waves-input-wrapper.waves-button {

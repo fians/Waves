@@ -191,7 +191,6 @@
             for (var a = 0; a < elements.length; a++) {
 
                 var el = elements[a];
-
                 if (el.tagName.toLowerCase() === 'input') {
 
                     var parent = el.parentNode;
@@ -219,9 +218,7 @@
                     // Put element as child
                     parent.replaceChild(wrapper, el);
                     wrapper.appendChild(el);
-
                 }
-                
             }
         }
     };
@@ -236,13 +233,12 @@
         
         //Wrap input inside <i> tag
         Effect.wrapInput($$('.waves-effect'));
-
         Array.prototype.forEach.call($$('.waves-effect'), function(i) {
           
             if ('ontouchstart' in window) {
               i.addEventListener('touchstart', Effect.show, false);
-              i.addEventListener('touchend',   Effect.hide, false);
-              i.addEventListener('touchcancel',   Effect.hide, false);
+              i.addEventListener('touchend', Effect.hide, false);
+              i.addEventListener('touchcancel', Effect.hide, false);
             } else {
               i.addEventListener('mousedown', Effect.show, false);
               i.addEventListener('mouseup', Effect.hide, false);
