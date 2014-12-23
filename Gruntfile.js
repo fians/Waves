@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 module.exports = function(grunt) {
     grunt.initConfig({
 
@@ -64,10 +66,7 @@ module.exports = function(grunt) {
         
         //convert less to stylus
         execute: {
-            less2stylus2: {
-                options: {
-                    cwd: './node_modules/less2stylus',
-                },
+            less2stylus: {
                 call: function(grunt, options, async) {
                     var done = async();
                     var exec = require('child_process').exec;
@@ -90,6 +89,45 @@ module.exports = function(grunt) {
                         });
                     });
                 }
+            },
+
+            less2scss: {
+                //FUTURE: Put less2scss as it's own script
+                call: function(grunt, options, async) {
+                    var done = async();
+                    var text = fs.readFileSync('src/less/waves.less', {encoding:'utf8'});
+
+                    //replace @ with $
+                    text = text.replace(/@(?!import|media|keyframes|-)/g, '$');
+                    //replace mixins
+                    text = text.replace(/\.([\w\-]*)\s*\((.*)\)\s*\{/g, '@mixin $1($2){');
+                    //replace includes
+                    text = text.replace(/\.([\w\-]*\(.*\)\s*;)/g, '@include $1');
+                    //replace string literals
+                    //eg. ~'!important' -> #{"!important"}
+                    text = text.replace(/~(?:\"|\')(.*)(?:\"|\')/g, '#{"$1"}');
+
+                    //NOTE: for true less->scss transpiling we'd need to replace spin to adjust-hue (not needed but anyway)
+
+                    fs.writeFileSync('src/scss/waves.scss', text);
+
+                    //TODO: check SCSS with node-sass
+                    done();
+                }
+            }
+        },
+
+        'sass-convert': {
+            options: {
+                from: 'scss',
+                to: 'sass',
+                indent: 2
+            },
+            files: {
+                cwd: 'src/scss',
+                src: '*.scss',
+                //filePrefix: '_',
+                dest: 'src/sass'
             }
         },
 
@@ -99,8 +137,8 @@ module.exports = function(grunt) {
                     spawn: false,
                     event: ['added', 'deleted', 'changed']
                 },
-                files: ['src/**/*'],
-                tasks: ['less', 'jshint', 'uglify', 'copy', 'execute']
+                files: ['src/**/*.js', 'src/**/*.less'],
+                tasks: ['less', 'jshint', 'uglify', 'copy', 'execute', 'sass-convert']
             },
             grunt: {
                 files: ['Gruntfile.js']
@@ -116,8 +154,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-execute');
+    grunt.loadNpmTasks('grunt-sass-convert');
     
     // Create grunt task
-    grunt.registerTask('build', ['less', 'jshint', 'uglify', 'copy', 'execute']);
+    grunt.registerTask('build', ['less', 'jshint', 'uglify', 'copy', 'execute', 'sass-convert']);
     grunt.registerTask('default', ['watch']);
 };

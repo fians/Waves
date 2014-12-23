@@ -13,6 +13,7 @@
     "grunt-contrib-uglify": "^0.6.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-execute": "^0.2.2",
+    "grunt-sass-convert": "^0.2.0",
     "less2stylus": "^0.1.0"
   },
   "scripts": {
