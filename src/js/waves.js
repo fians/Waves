@@ -1,5 +1,5 @@
 /*!
- * Waves v0.5.5
+ * Waves v0.6.0-dev
  * http://fian.my.id/Waves 
  * 
  * Copyright 2014 Alfiana E. Sibuea and other contributors 
@@ -56,7 +56,7 @@
     var Effect = {
 
         // Effect delay
-        duration: 500,
+        duration: 750,
 
         show: function(e) {
 
@@ -76,7 +76,7 @@
             var pos         = offset(el);
             var relativeY   = (e.pageY - pos.top);
             var relativeX   = (e.pageX - pos.left);
-            var scale       = 'scale('+((el.clientWidth / 100) * 2.5)+')';
+            var scale       = 'scale('+((el.clientWidth / 100) * 3)+')';
             
             // Support for touch devices
             if ('touches' in e) {
@@ -145,7 +145,7 @@
 
             // Get delay beetween mousedown and mouse leave
             var diff = Date.now() - Number(ripple.getAttribute('data-hold'));
-            var delay = 500 - diff;
+            var delay = 350 - diff;
 
             if (delay < 0) {
                 delay = 0;
@@ -174,14 +174,11 @@
                 ripple.setAttribute('style', convertStyle(style));
 
                 setTimeout(function() {
-
                     try {
                         el.removeChild(ripple);
                     } catch(e) {
                         return false;
                     }
-
-                    
                 }, Effect.duration);
 
             }, delay);
@@ -194,7 +191,6 @@
             for (var a = 0; a < elements.length; a++) {
 
                 var el = elements[a];
-
                 if (el.tagName.toLowerCase() === 'input') {
 
                     var parent = el.parentNode;
@@ -222,9 +218,7 @@
                     // Put element as child
                     parent.replaceChild(wrapper, el);
                     wrapper.appendChild(el);
-
                 }
-                
             }
         }
     };
@@ -239,13 +233,12 @@
         
         //Wrap input inside <i> tag
         Effect.wrapInput($$('.waves-effect'));
-
         Array.prototype.forEach.call($$('.waves-effect'), function(i) {
           
             if ('ontouchstart' in window) {
               i.addEventListener('touchstart', Effect.show, false);
-              i.addEventListener('touchend',   Effect.hide, false);
-              i.addEventListener('touchcancel',   Effect.hide, false);
+              i.addEventListener('touchend', Effect.hide, false);
+              i.addEventListener('touchcancel', Effect.hide, false);
             } else {
               i.addEventListener('mousedown', Effect.show, false);
               i.addEventListener('mouseup', Effect.hide, false);

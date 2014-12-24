@@ -1,6 +1,6 @@
 {
   "name": "Waves",
-  "version": "0.5.5",
+  "version": "0.6.0-dev",
   "homepage": "http://fian.my.id/Waves",
   "authors": [
     "Alfiana E. Sibuea <alfian.sibuea@gmail.com>"
@@ -24,6 +24,3 @@
     "README.md"
   ]
 }
-
-
-

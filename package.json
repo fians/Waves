@@ -1,6 +1,6 @@
 {
   "name": "Waves",
-  "version": "0.5.5",
+  "version": "0.6.0-dev",
   "description": "Click effect insipired by Google Material Design",
   "author": "Alfiana E. Sibuea <alfian.sibuea@gmail.com>",
   "main": "waves.js",
@@ -11,7 +11,9 @@
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-less": "^0.12.0",
     "grunt-contrib-uglify": "^0.6.0",
-    "grunt-contrib-watch": "^0.6.1"
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-execute": "^0.2.2",
+    "less2stylus": "^0.1.0"
   },
   "scripts": {
     "test": ""

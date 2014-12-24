@@ -1,5 +1,5 @@
 /*!
- * Waves v0.5.5
+ * Waves v0.6.0-dev
  * http://fian.my.id/Waves 
  * 
  * Copyright 2014 Alfiana E. Sibuea and other contributors 
@@ -29,7 +29,11 @@
   margin-top: -50px;
   margin-left: -50px;
   opacity: 0;
-  background-color: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.2);
+  background: -webkit-radial-gradient(rgba(0, 0, 0, 0.15) 0, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0) 70%);
+  background: -o-radial-gradient(rgba(0, 0, 0, 0.15) 0, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0) 70%);
+  background: -moz-radial-gradient(rgba(0, 0, 0, 0.15) 0, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0) 70%);
+  background: radial-gradient(rgba(0, 0, 0, 0.15) 0, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0) 70%);
   -webkit-transition: all 0.5s ease-out;
   -moz-transition: all 0.5s ease-out;
   -o-transition: all 0.5s ease-out;
@@ -46,7 +50,17 @@
   pointer-events: none;
 }
 .waves-effect.waves-light .waves-ripple {
-  background-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.4);
+  background: -webkit-radial-gradient(rgba(255, 255, 255, 0.15) 0, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 60%, rgba(255, 255, 255, 0) 70%);
+  background: -o-radial-gradient(rgba(255, 255, 255, 0.15) 0, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 60%, rgba(255, 255, 255, 0) 70%);
+  background: -moz-radial-gradient(rgba(255, 255, 255, 0.15) 0, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 60%, rgba(255, 255, 255, 0) 70%);
+  background: radial-gradient(rgba(255, 255, 255, 0.15) 0, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 60%, rgba(255, 255, 255, 0) 70%);
+}
+.waves-effect.waves-classic .waves-ripple {
+  background: rgba(0, 0, 0, 0.2);
+}
+.waves-effect.waves-classic.waves-light .waves-ripple {
+  background: rgba(255, 255, 255, 0.4);
 }
 .waves-notransition {
   -webkit-transition: none !important;
@@ -75,21 +89,22 @@
   outline: none;
   color: inherit;
   background-color: rgba(0, 0, 0, 0);
-  font-size: 14px;
+  font-size: 1em;
+  line-height: 1em;
   text-align: center;
   text-decoration: none;
   z-index: 1;
 }
 .waves-button {
-  padding: 10px 15px;
-  border-radius: 2px;
+  padding: 0.85em 1.1em;
+  border-radius: 0.2em;
 }
 .waves-button-input {
   margin: 0;
-  padding: 10px 15px;
+  padding: 0.85em 1.1em;
 }
 .waves-input-wrapper {
-  border-radius: 2px;
+  border-radius: 0.2em;
   vertical-align: bottom;
 }
 .waves-input-wrapper.waves-button {

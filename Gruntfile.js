@@ -62,6 +62,37 @@ module.exports = function(grunt) {
             }
 		},
         
+        //convert less to stylus
+        execute: {
+            less2stylus2: {
+                options: {
+                    cwd: './node_modules/less2stylus',
+                },
+                call: function(grunt, options, async) {
+                    var done = async();
+                    var exec = require('child_process').exec;
+                    exec('cd node_modules/less2stylus && ./less2stylus ../../src/less/waves.less', function (error, stdout, stderr) {
+                        grunt.log.writeln('Executing less2styus...');
+
+                        if (error) {
+                            grunt.log.writeln('Error! ' + error);
+                        }
+
+                        var fs = require('fs');
+                        fs.writeFile("src/stylus/waves.styl", stdout, function(err) {
+                            if(err) {
+                                grunt.log.writeln(err);
+                            } else {
+                                grunt.log.writeln("Stylus file was saved!");
+                            }
+
+                            done(); // let grunt resume
+                        });
+                    });
+                }
+            }
+        },
+
         watch: {
             script: {
                options: {
@@ -69,7 +100,7 @@ module.exports = function(grunt) {
                     event: ['added', 'deleted', 'changed']
                 },
                 files: ['src/**/*'],
-                tasks: ['less', 'jshint', 'uglify', 'copy']
+                tasks: ['less', 'jshint', 'uglify', 'copy', 'execute']
             },
             grunt: {
                 files: ['Gruntfile.js']
@@ -84,8 +115,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-execute');
     
     // Create grunt task
-    grunt.registerTask('build', ['less', 'jshint', 'uglify', 'copy']);
+    grunt.registerTask('build', ['less', 'jshint', 'uglify', 'copy', 'execute']);
     grunt.registerTask('default', ['watch']);
 };
