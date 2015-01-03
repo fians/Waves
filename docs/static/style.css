@@ -192,8 +192,16 @@ footer {
     border-top: 1px solid #ccc;
 }
 
-@media all and (max-width:640px) {
-
+/**
+ * Snarl Notification
+ */
+.snarl-notification h3 {
+    font-size: 1.3em;
+    font-weight: 400;
+    margin-bottom: 0.3em;
+}
+.snarl-notification p {
+    padding: 0;
 }
 
 @media all and (max-width:480px) {
