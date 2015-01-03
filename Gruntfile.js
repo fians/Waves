@@ -17,6 +17,22 @@ module.exports = function(grunt) {
                 files: {
                     'dist/waves.min.css': 'src/less/waves.less'
                 }
+            },
+            // re-minify everything in tests/ so that they all
+            // have the same minification for comparision
+            test: {
+                options: {
+                    cleancss:true,
+                    cleancssOptions: {
+                        keepSpecialComments:'0'
+                    }
+                },
+                files: {
+                    'tests/less/waves.min.css': 'src/less/waves.less',
+                    'tests/sass/waves.min.css': 'tests/sass/waves.css',
+                    'tests/scss/waves.min.css': 'tests/scss/waves.css',
+                    'tests/stylus/waves.min.css': 'tests/stylus/waves.css'
+                }
             }
         },
         
@@ -111,7 +127,44 @@ module.exports = function(grunt) {
 
                     fs.writeFileSync('src/scss/waves.scss', text);
 
-                    //TODO: check SCSS with node-sass
+                    done();
+                }
+            },
+            
+            test: {
+                call: function(grunt, options, async) {
+                    var done = async();
+                    var lessTest = fs.readFileSync('tests/less/waves.min.css', {encoding:'utf8'});
+                    var sassTest = fs.readFileSync('tests/sass/waves.min.css', {encoding:'utf8'}).replace(/(,transparent)/g, ',rgba(0,0,0,0)');
+                    var scssTest = fs.readFileSync('tests/scss/waves.min.css', {encoding:'utf8'}).replace(/(,transparent)/g, ',rgba(0,0,0,0)');
+                    var stylusTest = fs.readFileSync('tests/stylus/waves.min.css', {encoding:'utf8'});
+                    
+                    // replaces ',transparent' because sass conversion
+                    // changes rgba(0,0,0,0) to it oddly
+                    
+                    var failure = false;
+                    if (lessTest != sassTest) {
+                        grunt.log.writeln('ERROR: sass failed test.');
+                        failure = true;
+                    }
+                    
+                    if (lessTest != scssTest) {
+                        grunt.log.writeln('ERROR: scss failed test.');
+                        failure = true;
+                    }
+                    
+                    if (lessTest != stylusTest) {
+                        grunt.log.writeln('ERROR: stylus failed test.');
+                        failure = true;
+                    }
+                    
+                    if (sassTest != scssTest) {
+                        grunt.log.writeln('WARNING: sass files aren\'t equal?');
+                        failure = true;
+                    }
+                    
+                    if (!failure) grunt.log.writeln('PASS: conversions generated same CSS');
+                    
                     done();
                 }
             }
@@ -130,6 +183,26 @@ module.exports = function(grunt) {
                 dest: 'src/sass'
             }
         },
+        
+        sass: {
+            test: {
+                files: [{
+                    expand: true,
+                    cwd: 'src',
+                    src: ['**/*.sass', '**/*.scss'],
+                    dest: 'tests/',
+                    ext: '.css'
+                }]
+            }
+        },
+        
+        stylus: {
+            test: {
+                files: {
+                    'tests/stylus/waves.css': 'src/stylus/waves.styl'
+                }
+            }
+        },
 
         watch: {
             script: {
@@ -138,7 +211,7 @@ module.exports = function(grunt) {
                     event: ['added', 'deleted', 'changed']
                 },
                 files: ['src/**/*.js', 'src/**/*.less'],
-                tasks: ['less', 'jshint', 'uglify', 'copy', 'execute', 'sass-convert']
+                tasks: ['build']
             },
             grunt: {
                 files: ['Gruntfile.js']
@@ -153,10 +226,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-stylus');
     grunt.loadNpmTasks('grunt-execute');
     grunt.loadNpmTasks('grunt-sass-convert');
     
     // Create grunt task
-    grunt.registerTask('build', ['less', 'jshint', 'uglify', 'copy', 'execute', 'sass-convert']);
+    grunt.registerTask('build', ['less:build', 'less:minified', 'jshint', 'uglify', 'copy', 'execute:less2stylus', 'execute:less2scss', 'sass-convert', 'sass:test', 'stylus:test', 'less:test', 'execute:test']);
     grunt.registerTask('default', ['build', 'watch']);
 };

@@ -71,11 +71,11 @@
         background: -moz-radial-gradient($gradient);
         background: radial-gradient($gradient);
     }
-
+    
     &.waves-classic .waves-ripple {
         background: rgba(0,0,0,0.2);
     }
-
+    
     &.waves-classic.waves-light .waves-ripple {
         background: rgba(255,255,255,0.4);
     }
