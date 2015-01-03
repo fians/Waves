@@ -158,5 +158,5 @@ module.exports = function(grunt) {
     
     // Create grunt task
     grunt.registerTask('build', ['less', 'jshint', 'uglify', 'copy', 'execute', 'sass-convert']);
-    grunt.registerTask('default', ['watch']);
+    grunt.registerTask('default', ['build', 'watch']);
 };

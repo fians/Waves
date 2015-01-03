@@ -30,10 +30,10 @@
   margin-left: -50px;
   opacity: 0;
   background: rgba(0, 0, 0, 0.2);
-  background: -webkit-radial-gradient(rgba(0, 0, 0, 0.15) 0, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0) 70%);
-  background: -o-radial-gradient(rgba(0, 0, 0, 0.15) 0, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0) 70%);
-  background: -moz-radial-gradient(rgba(0, 0, 0, 0.15) 0, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0) 70%);
-  background: radial-gradient(rgba(0, 0, 0, 0.15) 0, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0) 70%);
+  background: -webkit-radial-gradient(rgba(0, 0, 0, 0.2) 0, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0) 70%);
+  background: -o-radial-gradient(rgba(0, 0, 0, 0.2) 0, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0) 70%);
+  background: -moz-radial-gradient(rgba(0, 0, 0, 0.2) 0, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0) 70%);
+  background: radial-gradient(rgba(0, 0, 0, 0.2) 0, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0) 70%);
   -webkit-transition: all 0.5s ease-out;
   -moz-transition: all 0.5s ease-out;
   -o-transition: all 0.5s ease-out;
@@ -51,10 +51,10 @@
 }
 .waves-effect.waves-light .waves-ripple {
   background: rgba(255, 255, 255, 0.4);
-  background: -webkit-radial-gradient(rgba(255, 255, 255, 0.15) 0, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 60%, rgba(255, 255, 255, 0) 70%);
-  background: -o-radial-gradient(rgba(255, 255, 255, 0.15) 0, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 60%, rgba(255, 255, 255, 0) 70%);
-  background: -moz-radial-gradient(rgba(255, 255, 255, 0.15) 0, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 60%, rgba(255, 255, 255, 0) 70%);
-  background: radial-gradient(rgba(255, 255, 255, 0.15) 0, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 60%, rgba(255, 255, 255, 0) 70%);
+  background: -webkit-radial-gradient(rgba(255, 255, 255, 0.2) 0, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.5) 60%, rgba(255, 255, 255, 0) 70%);
+  background: -o-radial-gradient(rgba(255, 255, 255, 0.2) 0, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.5) 60%, rgba(255, 255, 255, 0) 70%);
+  background: -moz-radial-gradient(rgba(255, 255, 255, 0.2) 0, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.5) 60%, rgba(255, 255, 255, 0) 70%);
+  background: radial-gradient(rgba(255, 255, 255, 0.2) 0, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.5) 60%, rgba(255, 255, 255, 0) 70%);
 }
 .waves-effect.waves-classic .waves-ripple {
   background: rgba(0, 0, 0, 0.2);
