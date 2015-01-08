@@ -196,7 +196,7 @@
 
                     // If input already have parent just pass through
                     if (parent.tagName.toLowerCase() === 'i' && parent.className.indexOf('waves-effect') !== -1) {
-                        return false;
+                        continue;
                     }
 
                     // Put element class and style to the specified parent
