@@ -199,6 +199,10 @@ module.exports = function(grunt) {
                 }
             }
         },
+        
+        clean: {
+            test: ['tests']
+        },
 
         watch: {
             script: {
@@ -226,6 +230,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-stylus');
     grunt.loadNpmTasks('grunt-execute');
     grunt.loadNpmTasks('grunt-sass-convert');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     
     // Create grunt task
     grunt.registerTask('build', [
@@ -240,7 +245,8 @@ module.exports = function(grunt) {
         'sass:test', 
         'stylus:test', 
         'less:test', 
-        'execute:test'
+        'execute:test',
+        'clean:test'
     ]);
     
     grunt.registerTask('default', ['build', 'watch']);
