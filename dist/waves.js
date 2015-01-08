@@ -234,17 +234,16 @@
         //Wrap input inside <i> tag
         Effect.wrapInput($$('.waves-effect'));
         Array.prototype.forEach.call($$('.waves-effect'), function(i) {
-          
             if ('ontouchstart' in window) {
-              i.addEventListener('touchstart', Effect.show, false);
-              i.addEventListener('touchend', Effect.hide, false);
-              i.addEventListener('touchcancel', Effect.hide, false);
-            } else {
-              i.addEventListener('mousedown', Effect.show, false);
-              i.addEventListener('mouseup', Effect.hide, false);
-              i.addEventListener('mouseleave', Effect.hide, false);
+                i.addEventListener('touchstart', Effect.show, false);
+                i.addEventListener('touchend', Effect.hide, false);
+                i.addEventListener('touchcancel', Effect.hide, false);
             }
 
+            // Always bind mouse events
+            i.addEventListener('mousedown', Effect.show, false);
+            i.addEventListener('mouseup', Effect.hide, false);
+            i.addEventListener('mouseleave', Effect.hide, false);
         });
 
     };

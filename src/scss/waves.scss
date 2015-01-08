@@ -8,14 +8,14 @@
  * https://github.com/fians/Waves/blob/master/LICENSE 
  */
 
-@mixin transition ($transition) {
-    -webkit-transition: $transition;  
+@mixin transition($transition){
+    -webkit-transition: $transition;
     -moz-transition: $transition; 
     -o-transition: $transition;
     transition: $transition;  
 }
 
-@mixin transform($string) {
+@mixin transform($string){
     -webkit-transform: $string;
     -moz-transform: $string;
     -ms-transform: $string;
@@ -23,7 +23,7 @@
     transform: $string;
 }
 
-@mixin box-shadow($shadow) {
+@mixin box-shadow($shadow){
     -webkit-box-shadow: $shadow;
     box-shadow: $shadow;
 }
@@ -43,16 +43,16 @@
     .waves-ripple {
         position: absolute;
         border-radius: 50%;
-        width:100px;
-        height:100px;
+        width: 100px;
+        height: 100px;
         margin-top:-50px;
         margin-left:-50px;
-        opacity:0;
-        background: rgba(0,0,0,0.4);
-        $gradient: rgba(0,0,0,0.1), rgba(0,0,0,0.4);
-        background: -webkit-radial-gradient($gradient); /* Safari 5.1-6.0 */
-        background: -o-radial-gradient($gradient); /* For Opera 11.6-12.0 */
-        background: -moz-radial-gradient($gradient); /* For Firefox 3.6-15 */
+        opacity: 0;
+        background: rgba(0,0,0,0.2);
+        $gradient: rgba(0,0,0,0.2) 0,rgba(0,0,0,.3) 40%,rgba(0,0,0,.4) 50%,rgba(0,0,0,.5) 60%,rgba(0,0,0,0) 70%;
+        background: -webkit-radial-gradient($gradient);
+        background: -o-radial-gradient($gradient);
+        background: -moz-radial-gradient($gradient);
         background: radial-gradient($gradient);
         @include transition(all 0.5s ease-out);
         -webkit-transition-property: -webkit-transform, opacity;
@@ -65,21 +65,29 @@
 
     &.waves-light .waves-ripple {
         background: rgba(255,255,255,0.4);
-        $gradient: rgba(255,255,255,0.1), rgba(255,255,255,0.4);
-        background: -webkit-radial-gradient($gradient); /* Safari 5.1-6.0 */
-        background: -o-radial-gradient($gradient); /* For Opera 11.6-12.0 */
-        background: -moz-radial-gradient($gradient); /* For Firefox 3.6-15 */
+        $gradient: rgba(255,255,255,0.2) 0,rgba(255,255,255,.3) 40%,rgba(255,255,255,.4) 50%,rgba(255,255,255,.5) 60%,rgba(255,255,255,0) 70%;
+        background: -webkit-radial-gradient($gradient);
+        background: -o-radial-gradient($gradient);
+        background: -moz-radial-gradient($gradient);
         background: radial-gradient($gradient);
+    }
+    
+    &.waves-classic .waves-ripple {
+        background: rgba(0,0,0,0.2);
+    }
+    
+    &.waves-classic.waves-light .waves-ripple {
+        background: rgba(255,255,255,0.4);
     }
 }
 
 .waves-notransition {
-    @include transition(none !important);
+    @include transition(none #{"!important"});
 }
 
 .waves-button, 
 .waves-circle {
-    -webkit-transform: translateZ(0);
+    @include transform(translateZ(0));
     -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
 }
 
@@ -91,37 +99,37 @@
     white-space: nowrap;
     vertical-align: middle;
     cursor: pointer;
-    border:none;
-    outline:none;
-    background:transparent;
+    border: none;
+    outline: none;
     color: inherit;
-    font-size:1em;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 1em;
     line-height:1em;
     text-align: center;
-    text-decoration:none;
-    z-index:1;
+    text-decoration: none;
+    z-index: 1;
 }
 
 .waves-button {
-    padding:0.85em 1.1em;
-    border-radius:0.2em;
+    padding: 0.85em 1.1em;
+    border-radius: 0.2em;
 }
 
 .waves-button-input {
-    margin:0;
-    padding:0.85em 1.1em;
+    margin: 0;
+    padding: 0.85em 1.1em;
 }
 
 .waves-input-wrapper {
-    border-radius:0.2em;
+    border-radius: 0.2em;
     vertical-align: bottom;
 
     &.waves-button {
-        padding:0;
+        padding: 0;
     }
 
     .waves-button-input {
-        position: absolute;
+        position: relative;
         top: 0;
         left: 0;
         z-index: 1;
@@ -129,15 +137,15 @@
 }
 
 .waves-circle {
-    text-align:center;
-    width:2.5em;
-    height:2.5em;
-    line-height:2.5em;
-    border-radius:50%;
+    text-align: center;
+    width: 2.5em;
+    height: 2.5em;
+    line-height: 2.5em;
+    border-radius: 50%;
 }
 
 .waves-float {
-    -webkit-mask-image:none;
+    -webkit-mask-image: none;
     @include box-shadow(0px 1px 1.5px 1px rgba(0, 0, 0, 0.12));
 
     &:active {
@@ -146,10 +154,10 @@
 }
 
 .waves-block {
-    display:block;
+    display: block;
 }
 
 /* Firefox Bug: link not triggered */
 a.waves-effect .waves-ripple {
-    z-index:-1;
+    z-index: -1;
 }
