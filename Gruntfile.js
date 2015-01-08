@@ -135,12 +135,9 @@ module.exports = function(grunt) {
                 call: function(grunt, options, async) {
                     var done = async();
                     var lessTest = fs.readFileSync('tests/less/waves.min.css', {encoding:'utf8'});
-                    var sassTest = fs.readFileSync('tests/sass/waves.min.css', {encoding:'utf8'}).replace(/(,transparent)/g, ',rgba(0,0,0,0)');
-                    var scssTest = fs.readFileSync('tests/scss/waves.min.css', {encoding:'utf8'}).replace(/(,transparent)/g, ',rgba(0,0,0,0)');
+                    var sassTest = fs.readFileSync('tests/sass/waves.min.css', {encoding:'utf8'});
+                    var scssTest = fs.readFileSync('tests/scss/waves.min.css', {encoding:'utf8'});
                     var stylusTest = fs.readFileSync('tests/stylus/waves.min.css', {encoding:'utf8'});
-                    
-                    // replaces ',transparent' because sass conversion
-                    // changes rgba(0,0,0,0) to it oddly
                     
                     var failure = false;
                     if (lessTest != sassTest) {
@@ -179,7 +176,6 @@ module.exports = function(grunt) {
             files: {
                 cwd: 'src/scss',
                 src: '*.scss',
-                //filePrefix: '_',
                 dest: 'src/sass'
             }
         },
@@ -232,6 +228,20 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-sass-convert');
     
     // Create grunt task
-    grunt.registerTask('build', ['less:build', 'less:minified', 'jshint', 'uglify', 'copy', 'execute:less2stylus', 'execute:less2scss', 'sass-convert', 'sass:test', 'stylus:test', 'less:test', 'execute:test']);
+    grunt.registerTask('build', [
+        'less:build', 
+        'less:minified', 
+        'jshint', 
+        'uglify', 
+        'copy', 
+        'execute:less2stylus', 
+        'execute:less2scss', 
+        'sass-convert', 
+        'sass:test', 
+        'stylus:test', 
+        'less:test', 
+        'execute:test'
+    ]);
+    
     grunt.registerTask('default', ['build', 'watch']);
 };

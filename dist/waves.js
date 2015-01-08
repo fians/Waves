@@ -233,6 +233,32 @@
         
         //Wrap input inside <i> tag
         Effect.wrapInput($$('.waves-effect'));
+        
+        var body = document.getElementsByTagName('body')[0];
+        
+        body.addEventListener('click', function(e) {
+            
+            // Check if current element has waves class
+            var element = null;
+            var target = e.target || e.srcElement;
+            
+            if (target.className.indexOf('waves-effect') !== -1) {
+                element = target;
+            }
+            
+            // If not found, then crawl its parents element
+            if (element === null) {
+                
+                var parents = e.path;
+                
+                for (var a = 0; a < parents.length; a++) {
+                    console.log(parents[a]);   
+                }
+            }
+            
+            
+        }, false);
+        
         Array.prototype.forEach.call($$('.waves-effect'), function(i) {
             if ('ontouchstart' in window) {
                 i.addEventListener('touchstart', Effect.show, false);
