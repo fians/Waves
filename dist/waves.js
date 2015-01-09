@@ -125,17 +125,10 @@
             
             // Get first ripple
             var ripple = null;
-
-            var childrenLength = el.children.length;
-
-            for (var a = 0; a < childrenLength; a++) {
-                if (el.children[a].className.indexOf('waves-ripple') !== -1) {
-                    ripple = el.children[a];
-                    continue;
-                }
-            }
-
-            if (!ripple) {
+            var ripples = el.getElementsByClassName('waves-ripple');
+            if (ripples.length > 0) {
+                ripple = ripples[ripples.length - 1];
+            } else {
                 return false;
             }
 
