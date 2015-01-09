@@ -23,7 +23,6 @@
     }
 
     function offset(elem) {
-
         var docElem, win,
             box = {top: 0, left: 0},
             doc = elem && elem.ownerDocument;
@@ -41,7 +40,6 @@
     }
 
     function convertStyle(obj) {
-
         var style = '';
 
         for (var a in obj) {
@@ -114,13 +112,10 @@
             rippleStyle['transition-duration']         = Effect.duration + 'ms';
 
             ripple.setAttribute('style', convertStyle(rippleStyle));
-
         },
 
         hide: function() {
-            
             var el = this;
-
             var width = el.clientWidth * 1.4;
             
             // Get first ripple
@@ -146,7 +141,6 @@
 
             // Fade out ripple after delay
             setTimeout(function() {
-
                 var style = {
                     'top': relativeY+'px',
                     'left': relativeX+'px',
@@ -173,18 +167,15 @@
                         return false;
                     }
                 }, Effect.duration);
-
             }, delay);
-
         },
 
         // Little hack to make <input> can perform waves effect
         wrapInput: function(elements) {
             for (var a = 0; a < elements.length; a++) {
-
                 var el = elements[a];
+                
                 if (el.tagName.toLowerCase() === 'input') {
-
                     var parent = el.parentNode;
 
                     // If input already have parent just pass through
