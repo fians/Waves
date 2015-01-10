@@ -202,7 +202,7 @@ module.exports = function(grunt) {
         },
         
         clean: {
-            test: ['tests']
+            test: ['tests/*']
         },
 
         watch: {

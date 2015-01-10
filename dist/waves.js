@@ -206,11 +206,42 @@
         }
     };
 
+
+    /**
+     * Disable mousedown event for 500ms after every touch
+     */
+    var TouchHandler = {
+        /* uses an integer rather than bool so there's no issues with
+         * needing to clear timeouts if another touch event occurred
+         * within the 500ms. This way touches stack until 500ms after
+         * last touch event */
+        touches: 0,
+        allowEvent: function(e) {
+            var allow = true;
+
+            if (e.type === 'touchstart') {
+                TouchHandler.touches += 1; //push
+                setTimeout(function() {
+                    TouchHandler.touches -= 1; //pop after 500ms
+                }, 500);
+            } else if (e.type === 'mousedown' && TouchHandler.touches > 0) {
+                allow = false;
+            }
+
+            return allow;
+        }
+    };
+
+
     /**
      * Delegated click handler for .waves-effect element.
      * returns null when .waves-effect element not in "click tree"
      */
     function getWavesEffectElement(e) {
+        if (!TouchHandler.allowEvent(e)) {
+            return null;
+        }
+
         var element = null;
         var target = e.target || e.srcElement;
 
