@@ -52,7 +52,8 @@ module.exports = function(grunt) {
    
         uglify: {
             options: {
-                mangle: true,
+                mangle: true,  // false when debugging
+                compress: true,  // false when debugging
                 sourceMap: true,
                 sourceMapName: 'dist/waves.min.js.map',
                 preserveComments: 'some'
