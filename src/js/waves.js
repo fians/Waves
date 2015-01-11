@@ -219,7 +219,7 @@
         allowEvent: function(e) {
             var allow = true;
 
-            if (e.type === 'touchstart') {
+            if (e.type in ['touchstart', 'touchend', 'touchcancel']) {
                 TouchHandler.touches += 1; //push
                 setTimeout(function() {
                     TouchHandler.touches -= 1; //pop after 500ms
@@ -229,6 +229,9 @@
             }
 
             return allow;
+        },
+        touchup: function(e) {
+            TouchHandler.allowEvent(e);
         }
     };
 
@@ -268,6 +271,7 @@
             if ('ontouchstart' in window) {
                 element.addEventListener('touchend', Effect.hide, false);
                 element.addEventListener('touchcancel', Effect.hide, false);
+                //TODO: on touchend re-enable mousedown after 500ms
             }
 
             element.addEventListener('mouseup', Effect.hide, false);
