@@ -52,25 +52,11 @@
     }
 
     var Effect = {
-        
-        // Is the effect running
-        isRunning: false,
 
         // Effect delay
         duration: 750,
 
         show: function(e, element) {
-            
-            // Prevent click and touch conflict
-            if (Effect.isRunning) {
-                return false;
-            }
-            
-            Effect.isRunning = true;
-            
-            setTimeout(function() {
-                Effect.isRunning = false;
-            }, 175);
 
             // Disable right click
             if (e.button === 2) {
@@ -128,7 +114,9 @@
             ripple.setAttribute('style', convertStyle(rippleStyle));
         },
 
-        hide: function() {
+        hide: function(e) {
+            TouchHandler.touchup(e);
+
             var el = this;
             var width = el.clientWidth * 1.4;
             
@@ -222,21 +210,24 @@
 
 
     /**
-     * Disable mousedown event for 500ms after every touch
+     * Disable mousedown event for 500ms during and after touch
      */
     var TouchHandler = {
         /* uses an integer rather than bool so there's no issues with
          * needing to clear timeouts if another touch event occurred
-         * within the 500ms. This way touches stack until 500ms after
-         * last touch event */
+         * within the 500ms. Cannot mouseup between touchstart and
+         * touchend, nor in the 500ms after touchend. */
         touches: 0,
         allowEvent: function(e) {
             var allow = true;
 
-            if (e.type in ['touchstart', 'touchend', 'touchcancel']) {
+            if (e.type === 'touchstart') {
                 TouchHandler.touches += 1; //push
+            } else if (e.type === 'touchend' || e.type === 'touchcancel') {
                 setTimeout(function() {
-                    TouchHandler.touches -= 1; //pop after 500ms
+                    if (TouchHandler.touches > 0) {
+                        TouchHandler.touches -= 1; //pop after 500ms
+                    }
                 }, 500);
             } else if (e.type === 'mousedown' && TouchHandler.touches > 0) {
                 allow = false;
@@ -255,7 +246,7 @@
      * returns null when .waves-effect element not in "click tree"
      */
     function getWavesEffectElement(e) {
-        if (!TouchHandler.allowEvent(e)) {
+        if (TouchHandler.allowEvent(e) === false) {
             return null;
         }
 
