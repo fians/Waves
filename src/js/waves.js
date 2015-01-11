@@ -276,7 +276,6 @@
             if ('ontouchstart' in window) {
                 element.addEventListener('touchend', Effect.hide, false);
                 element.addEventListener('touchcancel', Effect.hide, false);
-                //TODO: on touchend re-enable mousedown after 500ms
             }
 
             element.addEventListener('mouseup', Effect.hide, false);
