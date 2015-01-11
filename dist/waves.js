@@ -52,11 +52,25 @@
     }
 
     var Effect = {
+        
+        // Is the effect running
+        isRunning: false,
 
         // Effect delay
         duration: 750,
 
         show: function(e, element) {
+            
+            // Prevent click and touch conflict
+            if (Effect.isRunning) {
+                return false;
+            }
+            
+            Effect.isRunning = true;
+            
+            setTimeout(function() {
+                Effect.isRunning = false;
+            }, 175);
 
             // Disable right click
             if (e.button === 2) {
