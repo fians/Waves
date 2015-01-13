@@ -242,7 +242,7 @@
 
         Array.prototype.forEach.call($$('.waves-effect'), function(i) {
           
-            if (window.DocumentTouch && document instanceof DocumentTouch) {
+            if ('ontouchstart' in window) {
               i.addEventListener('touchstart', Effect.show, false);
               i.addEventListener('touchend',   Effect.hide, false);
               i.addEventListener('touchcancel',   Effect.hide, false);
