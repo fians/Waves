@@ -1,5 +1,5 @@
 /*!
- * Waves v0.5.5
+ * Waves v0.6.0-dev
  * http://fian.my.id/Waves 
  * 
  * Copyright 2014 Alfiana E. Sibuea and other contributors 
@@ -42,57 +42,71 @@
     margin-top: -50px
     margin-left: -50px
     opacity: 0
-    background-color: rgba(0, 0, 0, 0.2)
+    background: rgba(0, 0, 0, 0.2)
+    $gradient: rgba(0, 0, 0, 0.2) 0, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.5) 60%, rgba(255, 255, 255, 0) 70%
+    background: -webkit-radial-gradient($gradient)
+    background: -o-radial-gradient($gradient)
+    background: -moz-radial-gradient($gradient)
+    background: radial-gradient($gradient)
     +transition(all 0.5s ease-out)
     -webkit-transition-property: -webkit-transform, opacity
     -moz-transition-property: -moz-transform, opacity
     -o-transition-property: -o-transform, opacity
     transition-property: transform, opacity
     +transform(scale(0))
-    pointer-events: none;
+    pointer-events: none
   &.waves-light .waves-ripple
-    background-color: rgba(255, 255, 255, 0.4)
+    background: rgba(255, 255, 255, 0.4)
+    $gradient: rgba(255, 255, 255, 0.2) 0, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.5) 60%, rgba(255, 255, 255, 0) 70%
+    background: -webkit-radial-gradient($gradient)
+    background: -o-radial-gradient($gradient)
+    background: -moz-radial-gradient($gradient)
+    background: radial-gradient($gradient)
+  &.waves-classic .waves-ripple
+    background: rgba(0, 0, 0, 0.2)
+  &.waves-classic.waves-light .waves-ripple
+    background: rgba(255, 255, 255, 0.4)
 
 .waves-notransition
-  +transition(none !important)
+  +transition(none #{"!important"})
 
 .waves-button,
 .waves-circle
-  -webkit-transform: translateZ(0)
-    -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%)
+  +transform(translateZ(0))
+  -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%)
 
 .waves-button,
 .waves-button:hover,
 .waves-button:visited,
-.waves-button:link,
 .waves-button-input
   white-space: nowrap
   vertical-align: middle
   cursor: pointer
   border: none
   outline: none
-  background: transparent
   color: inherit
-  font-size: 14px
+  background-color: rgba(0, 0, 0, 0)
+  font-size: 1em
+  line-height: 1em
   text-align: center
   text-decoration: none
   z-index: 1
 
 .waves-button
-  padding: 10px 15px
-  border-radius: 2px
+  padding: 0.85em 1.1em
+  border-radius: 0.2em
 
 .waves-button-input
   margin: 0
-  padding: 10px 15px
+  padding: 0.85em 1.1em
 
 .waves-input-wrapper
-  border-radius: 2px
+  border-radius: 0.2em
   vertical-align: bottom
   &.waves-button
     padding: 0
   .waves-button-input
-    position: absolute
+    position: relative
     top: 0
     left: 0
     z-index: 1
