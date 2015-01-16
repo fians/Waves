@@ -11,10 +11,11 @@
         <title>Waves</title>
         <meta name="description" content="Waves - Click effect inspired by Google's Material Design" />
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="./static/prims.css">
+        <link rel="stylesheet" type="text/css" href="./static/snarl.min.css">
         <link rel="stylesheet" type="text/css" href="./static/waves.min.css">
 
         <link rel="stylesheet" type="text/css" href="./static/style.css">
@@ -36,7 +37,7 @@
         <div id="lead" class="text-center waves-effect waves-light waves-block">
             <h1>Waves</h1>
             <p>Click effect inspired by Google's Material Design</p>
-            <p>v0.5.5</p>
+            <p>v0.6.0</p>
         </div>
 
         <div id="content">
@@ -50,14 +51,14 @@
                 </p>
 
 <div id="plainButtonCode" class="hide">
-<pre><code class="lang-markup">&lt;a class=&quot;waves-effect waves-button&quot;&gt;Button A&lt;/a&gt;
+<pre><code class="lang-markup">&lt;a class=&quot;waves-effect waves-button waves-classic&quot;&gt;Button A&lt;/a&gt;
 &lt;button class=&quot;waves-effect waves-button&quot;&gt;Button B&lt;/button&gt;
 &lt;input class=&quot;waves-effect waves-button&quot; type=&quot;submit&quot; value=&quot;Button C&quot;&gt;
 &lt;input class=&quot;waves-effect waves-button&quot; type=&quot;button&quot; value=&quot;Button D&quot;&gt;
 </code></pre></div>
 
                 <p class="text-center">
-                    <a class="waves-effect waves-button">Button A</a>
+                    <a class="waves-effect waves-button waves-classic">Button A</a>
                     <button class="waves-effect waves-button">Button B</button>
                     <input class="waves-effect waves-button" type="submit" value="Button C">
                     <input class="waves-effect waves-button" type="button" value="Button D">
@@ -69,7 +70,7 @@
                 </p>
 
 <div id="raisedButtonCode" class="hide">
-<pre><code class="lang-markup">&lt;a class=&quot;waves-effect waves-button waves-float&quot; style=&quot;background: #01BCFF;color:#fff&quot;&gt;
+<pre><code class="lang-markup">&lt;a class=&quot;waves-effect waves-button waves-float waves-classic&quot; style=&quot;background: #01BCFF;color:#fff&quot;&gt;
     Button A
 &lt;/a&gt;
 &lt;button class=&quot;waves-effect waves-button waves-light waves-float&quot; style=&quot;background: #1bb556;color: #fff;&quot;&gt;
@@ -80,7 +81,7 @@
 </code></pre></div>
 
                 <p class="text-center">
-                    <a class="waves-effect waves-button waves-float" style="background: #01BCFF;color:#fff">Button A</a>
+                    <a class="waves-effect waves-button waves-float waves-classic" style="background: #01BCFF;color:#fff">Button A</a>
                     <button class="waves-effect waves-button waves-light waves-float" style="background: #1bb556;color: #fff;">Button B</button>
                     <input class="waves-effect waves-button waves-float" style="background: #ff4f0f;color:#fff" type="submit" value="Button C">
                     <input class="waves-effect waves-button waves-light waves-float" style="background: #666;color:#fff" type="button" value="Button D">
@@ -108,8 +109,8 @@
 </code></pre></div>
 
                 <p class="text-center">
-                    <i class="fa fa-bars waves-effect waves-circle"></i>
-                    <i class="fa fa-bookmark waves-effect waves-circle"></i>
+                    <i class="fa fa-bars waves-effect waves-circle waves-classic"></i>
+                    <i class="fa fa-bookmark waves-effect waves-circle waves-classic"></i>
                     <i class="fa fa-calendar waves-effect waves-circle"></i>
                     <i class="fa fa-envelope waves-effect waves-circle"></i>
                     <i class="fa fa-exclamation waves-effect waves-circle"></i>
@@ -125,7 +126,7 @@
                 </p>
 
 <div id="coloredIconCode" class="hide">
-<pre><code class="lang-markup">&lt;i  class=&quot;fa fa-bars waves-effect waves-circle&quot;     
+<pre><code class="lang-markup">&lt;i  class=&quot;fa fa-bars waves-effect waves-circle&quot; 
     style=&quot;background: #ff6400;color:#fff;&quot;&gt;&lt;/i&gt;
 
 &lt;i  class=&quot;fa fa-bookmark waves-effect waves-circle waves-light&quot; 
@@ -154,8 +155,8 @@
 </code></pre></div>
 
                 <p class="text-center">
-                    <i class="fa fa-bars waves-effect waves-circle" style="background: #ff6400;color:#fff;"></i>
-                    <i class="fa fa-bookmark waves-effect waves-circle waves-light" style="background: #d54f38;color:#fff;"></i>
+                    <i class="fa fa-bars waves-effect waves-circle waves-classic" style="background: #ff6400;color:#fff;"></i>
+                    <i class="fa fa-bookmark waves-effect waves-circle waves-light waves-classic" style="background: #d54f38;color:#fff;"></i>
                     <i class="fa fa-calendar waves-effect waves-circle" style="background: #eb4d7e;color:#fff;"></i>
                     <i class="fa fa-envelope waves-effect waves-circle waves-light" style="background: #d138c8;color:#fff;"></i>
                     <i class="fa fa-exclamation waves-effect waves-circle" style="background: #bd73ff;color:#fff;"></i>
@@ -182,7 +183,7 @@
 &lt;pre data-src=&quot;./docs/sources/other-div.html&quot;&gt;&lt;/pre&gt;
 </code></pre></div>
 
-                <div class="box waves-effect waves-block">Plain Box</div>
+                <div class="box waves-effect waves-block waves-classic">Plain Box</div>
                 <div class="box colored-box waves-effect waves-light waves-block">Colored Box</div>
                 <div class="box raised-box waves-effect waves-float waves-block">Raised Box</div>
                 <div class="clear"></div>
@@ -212,13 +213,34 @@
                 </p>
                 <p class="text-center">
                     <span class="waves-effect waves-light waves-float">
-                        <img src="https://farm3.staticflickr.com/2861/11189362895_38bf66c0bf_n.jpg">
+                        <img src="https://farm3.staticflickr.com/2861/11189362895_38bf66c0bf_n.jpg" style="vertical-align:top;">
                     </span>
                 </p>
                 <p>
                     Image Source: <a href="https://www.flickr.com/photos/agustinrafaelreyes/11189362895/" target="_blank">&copy; Agustin Rafael Reyes. Flickr</a>
                 </p>
 
+            </div>
+            <div class="actions doc">
+                <h2>Side Effects</h2><p>
+                    <strong>Snarl Notifications</strong>
+                    <a class="toggle-code" data-source="#snarlNotification">(show source)</a>
+                </p>
+
+<div id="snarlNotification" class="hide">
+<pre><code class="lang-markup">&lt;button id=&quot;snarl-demo&quot; class=&quot;waves-effect waves-button waves-float&quot;&gt;Open Snarl Notification&lt;/button&gt;
+
+&lt;script&gt;
+$('#snarl-demo').click(function() {
+    Snarl.addNotification({
+        title: 'Snarl Notification',
+        text: 'You clicked the Waves button!'
+    });
+});
+&lt;/script&gt;
+</code></pre></div>
+                <p>Still works fully with jQuery and JavaScript click event handlers. Try out the button below to see a demo using <a href="http://hoxxep.github.io/Snarl" target="_blank">Snarl</a> notifications.</p>
+                <p class="text-center"><button id="snarl-demo" class="waves-effect waves-button waves-float" style="background:#04d654;color: #fff;">Open Snarl Notification</button></p>
             </div>
 
             <div class="doc">
@@ -256,6 +278,7 @@
                 </p>
 
 <pre><code class="lang-markup">&lt;button class=&quot;waves-effect waves-button&quot;&gt;Click Here&lt;/button&gt;
+
 &lt;!-- It also support a, input submit and input button tag --&gt;
 &lt;a href=&quot;#&quot; class=&quot;waves-effect waves-button&quot;&gt;A Tag&lt;/a&gt;
 &lt;input type=&quot;submit&quot; class=&quot;waves-effect waves-button&quot; value=&quot;Input Submit&quot;&gt;
@@ -277,7 +300,8 @@
                     Waves can also be applied with icons (like FontAwesome) by using <code class="language-css">waves-circle</code>, so you can give the icons Waves effect. It's simple, just give additional <code class="language-css">.waves-effect</code> and <code class="language-css">.waves-circle</code> class to your <code class="language-markup">&lt;i&gt;</code> tags and Waves will wrap icon inside circle spot that will prevent Waves effect spreading.
                 </p>
 
-<pre><code class="lang-markup">&lt;i class=&quot;fa fa-gear waves-effect waves-circle&quot;&gt;&lt;/i&gt;</code></pre>
+<pre><code class="lang-markup">&lt;i class=&quot;fa fa-gear waves-effect waves-circle&quot;&gt;&lt;/i&gt;
+</code></pre>
                 <p>
                     You can also give Waves effect to other element tag like <code class="language-markup">&lt;div&gt;</code> or <code class="language-markup">&lt;img&gt;</code>. All you need to do is just put <code class="language-css">.waves-effect</code> class. For element that not have closing tag like <code class="language-markup">&lt;img&gt;</code>, you have to wrap it inside <code class="language-markup">&lt;span&gt;</code>, and for element that have blocky display like <code class="language-markup">&lt;div&gt;</code>, you need to put <code class="language-css">.waves-block</code> class to keep its shape.
                 </p>
@@ -322,7 +346,7 @@
                     By default, Waves ripple is darker. If you want the ripple is lighter, you can set <code class="language-css">.waves-light</code> along side <code class="language-css">.waves-effect</code> class. Make sure the element has been colored, because if it haven't colored yet, you cannot see the light ripple.
                 </p>
 
-<pre><code class="lang-markup">&lt;style&gt;    
+<pre><code class="lang-markup">&lt;style&gt;
     .blue-button {
         background: #01BCFF;
         color: #FFF;
@@ -338,7 +362,7 @@
                     by adding <code class="language-css">.waves-float</code> class to the element. Once again, before put float effect, your have to make sure the element has been colored, to prevent weird shadow on the element.
                 </p>
 
-<pre><code class="lang-markup">&lt;style&gt;    
+<pre><code class="lang-markup">&lt;style&gt;
     .blue-button {
         background: #01BCFF;
         color: #FFF;
@@ -364,7 +388,7 @@
                     <li><span class="code">config</span> - (optional) Configuration object for displaying Waves effect.</li>
                 </ul>
 
-<pre><code class="lang-javascript">{    
+<pre><code class="lang-javascript">{
     // How long Waves effect duration 
     // when its clicked (in milisecond)
     duration: 500
@@ -378,10 +402,17 @@
                 <p>
                     <strong>Browser support?</strong>
                 </p>
-
-                <p>
-                    Waves works in latest modern browser (i.e. Chrome, Firefox, Opera and Safari) and also IE10+. More browser support will comming.
-                </p>
+                
+                <ul>
+                    <li>IE 10++</li>
+                    <li>Chrome 14++</li>
+                    <li>Firefox 9++</li>
+                    <li>Safari 5.1++</li>
+                    <li>Opera 11.6++</li>
+                    <li>iOS 6++ (Safari)</li>
+                    <li>Windows Phone 8.1 (IE)</li>
+                    <li>Android Browser 4++</li>
+                </ul>
 
                 <p>
                     <strong>Can I make Waves better?</strong>
@@ -433,6 +464,7 @@
 
             
             <script type="text/javascript" src="./static/prims.js"></script>
+            <script type="text/javascript" src="./static/snarl.min.js"></script>
             <script type="text/javascript" src="./static/waves.min.js"></script>
             <script type="text/javascript">
                 Waves.displayEffect();
@@ -454,6 +486,17 @@
 
                         link.text('(show source)');
                         return el.addClass('hide');
+                    });
+                });
+
+                Snarl.setDefaultOptions({
+                    timeout: 5000
+                });
+
+                $('#snarl-demo').click(function() {
+                    Snarl.addNotification({
+                        title: 'Snarl Notification',
+                        text: 'You clicked the Waves button!'
                     });
                 });
             </script>
