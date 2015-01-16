@@ -91,6 +91,7 @@ ul {
 
 ul li {
     margin-left:30px;
+    line-height: 160%;
 }
 
 .code-head,
