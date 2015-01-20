@@ -3,7 +3,7 @@
   "version": "0.6.0",
   "description": "Click effect insipired by Google Material Design",
   "author": "Alfiana E. Sibuea <alfian.sibuea@gmail.com>",
-  "main": "waves.js",
+  "main": "src/js/waves.js",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-clean": "^0.6.0",
