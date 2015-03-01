@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <link rel="icon" href="http://fian.my.id/static/favicon.png" />
+        <meta name="msapplication-tap-highlight" content="no"/> 
+
+        <title>Waves</title>
+        <meta name="description" content="Waves - Click effect inspired by Google's Material Design" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="./static/prims.css">
+        <link rel="stylesheet" type="text/css" href="./static/snarl.min.css">
+        <link rel="stylesheet" type="text/css" href="./static/waves.min.css">
+
+        <link rel="stylesheet" type="text/css" href="./static/style.css">
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-36521756-2', 'auto');
+          ga('send', 'pageview');
+
+        </script>
+
+    </head>
+    <body>
+        <div id="bg-pattern" class="bg-pattern waves-effect waves-block waves-light"></div>
+        
+        <div id="navigation" class="shadow">
+            <a href="#examples">Examples</a>
+            <a href="#start">Getting Started</a>
+            <a href="#api">API</a>
+            <a href="#faq">FAQ</a>
+        </div>
+        
+        
+        
+        
+        <div id="landing" class="section hide">
+            <h1>Waves</h1>
+            <p>Click effect inspired by Google's Material Design</p>
+            <p>v0.6.0</p>
+            <div class="button">
+                <a href="#examples" class="waves-effect waves-button waves-float">See the example</a>
+                <br>
+                <span>Hint: click button or background</span>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div id="example" class="section page hide">
+            
+            <h1>Examples</h1>
+            
+            <div id="box-button" class="box shadow">
+                <h2>Buttons</h2>
+                <a class="top-button" title="Show Source" data-code="button">
+                    <i class="fa fa-code"></i>
+                </a>
+                
+                <p class="text-center">
+                    <a class="waves-effect waves-button waves-classic">Button A</a>
+                    <button class="waves-effect waves-button">Button B</button>
+                    <input class="waves-effect waves-button" type="submit" value="Button C">
+                </p>
+                
+                <p class="text-center">
+                    <a class="waves-effect waves-button waves-float waves-classic" style="background: #01BCFF;color:#fff">Button A</a>
+                    <button class="waves-effect waves-button waves-light waves-float" style="background: #1bb556;color: #fff;">Button B</button>
+                    <input class="waves-effect waves-button waves-float" style="background: #ff4f0f;color:#fff" type="submit" value="Button C">
+                </p>
+            </div>
+            
+            <div id="box-icon" class="box shadow">
+                <h2>Icons</h2>
+                <a class="top-button" title="Show Source" data-code="icon">
+                    <i class="fa fa-code"></i>
+                </a>
+                
+                <p class="text-center">
+                    <i class="fa fa-bars waves-effect waves-circle waves-classic"></i>
+                    <i class="fa fa-bookmark waves-effect waves-circle waves-classic"></i>
+                    <i class="fa fa-calendar waves-effect waves-circle"></i>
+                    <i class="fa fa-envelope waves-effect waves-circle"></i>
+                    <i class="fa fa-exclamation waves-effect waves-circle"></i>
+                    <i class="fa fa-folder waves-effect waves-circle"></i>
+                </p>
+                
+                <p class="text-center">
+                    <i class="fa fa-bars waves-effect waves-circle waves-classic" style="background: #ff6400;color:#fff;"></i>
+                    <i class="fa fa-bookmark waves-effect waves-circle waves-light waves-classic" style="background: #d54f38;color:#fff;"></i>
+                    <i class="fa fa-calendar waves-effect waves-circle" style="background: #eb4d7e;color:#fff;"></i>
+                    <i class="fa fa-envelope waves-effect waves-circle waves-light" style="background: #d138c8;color:#fff;"></i>
+                    <i class="fa fa-exclamation waves-effect waves-circle" style="background: #bd73ff;color:#fff;"></i>
+                    <i class="fa fa-folder waves-effect waves-circle waves-light" style="background: #0074d6;color:#fff;"></i>
+                </p>
+                
+            </div>
+            
+            <div id="box-other" class="box shadow">
+                <h2>DIVs &amp; Images</h2>
+                <a  class="top-button" title="Show Source" data-code="other">
+                    <i class="fa fa-code"></i>
+                </a>
+                
+                <div class="boxes flat-box waves-effect waves-block waves-classic">Flat Box</div>
+                <div class="boxes float-box waves-effect waves-float waves-block">Float Box</div>
+                <div class="clear"></div>
+                
+                <p class="text-center">
+                    <span class="waves-effect">
+                        <img src="https://farm2.staticflickr.com/1297/1091511802_2fb2451ecc_n.jpg">
+                    </span>
+                </p>
+                
+                <p class="text-center">
+                    Image Source: <a href="https://www.flickr.com/photos/aigle_dore/5238554034/" target="_blank">&copy; Moyan Brenn. Flickr</a>
+                </p>
+            </div>
+            
+            <div id="box-action" class="box shadow">
+                <h2>Action/Event</h2>
+                <a class="top-button" title="Show Source" data-code="action">
+                    <i class="fa fa-code"></i>
+                </a>
+                
+                <p>Works fully with jQuery and JavaScript click event handlers, like <a href="http://hoxxep.github.io/Snarl" target="_blank">Snarl</a></p>
+                
+                <p class="text-center"><button id="snarl-demo" class="waves-effect waves-button waves-float" style="background:#04d654;color: #fff;">Click Me!</button></p>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div id="source-code" class="hide">
+            <div class="bg"></div>
+
+            <div class="box shadow">
+                <a title="Close" class="top-button"><i class="fa fa-times"></i></a>
+                
+                <div id="code-button" class="hide code">
+                    <h2>Buttons</h2>
+                    <div class="wrapper">
+{{#code class="lang-markup"}}
+<p class="text-center">
+    <a class="waves-effect waves-button waves-classic">Button A</a>
+    <button class="waves-effect waves-button">Button B</button>
+    <input class="waves-effect waves-button" type="submit" value="Button C">
+</p>
+
+<p class="text-center">
+    <a class="waves-effect waves-button waves-float waves-classic" style="background: #01BCFF;color:#fff">Button A</a>
+    <button class="waves-effect waves-button waves-light waves-float" style="background: #1bb556;color: #fff;">Button B</button>
+    <input class="waves-effect waves-button waves-float" style="background: #ff4f0f;color:#fff" type="submit" value="Button C">
+</p>
+{{/code}}
+                    </div>
+                </div>
+                
+                <div id="code-icon" class="hide code">
+                    <h2>Icons</h2>
+                    <div class="wrapper">
+{{#code class="lang-markup"}}
+<p class="text-center">
+    <i class="fa fa-bars waves-effect waves-circle waves-classic"></i>
+    <i class="fa fa-bookmark waves-effect waves-circle waves-classic"></i>
+    <i class="fa fa-calendar waves-effect waves-circle"></i>
+    <i class="fa fa-envelope waves-effect waves-circle"></i>
+    <i class="fa fa-exclamation waves-effect waves-circle"></i>
+    <i class="fa fa-folder waves-effect waves-circle"></i>
+</p>
+
+<p class="text-center">
+    <i class="fa fa-bars waves-effect waves-circle waves-classic" style="background: #ff6400;color:#fff;"></i>
+    <i class="fa fa-bookmark waves-effect waves-circle waves-light waves-classic" style="background: #d54f38;color:#fff;"></i>
+    <i class="fa fa-calendar waves-effect waves-circle" style="background: #eb4d7e;color:#fff;"></i>
+    <i class="fa fa-envelope waves-effect waves-circle waves-light" style="background: #d138c8;color:#fff;"></i>
+    <i class="fa fa-exclamation waves-effect waves-circle" style="background: #bd73ff;color:#fff;"></i>
+    <i class="fa fa-folder waves-effect waves-circle waves-light" style="background: #0074d6;color:#fff;"></i>
+</p>   
+{{/code}}
+                    </div>
+                </div>
+                
+                <div id="code-other" class="hide code">
+                    <h2>DIVs &amp; Images</h2>
+                    <div class="wrapper">
+{{#code class="lang-markup"}}
+<div class="boxes flat-box waves-effect waves-block waves-classic">Flat Box</div>
+<div class="boxes float-box waves-effect waves-float waves-block">Float Box</div>
+<div class="clear"></div>
+
+<p class="text-center">
+    <span class="waves-effect">
+        <img src="https://farm2.staticflickr.com/1297/1091511802_2fb2451ecc_n.jpg">
+    </span>
+</p>              
+{{/code}}
+                    </div>
+                </div>
+                
+                <div id="code-action" class="hide code">
+                    <h2>Action/Event</h2>
+                    <div class="wrapper">
+{{#code class="lang-markup"}}
+<p class="text-center">
+    <button id="snarl-demo" class="waves-effect waves-button waves-float" style="background:#04d654;color: #fff;">Click Me!</button>
+</p>
+<script type="text/javascript">
+    Snarl.setDefaultOptions({
+        timeout: 5000
+    });
+
+    $('#snarl-demo').click(function() {
+        Snarl.addNotification({
+            title: 'Snarl Notification',
+            text: 'You clicked the Waves button!'
+        });
+    });
+</script>
+{{/code}}
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        
+        
+        
+        <div id="getting-started" class="content section page hide">
+            <h1>Getting Started</h1>
+            
+            <div class="box shadow">
+
+                <p>
+                    It's easy to use Waves. Download the latest version of Waves from <a href="https://github.com/publicis-indonesia/Waves/releases">Github repository</a>. Just include waves.min.css and waves.min.js to your HTML file. And Waves is ready to use!
+                </p>
+
+{{#code class="lang-markup"}}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Waves example</title>
+
+        <link rel="stylesheet" type="text/css" href="/path/to/waves.min.css" />
+
+    </head>
+    <body>
+        <a href="#" class="waves-effect waves-button">Click Here</a>
+
+        <script type="text/javascript" src="/path/to/waves.min.js"></script>
+        <script type="text/javascript">
+            Waves.displayEffect();
+        </script>
+    </body>
+</html>
+{{/code}}
+
+                <p>
+                    <strong>Advanced:</strong> <br>
+                    Waves also provide LESS, SCSS, and SASS source. So, feel free to used it :)
+                </p>
+
+                <p>
+                    To put Waves effect on your buttons, just add <code class="language-css">.waves-effect</code> and <code class="language-css">.waves-button</code> class to your buttons.
+                </p>
+
+{{#code class="lang-markup"}}
+<button class="waves-effect waves-button">Click Here</button>
+
+<!-- It also support a, input submit and input button tag -->
+<a href="#" class="waves-effect waves-button">A Tag</a>
+<input type="submit" class="waves-effect waves-button" value="Input Submit">
+<input type="button" class="waves-effect waves-button" value="Input Button">
+{{/code}}
+
+                <p>
+                    Normally, the effect will not work on single tag element like <code class="language-markup">&lt;input&gt;</code>. That's why Waves will wrap <code class="language-markup">&lt;input&gt;</code> inside <code class="language-markup">&lt;i&gt;</code> automatically if you display the effect.
+                </p>
+
+{{#code class="lang-markup"}}
+<!-- Before displaying the effect -->
+<input class="waves-button-input" type="submit" value="Button C">
+
+<!-- After displaying the effect -->
+<i class="waves-effect waves-button waves-input-wrapper" style="width:85px;height:36px;">
+    <input class="waves-button-input" type="submit" value="Button C">
+</i>
+{{/code}}
+
+                <p>
+                    Waves can also be applied with icons (like FontAwesome) by using <code class="language-css">waves-circle</code>, so you can give the icons Waves effect. It's simple, just give additional <code class="language-css">.waves-effect</code> and <code class="language-css">.waves-circle</code> class to your <code class="language-markup">&lt;i&gt;</code> tags and Waves will wrap icon inside circle spot that will prevent Waves effect spreading.
+                </p>
+
+{{#code class="lang-markup"}}
+<i class="fa fa-gear waves-effect waves-circle"></i>
+{{/code}}
+
+                <p>
+                    You can also give Waves effect to other element tag like <code class="language-markup">&lt;div&gt;</code> or <code class="language-markup">&lt;img&gt;</code>. All you need to do is just put <code class="language-css">.waves-effect</code> class. For element that not have closing tag like <code class="language-markup">&lt;img&gt;</code>, you have to wrap it inside <code class="language-markup">&lt;span&gt;</code>, and for element that have blocky display like <code class="language-markup">&lt;div&gt;</code>, you need to put <code class="language-css">.waves-block</code> class to keep its shape.
+                </p>
+
+{{#code class="lang-markup"}}
+<!-- For single tag element -->
+<span class="waves-effect">
+    <img src="/path/to/images.jpg">
+</span>
+
+<!-- For blocky display to keep its shape -->
+<div class="waves-effect waves-block">
+    Block A
+</div>
+{{/code}}
+
+                <h2>Styling</h2>
+
+                <p>
+                    Waves give you capabilities to color your <code class="language-css">.waves-effect</code>. You can do this by set up the color and background-color/background properties on your element style (or CSS file).
+                </p>
+
+{{#code class="lang-markup"}}
+<!-- Put color in inline style -->
+<span class="waves-effect waves-button" style="background: #01BCFF;color: #fff;">
+    <button>Button B</button>
+</span>
+
+<!-- Put color inside style tag or css file -->
+<style>
+    .blue-button {
+        background: #01BCFF;
+        color: #FFF;
+    }
+</style>
+
+<span class="waves-effect waves-button blue-button">
+    <button>Button B</button>
+</span>
+{{/code}}
+
+                <p>
+                    By default, Waves ripple is darker. If you want the ripple is lighter, you can set <code class="language-css">.waves-light</code> along side <code class="language-css">.waves-effect</code> class. Make sure the element has been colored, because if it haven't colored yet, you cannot see the light ripple.
+                </p>
+
+{{#code class="lang-markup"}}
+<style>
+    .blue-button {
+        background: #01BCFF;
+        color: #FFF;
+    }
+</style>
+
+<span class="waves-effect waves-button waves-light blue-button">
+    <button>Button B</button>
+</span>
+{{/code}}
+
+                <p>
+                    Not only give your "Waves effect", Waves also provide float effect when you click an element
+                    by adding <code class="language-css">.waves-float</code> class to the element. Once again, before put float effect, your have to make sure the element has been colored, to prevent weird shadow on the element.
+                </p>
+
+{{#code class="lang-markup"}}
+<style>
+    .blue-button {
+        background: #01BCFF;
+        color: #FFF;
+    }
+</style>
+
+<span class="waves-effect waves-button waves-float blue-button">
+    <button>Button B</button>
+</span>
+{{/code}}
+                
+                <h2>Quick Fix</h2>
+     
+                <p>
+                    <strong>IE Tap highlight on Windows Phone</strong>
+                </p>
+     
+                <p>
+                    By default if you access a web page using IE in Windows Phone, you will get tap highlight
+                    effect when you tapping a link or button and this highlight will shadowed Waves effect. To prevent this thing happen, you will need to add <code>msapplication-tap-highlight</code> meta tag on your header.
+                </p>
+     
+{{#code class="lang-markup"}}
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Remove Tap Highlight on Windows Phone IE -->
+        <meta name="msapplication-tap-highlight" content="no"/> 
+
+        <title>Your Web Page</title>
+
+        <link rel="stylesheet" type="text/css" href="/path/to/waves.css" />
+    </head>
+    <body>
+
+        <script type="text/javascript" src="/path/to/waves.js">\</script\>
+        <script type="text/javascript">
+            Waves.displayEffect();
+        </script>
+    </body>
+</html>
+{{/code}}
+
+            </div>
+        </div>
+        
+        
+        
+        
+        <div id="api" class="content section page hide">
+            <h1>API</h1>
+            
+            <div class="box shadow">
+                <h3 class="code-head">displayEffect(config)</h3>
+
+                <p>
+                    <strong>Arguments</strong>
+                </p>
+
+                <ul>
+                    <li><span class="code">config</span> - (optional) Configuration object for displaying Waves effect.</li>
+                </ul>
+
+{{#code class="lang-javascript"}}
+{
+    // How long Waves effect duration 
+    // when its clicked (in milisecond)
+    duration: 500
+}
+{{/code}}
+            </div>
+        </div>
+        
+        
+        
+        
+        
+        <div id="faq" class="content section page hide">
+            <h1>FAQ</h1>
+            
+            <div class="box shadow">
+                <p>
+                    <strong>Browser support?</strong>
+                </p>
+
+                <ul>
+                    <li>IE 10++</li>
+                    <li>Chrome 14++</li>
+                    <li>Firefox 9++</li>
+                    <li>Safari 5.1++</li>
+                    <li>Opera 11.6++</li>
+                    <li>iOS 6++ (Safari)</li>
+                    <li>Windows Phone 8.1 (IE)</li>
+                    <li>Android Browser 4++</li>
+                </ul>
+
+                <p>
+                    <strong>Can I make Waves better?</strong>
+                </p>
+
+                <p>
+                    Yes, I strongly encourage you to contribute to make Waves better. So, if you find a bug, or have nice idea for Waves development, please <a href="https://github.com/fians/Waves/issues" target="_blank">mention me</a>.
+                </p>
+            </div>
+            
+        </div>
+        
+        
+        
+            
+        
+        <script type="text/javascript" src="./static/prims.js"></script>
+        <script type="text/javascript" src="./static/snarl.min.js"></script>
+        <script type="text/javascript" src="./static/waves.min.js"></script>
+
+        <script type="text/javascript" src="./static/jquery.js"></script>
+        <script type="text/javascript">
+            
+            var currentRoute = false;
+            
+            
+            function enterTransition(name, callback) {
+                
+                var element = $('#'+name);
+                
+                element.removeClass('hide');
+
+                setTimeout(function() {
+                    element.addClass('show')
+                        .addClass('appear');
+
+                    setTimeout(function() {
+                        element.addClass('flow');
+                        return callback();
+                    }, 1000);
+                }, 100);   
+                
+            }
+            
+            function leaveTransition(name, callback) {
+                
+                var element = $('#'+name);
+                
+                element.removeClass('flow')
+                    .removeClass('show');
+
+                setTimeout(function() {
+                    element.removeClass('appear');
+
+                    setTimeout(function() {
+                        element.addClass('hide');
+                        return callback();
+                    }, 500);
+                }, 300);   
+            }
+            
+            var routes = {
+                
+                // Landing Page Animation
+                index: {
+                    enter: function(callback) {
+                        
+                        $('#landing').removeClass('hide');
+
+                        setTimeout(function() {
+                            $('#landing').addClass('show');
+                            return callback();
+                        }, 100);
+                        
+                    },
+                    leave: function(callback) {
+                        
+                        $('#landing').removeClass('show');
+                        
+                        setTimeout(function() {
+                            $('#landing').addClass('hide');
+                            return callback();
+                        }, 500);
+                        
+                    }
+                },
+                
+                // Example Page Animation
+                examples: {
+                    enter: function(callback) {
+                        enterTransition('example', callback);
+                    },
+                    leave: function(callback) {
+                        leaveTransition('example', callback);
+                    }
+                },
+                
+                // Getting Started Page Animation
+                start: {
+                    enter: function(callback) {
+                        enterTransition('getting-started', callback);
+                    },
+                    leave: function(callback) {
+                        leaveTransition('getting-started', callback);
+                    }
+                },
+                
+                // API Page Animation
+                api: {
+                    enter: function(callback) {
+                        enterTransition('api', callback);
+                    },
+                    leave: function(callback) {
+                        leaveTransition('api', callback);
+                    }
+                },
+                
+                // FAQ Page Animation
+                faq: {
+                    enter: function(callback) {
+                        enterTransition('faq', callback);
+                    },
+                    leave: function(callback) {
+                        leaveTransition('faq', callback);
+                    }
+                }
+                
+            }
+            
+            function routing() {
+                
+                var hash = window.location.hash.replace('#', '');
+                
+                if (!hash.length) {
+                    hash = 'index';
+                }
+                
+                if (['index', 'examples', 'start', 'api', 'faq'].indexOf(hash) === -1) {
+                    return false;
+                }
+                
+                if (currentRoute === false) {
+                    return routes[hash].enter(function() {
+                        currentRoute = hash;   
+                    });
+                }
+                
+                return routes[currentRoute].leave(function() {
+                    routes[hash].enter(function() {
+                        currentRoute = hash; 
+                    });
+                });
+                
+            }
+            
+            function init() {
+                setTimeout(function() {
+                    $('#navigation').addClass('show');
+                    routing();
+                }, 500);
+            }
+            
+            $(document).on('ready', function() {
+                
+                // Init Waves
+                Waves.displayEffect();
+                
+                init();
+                
+                $(window).on('hashchange', routing);
+                
+                Snarl.setDefaultOptions({
+                    timeout: 5000
+                });
+
+                $('#snarl-demo').click(function() {
+                    Snarl.addNotification({
+                        title: 'Snarl Notification',
+                        text: 'You clicked the Waves button!'
+                    });
+                });
+                
+                
+                /**
+                 * Example source code click
+                 */
+                $('#example .top-button').on('click', function() {
+                    
+                    var type = $(this).data('code');
+                    
+                    $('#source-code .box .code').addClass('hide');
+                    $('#source-code .box #code-'+type).removeClass('hide');
+                    $('#source-code').removeClass('hide');
+                    
+                    setTimeout(function() {
+                        $('#source-code').addClass('show');
+                    }, 50);
+                    
+                });
+                
+                $('#source-code .top-button').on('click', function() {
+                    
+                    $('#source-code').removeClass('show');
+                    
+                    setTimeout(function() {
+                        $('#source-code .box .code').addClass('hide');
+                        $('#source-code').addClass('hide');
+                    }, 500);
+                });
+            });
+            
+        </script>
+    </body>
+</html>
