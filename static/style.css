@@ -310,15 +310,13 @@ ul li {
 /**
  * Example
  */
+
 #example .box {
     position: absolute;
-}
-
-#example #box-button {
-    top: -400px;
-    left: 300px;
+    left: 50%;
     width: 400px;
     height: 200px;
+    margin-left: -200px;
     -webkit-transition: all 1000ms;
        -moz-transition: all 1000ms;
         -ms-transition: all 1000ms;
@@ -326,8 +324,13 @@ ul li {
             transition: all 1000ms;
 }
 
-#example.show #box-button {
+#example #box-button {
     top: 200px;
+    left: 0%;
+}
+
+#example.show #box-button {
+    left: 50%;
 }
 
 
@@ -337,18 +340,11 @@ ul li {
 
 #example #box-icon {
     top: 450px;
-    left: -500px;
-    width: 400px;
-    height: 200px;
-    -webkit-transition: all 1000ms;
-       -moz-transition: all 1000ms;
-        -ms-transition: all 1000ms;
-         -o-transition: all 1000ms;
-            transition: all 1000ms;
+    left: 100%;
 }
 
 #example.show #box-icon {
-    left: 100px;
+    left: 50%;
 }
 
 #example #box-icon p .waves-circle {
@@ -356,19 +352,13 @@ ul li {
 }
 
 #example #box-other {
-    top: 100%;
-    left: 750px;
-    width: 400px;
+    top: 700px;
     height: 450px;
-    -webkit-transition: all 1000ms;
-       -moz-transition: all 1000ms;
-        -ms-transition: all 1000ms;
-         -o-transition: all 1000ms;
-            transition: all 1000ms;
+    left: 0%;
 }
 
 #example.show #box-other {
-    top: 200px
+    left: 50%;
 }
 
 #example #box-other .boxes {
@@ -397,19 +387,13 @@ ul li {
 }
 
 #example #box-action {
-    top: 350px;
+    top: 1200px;
     left: 100%;
-    width: 200px;
-    height: 200px;
-    -webkit-transition: all 1000ms;
-       -moz-transition: all 1000ms;
-        -ms-transition: all 1000ms;
-         -o-transition: all 1000ms;
-            transition: all 1000ms;
+    margin-bottom: 40px;
 }
 
 #example.show #box-action {
-    left: 1200px;   
+    left: 50%;
 }
 
 /**
@@ -561,67 +545,6 @@ h3 {
 /**
  * Responsive stuff
  */
-
-/* 768px - 959px */
-@media all and (max-width: 959px) {
-    
-    #example.show #box-icon {
-        left: 40px;
-    }
-    
-    #example #box-other {
-        left: 40px;
-        height: 450px;
-        margin-bottom: 40px;
-    }
-    
-    #example.show #box-other {
-        top: 700px;
-    }
-    
-    #example #box-action {
-        top: 450px;
-    }
-    
-    #example.show #box-action {
-        left: 500px;
-    }
-}
-
-/* 640px - 767px */
-@media all and (max-width: 767px) {
-    
-    #example #box-button {
-        left: 200px;
-    }
-    
-    #example.show #box-icon {
-        left: 40px;
-    }
-    
-    #example #box-other {
-        left: 300px;
-        width: 300px;
-        height: 590px;
-        margin-bottom: 40px;
-    }
-    
-    #example.show #box-other {
-        top: 700px;
-    }
-    
-    #example #box-other .boxes {
-        width: 220px;
-    }
-    
-    #example #box-action {
-        top: 850px;
-    }
-    
-    #example.show #box-action {
-        left: 40px;
-    }
-}
 
 /* 480px - 639px */
 @media all and (max-width: 639px) {
