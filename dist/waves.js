@@ -1,5 +1,5 @@
 /*!
- * Waves v0.6.4
+ * Waves v0.6.5
  * http://fian.my.id/Waves 
  * 
  * Copyright 2014 Alfiana E. Sibuea and other contributors 
@@ -7,8 +7,29 @@
  * https://github.com/fians/Waves/blob/master/LICENSE 
  */
 
-;(function(window) {
-    'use strict';
+;(function(window, factory) {
+    "use strict";
+
+    // AMD. Register as an anonymous module.  Wrap in function so we have access
+    // to root via `this`.
+    if (typeof define === "function" && define.amd) {
+        define([], function() {
+            return factory.apply(window);
+        });
+    }
+
+    // Node. Does not work with strict CommonJS, but only CommonJS-like
+    // environments that support module.exports, like Node.
+    else if (typeof exports === "object") {
+        module.exports = factory.call(window);
+    }
+
+    // Browser globals.
+    else {
+        window.Waves = factory.call(window);
+    }
+})(typeof global === "object" ? global : this, function () {
+    "use strict";
 
     var Waves = Waves || {};
     var $$ = document.querySelectorAll.bind(document);
@@ -324,5 +345,5 @@
         element.addEventListener('mousedown', showEffect, false);
     };
 
-    window.Waves = Waves;
-})(window);
+    return Waves;
+});
