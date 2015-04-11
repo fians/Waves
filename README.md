@@ -12,7 +12,7 @@ Waves using [Situs](https://github.com/fians/situs) to generate documentation. H
 3. Install Situs globally via npm (`npm install situs -g`).
 4. Clone Waves's Github repository, if you haven't already (`git clone https://github.com/fians/Waves.git`).
 5. Run `npm install` to install the necessary local node packages.
-6. Install grunt globally with `npm install -g grunt`.
+6. Install grunt globally with `npm install -g grunt-cli`.
 7. Run `grunt` to watch the directory, or simply `grunt build` to do a single build.
 8. Now just start Situs server (`situs server`), then visit [http://localhost:4000/](http://localhost:4000/) on your browser.
 

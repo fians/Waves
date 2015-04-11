@@ -1,6 +1,6 @@
 
 /*!
- * Waves v0.6.0
+ * Waves v0.6.6
  * http://fian.my.id/Waves 
  * 
  * Copyright 2014 Alfiana E. Sibuea and other contributors 
@@ -8,14 +8,14 @@
  * https://github.com/fians/Waves/blob/master/LICENSE 
  */
 
-.transition (@transition) {
+.waves-transition (@transition) {
     -webkit-transition: @transition;
     -moz-transition: @transition; 
     -o-transition: @transition;
     transition: @transition;  
 }
 
-.transform(@string) {
+.waves-transform(@string) {
     -webkit-transform: @string;
     -moz-transform: @string;
     -ms-transform: @string;
@@ -23,7 +23,7 @@
     transform: @string;
 }
 
-.box-shadow(@shadow) {
+.waves-box-shadow(@shadow) {
     -webkit-box-shadow: @shadow;
     box-shadow: @shadow;
 }
@@ -38,7 +38,6 @@
     -ms-user-select: none;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
-    .transition(all .3s ease-out);
     
     .waves-ripple {
         position: absolute;
@@ -54,12 +53,12 @@
         background: -o-radial-gradient(@gradient);
         background: -moz-radial-gradient(@gradient);
         background: radial-gradient(@gradient);
-        .transition(all 0.5s ease-out);
+        .waves-transition(all 0.5s ease-out);
         -webkit-transition-property: -webkit-transform, opacity;
         -moz-transition-property: -moz-transform, opacity;
         -o-transition-property: -o-transform, opacity;
         transition-property: transform, opacity;
-        .transform(scale(0));
+        .waves-transform(scale(0));
         pointer-events: none;
     }
 
@@ -82,12 +81,12 @@
 }
 
 .waves-notransition {
-    .transition(none ~'!important');
+    .waves-transition(none ~'!important');
 }
 
 .waves-button, 
 .waves-circle {
-    .transform(translateZ(0));
+    .waves-transform(translateZ(0));
     -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
 }
 
@@ -145,10 +144,10 @@
 
 .waves-float {
     -webkit-mask-image: none;
-    .box-shadow(0px 1px 1.5px 1px rgba(0, 0, 0, 0.12));
+    .waves-box-shadow(0px 1px 1.5px 1px rgba(0, 0, 0, 0.12));
 
     &:active {
-        .box-shadow(0px 8px 20px 1px rgba(0, 0, 0, 0.30));
+        .waves-box-shadow(0px 8px 20px 1px rgba(0, 0, 0, 0.30));
     }
 }
 

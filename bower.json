@@ -1,6 +1,6 @@
 {
   "name": "Waves",
-  "version": "0.6.0",
+  "version": "0.6.6",
   "homepage": "http://fian.my.id/Waves",
   "authors": [
     "Alfiana E. Sibuea <alfian.sibuea@gmail.com>"
@@ -17,9 +17,6 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests",
-    "Gruntfile.js",
-    "package.json",
-    "README.md"
+    "tests"
   ]
 }

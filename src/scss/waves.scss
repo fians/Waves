@@ -1,6 +1,6 @@
 
 /*!
- * Waves v0.6.0
+ * Waves v0.6.6
  * http://fian.my.id/Waves 
  * 
  * Copyright 2014 Alfiana E. Sibuea and other contributors 
@@ -8,14 +8,14 @@
  * https://github.com/fians/Waves/blob/master/LICENSE 
  */
 
-@mixin transition($transition){
+@mixin waves-transition($transition){
     -webkit-transition: $transition;
     -moz-transition: $transition; 
     -o-transition: $transition;
     transition: $transition;  
 }
 
-@mixin transform($string){
+@mixin waves-transform($string){
     -webkit-transform: $string;
     -moz-transform: $string;
     -ms-transform: $string;
@@ -23,7 +23,7 @@
     transform: $string;
 }
 
-@mixin box-shadow($shadow){
+@mixin waves-box-shadow($shadow){
     -webkit-box-shadow: $shadow;
     box-shadow: $shadow;
 }
@@ -38,7 +38,6 @@
     -ms-user-select: none;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
-    @include transition(all .3s ease-out);
     
     .waves-ripple {
         position: absolute;
@@ -54,12 +53,12 @@
         background: -o-radial-gradient($gradient);
         background: -moz-radial-gradient($gradient);
         background: radial-gradient($gradient);
-        @include transition(all 0.5s ease-out);
+        @include waves-transition(all 0.5s ease-out);
         -webkit-transition-property: -webkit-transform, opacity;
         -moz-transition-property: -moz-transform, opacity;
         -o-transition-property: -o-transform, opacity;
         transition-property: transform, opacity;
-        @include transform(scale(0));
+        @include waves-transform(scale(0));
         pointer-events: none;
     }
 
@@ -82,12 +81,12 @@
 }
 
 .waves-notransition {
-    @include transition(none #{"!important"});
+    @include waves-transition(none #{"!important"});
 }
 
 .waves-button, 
 .waves-circle {
-    @include transform(translateZ(0));
+    @include waves-transform(translateZ(0));
     -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
 }
 
@@ -145,10 +144,10 @@
 
 .waves-float {
     -webkit-mask-image: none;
-    @include box-shadow(0px 1px 1.5px 1px rgba(0, 0, 0, 0.12));
+    @include waves-box-shadow(0px 1px 1.5px 1px rgba(0, 0, 0, 0.12));
 
     &:active {
-        @include box-shadow(0px 8px 20px 1px rgba(0, 0, 0, 0.30));
+        @include waves-box-shadow(0px 8px 20px 1px rgba(0, 0, 0, 0.30));
     }
 }
 
