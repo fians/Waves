@@ -33,6 +33,7 @@
 
     var Waves = Waves || {};
     var $$ = document.querySelectorAll.bind(document);
+    var isTouchAvailable = 'ontouchstart' in window;
 
     // Find exact position of element
     function isWindow(obj) {
@@ -74,8 +75,11 @@
 
     var Effect = {
 
-        // Effect delay
+        // Effect duration
         duration: 750,
+
+        // Effect delay (check for scroll before showing effect)
+        delay: 200,
 
         show: function(e, element) {
 
@@ -98,7 +102,7 @@
             var scale       = 'scale('+((el.clientWidth / 100) * 3)+')';
             
             // Support for touch devices
-            if ('touches' in e) {
+        if ('touches' in e && e.touches.length) {
               relativeY   = (e.touches[0].pageY - pos.top);
               relativeX   = (e.touches[0].pageX - pos.left);
             }
@@ -135,11 +139,10 @@
             ripple.setAttribute('style', convertStyle(rippleStyle));
         },
 
-        hide: function(e) {
+        hide: function(e, element) {
             TouchHandler.touchup(e);
 
-            var el = this;
-            var width = el.clientWidth * 1.4;
+            var el = element ? element : this;
             
             // Get first ripple
             var ripple = null;
@@ -254,6 +257,8 @@
                 allow = false;
             }
 
+            // TODO: separate mousedown disabling from Effect logic
+            //console.log(TouchHandler.touches);
             return allow;
         },
         touchup: function(e) {
@@ -295,15 +300,50 @@
         var element = getWavesEffectElement(e);
 
         if (element !== null) {
-            Effect.show(e, element);
+            if (e.type === 'touchstart' && Effect.delay) {
+                var hidden = false;
+                var timer = setTimeout(function () {
+                    timer = null;
+                    Effect.show(e, element);
+                }, Effect.delay);
 
-            if ('ontouchstart' in window) {
-                element.addEventListener('touchend', Effect.hide, false);
-                element.addEventListener('touchcancel', Effect.hide, false);
+                var hideEffect = function(hideEvent) {
+                    // if touch hasn't moved, and effect not yet started: start effect now
+                    if (timer) {
+                        clearTimeout(timer);
+                        timer = null;
+                        Effect.show(e, element);
+                    }
+                    setTimeout(function() {
+                        if (!hidden) {
+                            hidden = true;
+                            Effect.hide(hideEvent, element);
+                        }
+                    }, Effect.delay);
+                };
+
+                var touchMove = function(moveEvent) {
+                    if (timer) {
+                        clearTimeout(timer);
+                        timer = null;
+                    }
+                    hideEffect(moveEvent);
+                };
+
+                element.addEventListener('touchmove', touchMove, false);
+                element.addEventListener('touchend', hideEffect, false);
+                element.addEventListener('touchcancel', hideEffect, false);
+            } else {
+                Effect.show(e, element);
+
+                if (isTouchAvailable) {
+                    element.addEventListener('touchend', Effect.hide, false);
+                    element.addEventListener('touchcancel', Effect.hide, false);
+                }
+
+                element.addEventListener('mouseup', Effect.hide, false);
+                element.addEventListener('mouseleave', Effect.hide, false);
             }
-
-            element.addEventListener('mouseup', Effect.hide, false);
-            element.addEventListener('mouseleave', Effect.hide, false);
         }
     }
 
@@ -313,11 +353,14 @@
         if ('duration' in options) {
             Effect.duration = options.duration;
         }
+        if ('delay' in options) {
+            Effect.delay = options.delay;
+        }
         
         //Wrap input inside <i> tag
         Effect.wrapInput($$('.waves-effect'));
         
-        if ('ontouchstart' in window) {
+        if (isTouchAvailable) {
             document.body.addEventListener('touchstart', showEffect, false);
         }
         
@@ -338,7 +381,7 @@
             element = element.parentElement;
         }
 
-        if ('ontouchstart' in window) {
+        if (isTouchAvailablete) {
             element.addEventListener('touchstart', showEffect, false);
         }
 
