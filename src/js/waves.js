@@ -1,5 +1,5 @@
 /*!
- * Waves v0.6.6
+ * Waves v0.7.0
  * http://fian.my.id/Waves 
  * 
  * Copyright 2014 Alfiana E. Sibuea and other contributors 
@@ -102,7 +102,7 @@
             var scale       = 'scale('+((el.clientWidth / 100) * 3)+')';
             
             // Support for touch devices
-        if ('touches' in e && e.touches.length) {
+            if ('touches' in e && e.touches.length) {
               relativeY   = (e.touches[0].pageY - pos.top);
               relativeX   = (e.touches[0].pageX - pos.left);
             }
@@ -140,8 +140,6 @@
         },
 
         hide: function(e, element) {
-            TouchHandler.touchup(e);
-
             var el = element ? element : this;
             
             // Get first ripple
@@ -245,6 +243,13 @@
         allowEvent: function(e) {
             var allow = true;
 
+            if (e.type === 'mousedown' && TouchHandler.touches > 0) {
+                allow = false;
+            }
+
+            return allow;
+        },
+        registerEvent: function(e) {
             if (e.type === 'touchstart') {
                 TouchHandler.touches += 1; //push
             } else if (e.type === 'touchend' || e.type === 'touchcancel') {
@@ -253,16 +258,7 @@
                         TouchHandler.touches -= 1; //pop after 500ms
                     }
                 }, 500);
-            } else if (e.type === 'mousedown' && TouchHandler.touches > 0) {
-                allow = false;
             }
-
-            // TODO: separate mousedown disabling from Effect logic
-            //console.log(TouchHandler.touches);
-            return allow;
-        },
-        touchup: function(e) {
-            TouchHandler.allowEvent(e);
         }
     };
 
@@ -297,6 +293,7 @@
      * Bubble the click and show effect if .waves-effect elem was found
      */
     function showEffect(e) {
+        TouchHandler.registerEvent(e);
         var element = getWavesEffectElement(e);
 
         if (element !== null) {
@@ -314,12 +311,10 @@
                         timer = null;
                         Effect.show(e, element);
                     }
-                    setTimeout(function() {
-                        if (!hidden) {
-                            hidden = true;
-                            Effect.hide(hideEvent, element);
-                        }
-                    }, Effect.delay);
+                    if (!hidden) {
+                        hidden = true;
+                        Effect.hide(hideEvent, element);
+                    }
                 };
 
                 var touchMove = function(moveEvent) {
@@ -362,18 +357,27 @@
         
         if (isTouchAvailable) {
             document.body.addEventListener('touchstart', showEffect, false);
+            document.body.addEventListener('touchcancel', TouchHandler.registerEvent, false);
+            document.body.addEventListener('touchend', TouchHandler.registerEvent, false);
         }
         
         document.body.addEventListener('mousedown', showEffect, false);
     };
 
+    
     /**
      * Attach Waves to an input element (or any element which doesn't
      * bubble mouseup/mousedown events).
      *   Intended to be used with dynamically loaded forms/inputs, or
      * where the user doesn't want a delegated click handler.
      */
+    // WARNING: I'm unsure how this behaves with the TouchHandler, since the delegated
+    //          click handler will still do it's thing on this element?
+    //              Should Waves.attach(element) just add the .waves-effect class to
+    //          element, or all elements matching that selector?
     Waves.attach = function(element) {
+        console.warn('Waves.attach is currently unstable and it\'s function is likely to change. We recommend adding .waves-effect to any elements instead.');
+        
         //FUTURE: automatically add waves classes and allow users
         // to specify them with an options param? Eg. light/classic/button
         if (element.tagName.toLowerCase() === 'input') {
@@ -381,7 +385,7 @@
             element = element.parentElement;
         }
 
-        if (isTouchAvailablete) {
+        if (isTouchAvailable) {
             element.addEventListener('touchstart', showEffect, false);
         }
 
