@@ -499,6 +499,9 @@ h3 {
     font-size:25px;
 }
 
+hr {
+    margin: 30px 0;
+}
 
 /**
  * Page transition
@@ -514,6 +517,7 @@ h3 {
 
 #api .box {
     top: 100%;
+    margin-bottom: 20px;
 }
 
 #api.show .box {

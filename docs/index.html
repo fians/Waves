@@ -427,6 +427,7 @@
 
             <div class="box shadow">
                 <h3 class="code-head">displayEffect(config)</h3>
+                <p>Initialise Waves with an optional config.</p>
 
                 <p>
                     <strong>Arguments</strong>
@@ -437,16 +438,38 @@
                 </ul>
 
 {{#code class="lang-javascript"}}
-{
+var config = {
     // How long Waves effect duration 
     // when it's clicked (in milliseconds)
-    duration: 500
+    duration: 500,
 
     // Delay showing Waves effect on touch
     // and hide the effect if user scrolls
     // (0 to disable delay) (in milliseconds)
     delay: 200
-}
+};
+                
+// Initialise Waves with the config
+Waves.displayEffect(config);
+{{/code}}
+                
+                <hr>
+                
+                <h3 class="code-head">attach(elements, classes)</h3>
+                <p>Add the <span class="code">.waves-effect</span> class along with other optional waves classes to elements.</p>
+                <p><strong>Arguments</strong></p>
+
+                <ul>
+                    <li><span class="code">elements</span> - (optional) A string selector, HTML element, or array of HTML elements to add <span class="code">.waves-effect</span> and other <span class="code">classes</span> to.</li>
+                    <li><span class="code">classes</span> - (optional) Waves classes to add to theses elements, for example: <span class="code">'waves-light waves-classic'</span>.</li>
+                </ul>
+
+{{#code class="lang-javascript"}}
+// Adds .waves-effect to input elements
+Waves.attach();
+                
+// Adds .waves-effect and .waves-light to <button> elems
+Waves.attach('button', 'waves-light');
 {{/code}}
             </div>
         </div>

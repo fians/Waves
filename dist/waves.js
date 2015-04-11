@@ -366,30 +366,35 @@
 
     
     /**
-     * Attach Waves to an input element (or any element which doesn't
-     * bubble mouseup/mousedown events).
-     *   Intended to be used with dynamically loaded forms/inputs, or
-     * where the user doesn't want a delegated click handler.
+     * Attach Waves to dynamically loaded inputs, or add .waves-effect and other
+     * waves classes to a set of elements.
      */
-    // WARNING: I'm unsure how this behaves with the TouchHandler, since the delegated
-    //          click handler will still do it's thing on this element?
-    //              Should Waves.attach(element) just add the .waves-effect class to
-    //          element, or all elements matching that selector?
-    Waves.attach = function(element) {
-        console.warn('Waves.attach is currently unstable and it\'s function is likely to change. We recommend adding .waves-effect to any elements instead.');
+    Waves.attach = function(elements, classes) {
+        elements = elements ? elements : 'input';
+        classes = classes ? classes : '';
         
-        //FUTURE: automatically add waves classes and allow users
-        // to specify them with an options param? Eg. light/classic/button
-        if (element.tagName.toLowerCase() === 'input') {
-            Effect.wrapInput([element]);
-            element = element.parentElement;
+        var es = [];
+        if (typeof elements == 'string' || elements instanceof String) {
+            // selector
+            es = $$(elements);
+        } else if (Object.prototype.toString.call(elements) === '[object Array]') {
+            // array of HTML elements
+            es = elements;
+        } else {
+            // single HTML element
+            es = [elements];
         }
+        
+        for (var i=0; i<es.length; i+=1) {
+            var element = es[i];
+            
+            if (element.tagName.toLowerCase() === 'input') {
+                Effect.wrapInput([element]);
+                element = element.parentElement;
+            }
 
-        if (isTouchAvailable) {
-            element.addEventListener('touchstart', showEffect, false);
+            element.className += ' waves-effect ' + classes;
         }
-
-        element.addEventListener('mousedown', showEffect, false);
     };
 
     return Waves;
