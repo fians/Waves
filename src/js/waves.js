@@ -342,7 +342,7 @@
         }
     }
 
-    Waves.displayEffect = function(options) {
+    Waves.init = function(options) {
         options = options || {};
 
         if ('duration' in options) {
