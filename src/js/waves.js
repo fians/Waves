@@ -263,7 +263,7 @@
         allowEvent: function(e) {
             var allow = true;
 
-            if (e.type === 'mousedown' && TouchHandler.touches > 0) {
+            if ((e.type === 'mousedown' || e.type === 'mousemove') && TouchHandler.touches > 0) {
                 allow = false;
             }
 
@@ -369,7 +369,7 @@
     var lastDrag = new Date();
     var lastCoord = {x: 0, y: 0};
     function dragEffect(e) {
-        if (!TouchHandler.allowEvent()) return;
+        if (!TouchHandler.allowEvent(e)) return;
         var element = getWavesEffectElement(e);
         if (lastDrag.getTime() < (e.timeStamp - 200) || allowRipple(element)) {
             lastDrag = new Date();
