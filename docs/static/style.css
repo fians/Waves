@@ -361,7 +361,13 @@ ul li {
     left: 50%;
 }
 
-#example #box-other .boxes {
+#example.show #box-drag-ripple {
+    left: 50%;
+    top: 1450px;
+    margin-bottom: 20px;
+}
+
+#example .boxes {
     width:125px;
     height:125px;
     text-align:center;
@@ -372,11 +378,11 @@ ul li {
     border-radius:0px;
 }
 
-#example #box-other .flat-box {
+#example .flat-box {
     border: 1px solid #ccc;
 }
 
-#example #box-other .float-box {
+#example .float-box {
     background:#ff4f0f;
     color:#fff;
 }

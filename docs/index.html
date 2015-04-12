@@ -137,6 +137,13 @@
 
                 <p class="text-center"><button id="snarl-demo" class="waves-effect waves-button waves-float" style="background:#04d654;color: #fff;">Click Me!</button></p>
             </div>
+            
+            <div id="box-drag-ripple" class="box shadow">
+                <h2>Optional Drag Effect</h2>
+                
+                <div class="boxes flat-box waves-block waves-classic drag-ripple">Flat Box</div>
+                <div class="boxes float-box waves-float waves-block drag-ripple">Float Box</div>
+            </div>
         </div>
 
 
@@ -455,13 +462,14 @@ Waves.displayEffect(config);
                 
                 <hr>
                 
-                <h3 class="code-head">attach(elements, classes)</h3>
+                <h3 class="code-head">attach(elements, classes, drag)</h3>
                 <p>Add the <span class="code">.waves-effect</span> class along with other optional waves classes to elements.</p>
                 <p><strong>Arguments</strong></p>
 
                 <ul>
                     <li><span class="code">elements</span> - (optional) A string selector, HTML element, or array of HTML elements to add <span class="code">.waves-effect</span> and other <span class="code">classes</span> to.</li>
                     <li><span class="code">classes</span> - (optional) Waves classes to add to theses elements, for example: <span class="code">'waves-light waves-classic'</span>.</li>
+                    <li><span class="code">drag</span> - (optional) Ripple effect on <span class="code">mousemove</span> event. Default is <span class="code">false</span>.</li>
                 </ul>
 
 {{#code class="lang-javascript"}}
@@ -470,6 +478,9 @@ Waves.attach();
                 
 // Adds .waves-effect and .waves-light to <button> elems
 Waves.attach('button', 'waves-light');
+                
+// Make .box ripple when user moves the mouse over it
+Waves.attach('.box', null, true);
 {{/code}}
             </div>
         </div>
@@ -662,6 +673,8 @@ Waves.attach('button', 'waves-light');
 
                 // Init Waves
                 Waves.displayEffect();
+                Waves.attach('.drag-ripple', null, true);
+                Waves.attach('#bg-pattern', null, true);
 
                 init();
 

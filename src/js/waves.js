@@ -80,8 +80,10 @@
 
         // Effect delay (check for scroll before showing effect)
         delay: 200,
+        
+        drag: true,
 
-        show: function(e, element) {
+        show: function(e, element, velocity) {
 
             // Disable right click
             if (e.button === 2) {
@@ -92,7 +94,7 @@
 
             // Create ripple
             var ripple = document.createElement('div');
-            ripple.className = 'waves-ripple';
+            ripple.className = 'waves-ripple waves-rippling';
             el.appendChild(ripple);
 
             // Get click coordinate and element witdh
@@ -100,6 +102,11 @@
             var relativeY   = (e.pageY - pos.top);
             var relativeX   = (e.pageX - pos.left);
             var scale       = 'scale('+((el.clientWidth / 100) * 3)+')';
+            var translate   = 'translate(0,0)';
+            
+            if (velocity) {
+                translate = 'translate(' + (velocity.x) + 'px, ' + (velocity.y) + 'px)';
+            }
             
             // Support for touch devices
             if ('touches' in e && e.touches.length) {
@@ -109,9 +116,10 @@
 
             // Attach data to element
             ripple.setAttribute('data-hold', Date.now());
-            ripple.setAttribute('data-scale', scale);
             ripple.setAttribute('data-x', relativeX);
             ripple.setAttribute('data-y', relativeY);
+            ripple.setAttribute('data-scale', scale);
+            ripple.setAttribute('data-translate', translate);
 
             // Set ripple position
             var rippleStyle = {
@@ -124,74 +132,31 @@
             ripple.className = ripple.className.replace('waves-notransition', '');
 
             // Scale the ripple
-            rippleStyle['-webkit-transform'] = scale;
-            rippleStyle['-moz-transform'] = scale;
-            rippleStyle['-ms-transform'] = scale;
-            rippleStyle['-o-transform'] = scale;
-            rippleStyle.transform = scale;
-            rippleStyle.opacity   = '1';
+            rippleStyle['-webkit-transform'] = scale + ' ' + translate;
+            rippleStyle['-moz-transform'] = scale + ' ' + translate;
+            rippleStyle['-ms-transform'] = scale + ' ' + translate;
+            rippleStyle['-o-transform'] = scale + ' ' + translate;
+            rippleStyle.transform = scale + ' ' + translate;
+            rippleStyle.opacity = '1';
 
-            rippleStyle['-webkit-transition-duration'] = Effect.duration + 'ms';
-            rippleStyle['-moz-transition-duration']    = Effect.duration + 'ms';
-            rippleStyle['-o-transition-duration']      = Effect.duration + 'ms';
-            rippleStyle['transition-duration']         = Effect.duration + 'ms';
+            var duration = e.type === 'mousemove' ? 2500 : Effect.duration;
+            rippleStyle['-webkit-transition-duration'] = duration + 'ms';
+            rippleStyle['-moz-transition-duration']    = duration + 'ms';
+            rippleStyle['-o-transition-duration']      = duration + 'ms';
+            rippleStyle['transition-duration']         = duration + 'ms';
 
+            console.log(convertStyle(rippleStyle));
             ripple.setAttribute('style', convertStyle(rippleStyle));
         },
 
         hide: function(e, element) {
             var el = element ? element : this;
             
-            // Get first ripple
-            var ripple = null;
-            var ripples = el.getElementsByClassName('waves-ripple');
-            if (ripples.length > 0) {
-                ripple = ripples[ripples.length - 1];
-            } else {
-                return false;
+            var ripples = el.getElementsByClassName('waves-rippling');
+            
+            for (var i=0; i<ripples.length; i+=1) {
+                removeRipple(e, el, ripples[i]);
             }
-
-            var relativeX   = ripple.getAttribute('data-x');
-            var relativeY   = ripple.getAttribute('data-y');
-            var scale       = ripple.getAttribute('data-scale');
-
-            // Get delay beetween mousedown and mouse leave
-            var diff = Date.now() - Number(ripple.getAttribute('data-hold'));
-            var delay = 350 - diff;
-
-            if (delay < 0) {
-                delay = 0;
-            }
-
-            // Fade out ripple after delay
-            setTimeout(function() {
-                var style = {
-                    'top': relativeY+'px',
-                    'left': relativeX+'px',
-                    'opacity': '0',
-
-                    // Duration
-                    '-webkit-transition-duration': Effect.duration + 'ms',
-                    '-moz-transition-duration': Effect.duration + 'ms',
-                    '-o-transition-duration': Effect.duration + 'ms',
-                    'transition-duration': Effect.duration + 'ms',
-                    '-webkit-transform': scale,
-                    '-moz-transform': scale,
-                    '-ms-transform': scale,
-                    '-o-transform': scale,
-                    'transform': scale,
-                };
-
-                ripple.setAttribute('style', convertStyle(style));
-
-                setTimeout(function() {
-                    try {
-                        el.removeChild(ripple);
-                    } catch(e) {
-                        return false;
-                    }
-                }, Effect.duration);
-            }, delay);
         },
 
         // Little hack to make <input> can perform waves effect
@@ -229,6 +194,62 @@
             }
         }
     };
+    
+    
+    /**
+     * Hide the effect and remove the ripple. Must be
+     * a separate function to pass the JSLint...
+     */
+    function removeRipple(e, el, ripple) {
+        ripple.className = ripple.className.replace('waves-rippling', '');
+
+        var relativeX   = ripple.getAttribute('data-x');
+        var relativeY   = ripple.getAttribute('data-y');
+        var scale       = ripple.getAttribute('data-scale');
+        var translate   = ripple.getAttribute('data-translate');
+
+        // Get delay beetween mousedown and mouse leave
+        var diff = Date.now() - Number(ripple.getAttribute('data-hold'));
+        var delay = 350 - diff;
+
+        if (delay < 0) {
+            delay = 0;
+        }
+        if (e.type === 'mousemove') {
+            delay = 150;
+        }
+
+        // Fade out ripple after delay
+        var duration = e.type === 'mousemove' ? 2500 : Effect.duration;
+        setTimeout(function() {
+            var style = {
+                'top': relativeY+'px',
+                'left': relativeX+'px',
+                'opacity': '0',
+
+                // Duration
+                '-webkit-transition-duration': duration + 'ms',
+                '-moz-transition-duration': duration + 'ms',
+                '-o-transition-duration': duration + 'ms',
+                'transition-duration': duration + 'ms',
+                '-webkit-transform': scale + ' ' + translate,
+                '-moz-transform': scale + ' ' + translate,
+                '-ms-transform': scale + ' ' + translate,
+                '-o-transform': scale + ' ' + translate,
+                'transform': scale + ' ' + translate,
+            };
+
+            ripple.setAttribute('style', convertStyle(style));
+
+            setTimeout(function() {
+                try {
+                    el.removeChild(ripple);
+                } catch(e) {
+                    return false;
+                }
+            }, Effect.duration);
+        }, delay);
+    }
 
 
     /**
@@ -341,6 +362,32 @@
             }
         }
     }
+    
+    /**
+     * The dragging ripple effect.
+     * Only works with mouse events for the time being.
+     */
+    var lastDrag = new Date();
+    var nextOffset = 0;
+    function dragEffect(e) {
+        if (lastDrag.getTime() < (e.timeStamp - nextOffset)) {
+            lastDrag = new Date();
+            var element = getWavesEffectElement(e);
+            
+            var velocity = null;
+            if (e.movementX || e.movementY) {
+                velocity = {x: e.movementX, y: e.movementY};
+                var magnitude = Math.sqrt(Math.pow(velocity.x, 2) + Math.pow(velocity.y, 2));
+                nextOffset = 250 - magnitude * 3;
+                if (nextOffset < 120) nextOffset = 120;
+            } else {
+                nextOffset = 250;
+            }
+            
+            Effect.show(e, element, velocity);
+            Effect.hide(e, element);
+        }
+    }
 
     Waves.displayEffect = function(options) {
         options = options || {};
@@ -367,9 +414,10 @@
     
     /**
      * Attach Waves to dynamically loaded inputs, or add .waves-effect and other
-     * waves classes to a set of elements.
+     * waves classes to a set of elements. Set drag to true if the ripple mouseover
+     * or skimming effect should be applied to the elements.
      */
-    Waves.attach = function(elements, classes) {
+    Waves.attach = function(elements, classes, drag) {
         elements = elements ? elements : 'input';
         classes = classes ? classes : '';
         
@@ -394,6 +442,10 @@
             }
 
             element.className += ' waves-effect ' + classes;
+            
+            if (drag) {
+                element.addEventListener('mousemove', dragEffect, false);
+            }
         }
     };
 
