@@ -369,10 +369,10 @@
     var lastDrag = new Date();
     var lastCoord = {x: 0, y: 0};
     function dragEffect(e) {
-        if (lastDrag.getTime() < (e.timeStamp - 120) || allowRipple()) {
+        var element = getWavesEffectElement(e);
+        if (lastDrag.getTime() < (e.timeStamp - 200) || allowRipple(element)) {
             lastDrag = new Date();
             lastCoord = {x: e.x, y: e.y};
-            var element = getWavesEffectElement(e);
             
             var velocity = null;
             if (e.movementX || e.movementY) {
@@ -383,9 +383,9 @@
             Effect.hide(e, element);
         }
         
-        function allowRipple() {
+        function allowRipple(element) {
             var v = {x: e.x - lastCoord.x, y: e.y - lastCoord.y};
-            return 50 < magnitude(v);
+            return (Math.max(element.clientWidth, element.clientTop) / 7) < magnitude(v);
         }
         function magnitude(coord) {
             return Math.sqrt(Math.pow(coord.x, 2) + Math.pow(coord.y, 2));
