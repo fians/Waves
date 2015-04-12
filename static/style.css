@@ -564,10 +564,14 @@ h3 {
         font-size: 40px;
     }
     
+    #example.show .box {
+        width: 400px !important;
+        left: 50% !important;
+        margin-left: -200px !important;
+    }
+    
     #example #box-button {
         top: -200px;
-        left: 50%;
-        margin-left: -200px;
     }
     
     #example.show #box-button {
@@ -576,21 +580,14 @@ h3 {
     
     #example #box-icon {
         top: -200px;
-        left: 50%;
-        margin-left: -200px;
     }
     
     #example.show #box-icon {
         top: 370px;
-        left: 50%;
-        margin-left: -200px;
     }
     
     #example #box-other {
         top: -450px;
-        left: 50%;
-        width: 400px;
-        margin-left: -200px;
     }
     
     #example.show #box-other {
@@ -603,15 +600,10 @@ h3 {
     
     #example #box-action {
         top: -200px;
-        left: 50%;
-        margin-left: -200px;
-        width: 400px;
     }
     
     #example.show #box-action {
         top: 1070px;
-        left: 50%;
-        margin-left: -200px;
     }
     
     #source-code .box {
@@ -673,13 +665,18 @@ h3 {
         font-size: 40px;
     }
     
+    #example.show .box {
+        width: 300px !important;
+        left: 50% !important;
+        margin-left: -150px !important;
+    }
+    
     #example.show #box-button {
         top: 150px;
     }
     
     #example #box-button {
         left: 10px;
-        width: 300px;
         height: 300px;
     }
     
@@ -694,13 +691,11 @@ h3 {
     #example #box-icon {
         top: -300px;
         left: 10px;
-        width: 300px;
         height: 300px;
     }
     
     #example.show #box-icon {
         top: 480px;
-        left: 10px;
     }
     
     #example #box-icon p {
@@ -714,13 +709,11 @@ h3 {
     #example #box-other {
         top: -590px;
         left: 10px;
-        width: 300px;
         height: 590px;
     }
     
     #example.show #box-other {
         top: 810px;
-        left: 10px;
     }
     
     #example #box-other .boxes {
@@ -730,13 +723,11 @@ h3 {
     #example #box-action {
         top: -180px;
         left: 10px;
-        width: 300px;
         height: 180px;
     }
     
     #example.show #box-action {
         top: 1430px;
-        left: 10px;
         margin-bottom: 40px;
     }
     
