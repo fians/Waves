@@ -361,12 +361,6 @@ ul li {
     left: 50%;
 }
 
-#example.show #box-drag-ripple {
-    left: 50%;
-    top: 1450px;
-    margin-bottom: 20px;
-}
-
 #example .boxes {
     width:125px;
     height:125px;
@@ -387,6 +381,11 @@ ul li {
     color:#fff;
 }
 
+#example .large-box {
+    width: 310px;
+    background: #4cb2f2;
+}
+
 #example #box-other img {
     width: 260px;
     height: auto;
@@ -400,6 +399,13 @@ ul li {
 
 #example.show #box-action {
     left: 50%;
+}
+
+#example.show #box-drag-ripple {
+    left: 50%;
+    top: 1450px;
+    margin-bottom: 20px;
+    height: 350px;
 }
 
 /**
