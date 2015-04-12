@@ -141,6 +141,10 @@
             <div id="box-drag-ripple" class="box shadow">
                 <h2>Optional Drag Effect</h2>
                 
+                <a class="top-button" title="Show Source" data-code="drag-ripple">
+                    <i class="fa fa-code"></i>
+                </a>
+                
                 <div class="boxes flat-box waves-block waves-classic drag-ripple">Flat Box</div>
                 <div class="boxes float-box waves-float waves-block drag-ripple">Float Box</div>
                 <div class="boxes large-box waves-float waves-block drag-ripple waves-light">Demo</div>
@@ -235,6 +239,18 @@
             text: 'You clicked the Waves button!'
         });
     });
+</script>
+{{/code}}
+                    </div>
+                </div>
+                
+                <div id="code-drag-ripple" class="hide code">
+                    <h2>Optional Drag Effect</h2>
+                    <div class="wrapper">
+{{#code class="lang-markup"}}
+<div id="drag-effect-demo" class="large-box">Demo</div>
+<script>
+    Waves.attach('#drag-effect-demo', 'waves-light', true);
 </script>
 {{/code}}
                     </div>

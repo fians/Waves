@@ -383,7 +383,8 @@ ul li {
 
 #example .large-box {
     width: 310px;
-    background: #4cb2f2;
+    background: #2387c6;
+    color: #fff;
 }
 
 #example #box-other img {
