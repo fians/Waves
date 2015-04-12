@@ -373,7 +373,7 @@ ul li {
 }
 
 #example #box-other .flat-box {
-    border: 1px solid #ccc;   
+    border: 1px solid #ccc;
 }
 
 #example #box-other .float-box {
@@ -499,6 +499,9 @@ h3 {
     font-size:25px;
 }
 
+hr {
+    margin: 30px 0;
+}
 
 /**
  * Page transition
@@ -514,6 +517,7 @@ h3 {
 
 #api .box {
     top: 100%;
+    margin-bottom: 20px;
 }
 
 #api.show .box {
@@ -548,88 +552,88 @@ h3 {
 
 /* 480px - 639px */
 @media all and (max-width: 639px) {
-    
+
     #landing {
         margin-left: -200px;
         width: 400px;
     }
-    
+
     #landing h1 {
         font-size: 100px;
     }
-    
+
     .section.page h1 {
         margin-left: -150px;
         width: 300px;
         font-size: 40px;
     }
-    
+
     #example #box-button {
         top: -200px;
         left: 50%;
         margin-left: -200px;
     }
-    
+
     #example.show #box-button {
         top: 150px;
     }
-    
+
     #example #box-icon {
         top: -200px;
         left: 50%;
         margin-left: -200px;
     }
-    
+
     #example.show #box-icon {
         top: 370px;
         left: 50%;
         margin-left: -200px;
     }
-    
+
     #example #box-other {
         top: -450px;
         left: 50%;
         width: 400px;
         margin-left: -200px;
     }
-    
+
     #example.show #box-other {
         top: 590px;
     }
-    
+
     #example #box-other .boxes {
         width: 125px;
     }
-    
+
     #example #box-action {
         top: -200px;
         left: 50%;
         margin-left: -200px;
         width: 400px;
     }
-    
+
     #example.show #box-action {
         top: 1070px;
         left: 50%;
         margin-left: -200px;
     }
-    
+
     #source-code .box {
         margin-left: -200px;
         width: 400px;
     }
-    
+
     .content .box {
         top: 150px;
         margin-bottom: 40px;
         margin-left: -200px;
         width: 400px;
     }
-    
+
     #api.show .box {
         top: 150px;
     }
-    
+
     #faq.show .box {
         margin-left: -200px;
     }
@@ -637,139 +641,139 @@ h3 {
 
 /* 320px - 479px */
 @media all and (max-width: 479px) {
-    
+
     #navigation {
         width: 320px;
         margin-left: -160px;
     }
-    
+
     #navigation.show {
         top: 0px;
     }
-    
+
     #navigation a {
         padding: 5px 0px;
         width: 75px;
     }
-    
+
     #landing {
         margin-top: -130px;
         margin-left: -150px;
         width: 300px;
         height: 260px;
     }
-    
+
     #landing h1 {
         font-size: 80px;
     }
-    
+
     #landing p {
         font-size: 18px;
     }
-    
+
     .section.page h1 {
         margin-left: -120px;
         width: 240px;
         font-size: 40px;
     }
-    
+
     #example.show #box-button {
         top: 150px;
     }
-    
+
     #example #box-button {
         left: 10px;
         width: 300px;
         height: 300px;
     }
-    
+
     #example #box-button p {
         padding: 0;
     }
-    
+
     #example #box-button p .waves-button {
         margin: 10px;
     }
-    
+
     #example #box-icon {
         top: -300px;
         left: 10px;
         width: 300px;
         height: 300px;
     }
-    
+
     #example.show #box-icon {
         top: 480px;
         left: 10px;
     }
-    
+
     #example #box-icon p {
         padding: 0;
     }
-    
+
     #example #box-icon p .waves-circle {
         margin: 10px 8px;
     }
-    
+
     #example #box-other {
         top: -590px;
         left: 10px;
         width: 300px;
         height: 590px;
     }
-    
+
     #example.show #box-other {
         top: 810px;
         left: 10px;
     }
-    
+
     #example #box-other .boxes {
         width: 220px;
     }
-    
+
     #example #box-action {
         top: -180px;
         left: 10px;
         width: 300px;
         height: 180px;
     }
-    
+
     #example.show #box-action {
         top: 1430px;
         left: 10px;
         margin-bottom: 40px;
     }
-    
+
     #source-code .box {
         margin-left: -150px;
         width: 300px;
     }
-    
+
     .content .box {
         margin-left: -150px;
         width: 300px;
     }
-    
+
     #getting-started h1 {
         font-size: 30px;
     }
-    
+
     #getting-started .box {
         top: 140px;
     }
-    
+
     #api.show .box {
         top: 150px;
     }
-    
+
     #api h3 {
         font-size: 18px;
     }
-    
+
     #faq .box {
         top: 150px;
     }
-    
+
     #faq.show .box {
         margin-left: -150px;
     }

@@ -1,5 +1,5 @@
 /*!
- * Waves v0.6.6
+ * Waves v0.7.0
  * http://fian.my.id/Waves 
  * 
  * Copyright 2014 Alfiana E. Sibuea and other contributors 
@@ -33,6 +33,7 @@
 
     var Waves = Waves || {};
     var $$ = document.querySelectorAll.bind(document);
+    var isTouchAvailable = 'ontouchstart' in window;
 
     // Find exact position of element
     function isWindow(obj) {
@@ -74,8 +75,11 @@
 
     var Effect = {
 
-        // Effect delay
+        // Effect duration
         duration: 750,
+
+        // Effect delay (check for scroll before showing effect)
+        delay: 200,
 
         show: function(e, element) {
 
@@ -98,7 +102,7 @@
             var scale       = 'scale('+((el.clientWidth / 100) * 3)+')';
             
             // Support for touch devices
-            if ('touches' in e) {
+            if ('touches' in e && e.touches.length) {
               relativeY   = (e.touches[0].pageY - pos.top);
               relativeX   = (e.touches[0].pageX - pos.left);
             }
@@ -135,11 +139,8 @@
             ripple.setAttribute('style', convertStyle(rippleStyle));
         },
 
-        hide: function(e) {
-            TouchHandler.touchup(e);
-
-            var el = this;
-            var width = el.clientWidth * 1.4;
+        hide: function(e, element) {
+            var el = element ? element : this;
             
             // Get first ripple
             var ripple = null;
@@ -242,6 +243,13 @@
         allowEvent: function(e) {
             var allow = true;
 
+            if (e.type === 'mousedown' && TouchHandler.touches > 0) {
+                allow = false;
+            }
+
+            return allow;
+        },
+        registerEvent: function(e) {
             if (e.type === 'touchstart') {
                 TouchHandler.touches += 1; //push
             } else if (e.type === 'touchend' || e.type === 'touchcancel') {
@@ -250,14 +258,7 @@
                         TouchHandler.touches -= 1; //pop after 500ms
                     }
                 }, 500);
-            } else if (e.type === 'mousedown' && TouchHandler.touches > 0) {
-                allow = false;
             }
-
-            return allow;
-        },
-        touchup: function(e) {
-            TouchHandler.allowEvent(e);
         }
     };
 
@@ -292,18 +293,52 @@
      * Bubble the click and show effect if .waves-effect elem was found
      */
     function showEffect(e) {
+        TouchHandler.registerEvent(e);
         var element = getWavesEffectElement(e);
 
         if (element !== null) {
-            Effect.show(e, element);
+            if (e.type === 'touchstart' && Effect.delay) {
+                var hidden = false;
+                var timer = setTimeout(function () {
+                    timer = null;
+                    Effect.show(e, element);
+                }, Effect.delay);
 
-            if ('ontouchstart' in window) {
-                element.addEventListener('touchend', Effect.hide, false);
-                element.addEventListener('touchcancel', Effect.hide, false);
+                var hideEffect = function(hideEvent) {
+                    // if touch hasn't moved, and effect not yet started: start effect now
+                    if (timer) {
+                        clearTimeout(timer);
+                        timer = null;
+                        Effect.show(e, element);
+                    }
+                    if (!hidden) {
+                        hidden = true;
+                        Effect.hide(hideEvent, element);
+                    }
+                };
+
+                var touchMove = function(moveEvent) {
+                    if (timer) {
+                        clearTimeout(timer);
+                        timer = null;
+                    }
+                    hideEffect(moveEvent);
+                };
+
+                element.addEventListener('touchmove', touchMove, false);
+                element.addEventListener('touchend', hideEffect, false);
+                element.addEventListener('touchcancel', hideEffect, false);
+            } else {
+                Effect.show(e, element);
+
+                if (isTouchAvailable) {
+                    element.addEventListener('touchend', Effect.hide, false);
+                    element.addEventListener('touchcancel', Effect.hide, false);
+                }
+
+                element.addEventListener('mouseup', Effect.hide, false);
+                element.addEventListener('mouseleave', Effect.hide, false);
             }
-
-            element.addEventListener('mouseup', Effect.hide, false);
-            element.addEventListener('mouseleave', Effect.hide, false);
         }
     }
 
@@ -313,36 +348,53 @@
         if ('duration' in options) {
             Effect.duration = options.duration;
         }
+        if ('delay' in options) {
+            Effect.delay = options.delay;
+        }
         
         //Wrap input inside <i> tag
         Effect.wrapInput($$('.waves-effect'));
         
-        if ('ontouchstart' in window) {
+        if (isTouchAvailable) {
             document.body.addEventListener('touchstart', showEffect, false);
+            document.body.addEventListener('touchcancel', TouchHandler.registerEvent, false);
+            document.body.addEventListener('touchend', TouchHandler.registerEvent, false);
         }
         
         document.body.addEventListener('mousedown', showEffect, false);
     };
 
+    
     /**
-     * Attach Waves to an input element (or any element which doesn't
-     * bubble mouseup/mousedown events).
-     *   Intended to be used with dynamically loaded forms/inputs, or
-     * where the user doesn't want a delegated click handler.
+     * Attach Waves to dynamically loaded inputs, or add .waves-effect and other
+     * waves classes to a set of elements.
      */
-    Waves.attach = function(element) {
-        //FUTURE: automatically add waves classes and allow users
-        // to specify them with an options param? Eg. light/classic/button
-        if (element.tagName.toLowerCase() === 'input') {
-            Effect.wrapInput([element]);
-            element = element.parentElement;
+    Waves.attach = function(elements, classes) {
+        elements = elements ? elements : 'input';
+        classes = classes ? classes : '';
+        
+        var es = [];
+        if (typeof elements == 'string' || elements instanceof String) {
+            // selector
+            es = $$(elements);
+        } else if (Object.prototype.toString.call(elements) === '[object Array]') {
+            // array of HTML elements
+            es = elements;
+        } else {
+            // single HTML element
+            es = [elements];
         }
+        
+        for (var i=0; i<es.length; i+=1) {
+            var element = es[i];
+            
+            if (element.tagName.toLowerCase() === 'input') {
+                Effect.wrapInput([element]);
+                element = element.parentElement;
+            }
 
-        if ('ontouchstart' in window) {
-            element.addEventListener('touchstart', showEffect, false);
+            element.className += ' waves-effect ' + classes;
         }
-
-        element.addEventListener('mousedown', showEffect, false);
     };
 
     return Waves;
