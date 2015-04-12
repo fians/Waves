@@ -369,6 +369,7 @@
     var lastDrag = new Date();
     var lastCoord = {x: 0, y: 0};
     function dragEffect(e) {
+        if (!TouchHandler.allowEvent()) return;
         var element = getWavesEffectElement(e);
         if (lastDrag.getTime() < (e.timeStamp - 200) || allowRipple(element)) {
             lastDrag = new Date();
