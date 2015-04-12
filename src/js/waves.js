@@ -246,7 +246,7 @@
                 } catch(e) {
                     return false;
                 }
-            }, Effect.duration);
+            }, duration);
         }, delay);
     }
 
@@ -367,24 +367,28 @@
      * Only works with mouse events for the time being.
      */
     var lastDrag = new Date();
-    var nextOffset = 0;
+    var lastCoord = {x: 0, y: 0};
     function dragEffect(e) {
-        if (lastDrag.getTime() < (e.timeStamp - nextOffset)) {
+        if (lastDrag.getTime() < (e.timeStamp - 120) || allowRipple()) {
             lastDrag = new Date();
+            lastCoord = {x: e.x, y: e.y};
             var element = getWavesEffectElement(e);
             
             var velocity = null;
             if (e.movementX || e.movementY) {
                 velocity = {x: e.movementX, y: e.movementY};
-                var magnitude = Math.sqrt(Math.pow(velocity.x, 2) + Math.pow(velocity.y, 2));
-                nextOffset = 250 - magnitude * 3;
-                if (nextOffset < 120) nextOffset = 120;
-            } else {
-                nextOffset = 250;
             }
             
             Effect.show(e, element, velocity);
             Effect.hide(e, element);
+        }
+        
+        function allowRipple() {
+            var v = {x: e.x - lastCoord.x, y: e.y - lastCoord.y};
+            return 50 < magnitude(v);
+        }
+        function magnitude(coord) {
+            return Math.sqrt(Math.pow(coord.x, 2) + Math.pow(coord.y, 2));
         }
     }
 
