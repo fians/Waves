@@ -145,7 +145,6 @@
             rippleStyle['-o-transition-duration']      = duration + 'ms';
             rippleStyle['transition-duration']         = duration + 'ms';
 
-            console.log(convertStyle(rippleStyle));
             ripple.setAttribute('style', convertStyle(rippleStyle));
         },
 
