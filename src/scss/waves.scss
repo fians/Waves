@@ -58,7 +58,7 @@
         -moz-transition-property: -moz-transform, opacity;
         -o-transition-property: -o-transform, opacity;
         transition-property: transform, opacity;
-        @include waves-transform(scale(0));
+        @include waves-transform(scale(0) translate(0,0));
         pointer-events: none;
     }
 
