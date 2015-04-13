@@ -176,23 +176,21 @@
                     }
 
                     // Put element class and style to the specified parent
-                    var wrapper = document.createElement('i');
-                    wrapper.className = el.className + ' waves-input-wrapper';
-
-                    var elementStyle = el.getAttribute('style');
-
-                    if (!elementStyle) {
-                        elementStyle = '';
-                    }
-
-                    wrapper.setAttribute('style', elementStyle);
-                    
-                    el.className = 'waves-button-input';
-                    el.removeAttribute('style');
+                    var wrapper         = document.createElement('i');
+                    wrapper.className   = el.className + ' waves-input-wrapper';
+                    el.className        = 'waves-button-input';
 
                     // Put element as child
                     parent.replaceChild(wrapper, el);
                     wrapper.appendChild(el);
+                    
+                    // Apply element color and background color to wrapper
+                    var elementStyle    = window.getComputedStyle(el, null);
+                    var color           = elementStyle.color;                    
+                    var backgroundColor = elementStyle.backgroundColor;
+                    
+                    wrapper.setAttribute('style', 'color:'+color+';background:'+backgroundColor);
+                    el.setAttribute('style', 'background-color:rgba(0,0,0,0);');
                 }
             }
         }
