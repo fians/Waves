@@ -149,6 +149,7 @@
         },
 
         hide: function(e, element) {
+            
             var el = element ? element : this;
             
             var ripples = el.getElementsByClassName('waves-rippling');
@@ -160,10 +161,13 @@
 
         // Little hack to make <input> can perform waves effect
         wrapInput: function(elements) {
+            
             for (var a = 0; a < elements.length; a++) {
+                
                 var el = elements[a];
                 
                 if (el.tagName.toLowerCase() === 'input') {
+                    
                     var parent = el.parentNode;
 
                     // If input already have parent just pass through
@@ -200,6 +204,7 @@
      * a separate function to pass the JSLint...
      */
     function removeRipple(e, el, ripple) {
+        
         ripple.className = ripple.className.replace('waves-rippling', '');
 
         var relativeX   = ripple.getAttribute('data-x');
@@ -220,7 +225,9 @@
 
         // Fade out ripple after delay
         var duration = e.type === 'mousemove' ? 2500 : Effect.duration;
+        
         setTimeout(function() {
+            
             var style = {
                 'top': relativeY+'px',
                 'left': relativeX+'px',
@@ -247,6 +254,7 @@
                     return false;
                 }
             }, duration);
+            
         }, delay);
     }
 
@@ -255,12 +263,15 @@
      * Disable mousedown event for 500ms during and after touch
      */
     var TouchHandler = {
+        
         /* uses an integer rather than bool so there's no issues with
          * needing to clear timeouts if another touch event occurred
          * within the 500ms. Cannot mouseup between touchstart and
          * touchend, nor in the 500ms after touchend. */
         touches: 0,
+        
         allowEvent: function(e) {
+            
             var allow = true;
 
             if ((e.type === 'mousedown' || e.type === 'mousemove') && TouchHandler.touches > 0) {
@@ -270,14 +281,19 @@
             return allow;
         },
         registerEvent: function(e) {
+            
             if (e.type === 'touchstart') {
+                
                 TouchHandler.touches += 1; //push
+                
             } else if (e.type === 'touchend' || e.type === 'touchcancel') {
+                
                 setTimeout(function() {
                     if (TouchHandler.touches > 0) {
                         TouchHandler.touches -= 1; //pop after 500ms
                     }
                 }, 500);
+                
             }
         }
     };
@@ -288,6 +304,7 @@
      * returns null when .waves-effect element not in "click tree"
      */
     function getWavesEffectElement(e) {
+        
         if (TouchHandler.allowEvent(e) === false) {
             return null;
         }
@@ -313,18 +330,24 @@
      * Bubble the click and show effect if .waves-effect elem was found
      */
     function showEffect(e) {
+        
         TouchHandler.registerEvent(e);
+        
         var element = getWavesEffectElement(e);
 
         if (element !== null) {
+            
             if (e.type === 'touchstart' && Effect.delay) {
+                
                 var hidden = false;
+                
                 var timer = setTimeout(function () {
                     timer = null;
                     Effect.show(e, element);
                 }, Effect.delay);
 
                 var hideEffect = function(hideEvent) {
+                    
                     // if touch hasn't moved, and effect not yet started: start effect now
                     if (timer) {
                         clearTimeout(timer);
@@ -348,7 +371,9 @@
                 element.addEventListener('touchmove', touchMove, false);
                 element.addEventListener('touchend', hideEffect, false);
                 element.addEventListener('touchcancel', hideEffect, false);
+                
             } else {
+                
                 Effect.show(e, element);
 
                 if (isTouchAvailable) {
@@ -366,18 +391,32 @@
      * The dragging ripple effect.
      * Only works with mouse events for the time being.
      */
-    var lastDrag = new Date();
-    var lastCoord = {x: 0, y: 0};
+    var lastDrag    = new Date();
+    var lastCoord   = {
+        x: 0, 
+        y: 0
+    };
+    
     function dragEffect(e) {
-        if (!TouchHandler.allowEvent(e)) return;
+        
+        if (!TouchHandler.allowEvent(e)) {
+            return;
+        }
+        
         var element = getWavesEffectElement(e);
+        
         if (lastDrag.getTime() < (e.timeStamp - 200) || allowRipple(element)) {
-            lastDrag = new Date();
-            lastCoord = {x: e.x, y: e.y};
+            
+            lastDrag    = new Date();
+            lastCoord   = {x: e.x, y: e.y};
             
             var velocity = null;
+            
             if (e.movementX || e.movementY) {
-                velocity = {x: e.movementX, y: e.movementY};
+                velocity = {
+                    x: e.movementX, 
+                    y: e.movementY
+                };
             }
             
             Effect.show(e, element, velocity);
@@ -385,15 +424,22 @@
         }
         
         function allowRipple(element) {
-            var v = {x: e.x - lastCoord.x, y: e.y - lastCoord.y};
+            
+            var v = {
+                x: e.x - lastCoord.x, 
+                y: e.y - lastCoord.y
+            };
+            
             return (Math.max(element.clientWidth, element.clientTop) / 7) < magnitude(v);
         }
+        
         function magnitude(coord) {
             return Math.sqrt(Math.pow(coord.x, 2) + Math.pow(coord.y, 2));
         }
     }
 
     Waves.init = function(options) {
+        
         options = options || {};
 
         if ('duration' in options) {
@@ -422,10 +468,12 @@
      * or skimming effect should be applied to the elements.
      */
     Waves.attach = function(elements, classes, drag) {
-        elements = elements ? elements : 'input';
-        classes = classes ? classes : '';
+        
+        elements    = elements ? elements : 'input';
+        classes     = classes ? classes : '';
         
         var es = [];
+        
         if (typeof elements == 'string' || elements instanceof String) {
             // selector
             es = $$(elements);
@@ -438,6 +486,7 @@
         }
         
         for (var i=0; i<es.length; i+=1) {
+            
             var element = es[i];
             
             if (element.tagName.toLowerCase() === 'input') {
