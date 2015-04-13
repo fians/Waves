@@ -469,7 +469,6 @@
      */
     Waves.attach = function(elements, classes, drag) {
         
-        elements    = elements ? elements : 'input';
         classes     = classes ? classes : '';
         
         var es = [];
