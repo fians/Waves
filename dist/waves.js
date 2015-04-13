@@ -469,7 +469,7 @@
      */
     Waves.attach = function(elements, classes, drag) {
         
-        classes     = classes || 'waves-block';
+        classes     = classes || ['waves-block'];
         
         var es = [];
         
@@ -493,7 +493,7 @@
                 element = element.parentElement;
             }
 
-            element.className += ' waves-effect ' + classes;
+            element.className += ' waves-effect ' + classes.join(' ');
             
             if (drag) {
                 element.addEventListener('mousemove', dragEffect, false);
