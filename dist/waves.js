@@ -469,7 +469,7 @@
      */
     Waves.attach = function(elements, classes, drag) {
         
-        classes     = classes ? classes : '';
+        classes     = classes || 'waves-block';
         
         var es = [];
         
