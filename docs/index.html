@@ -145,9 +145,9 @@
                     <i class="fa fa-code"></i>
                 </a>
                 
-                <div class="boxes flat-box waves-block waves-classic drag-ripple">Flat Box</div>
-                <div class="boxes float-box waves-float waves-block drag-ripple">Float Box</div>
-                <div class="boxes large-box waves-float waves-block drag-ripple waves-light">Demo</div>
+                <div class="boxes flat-box waves-classic drag-ripple">Flat Box</div>
+                <div class="boxes float-box waves-float drag-ripple">Float Box</div>
+                <div class="boxes large-box waves-float drag-ripple waves-light">Demo</div>
             </div>
         </div>
 
@@ -484,19 +484,17 @@ Waves.init(config);
                 <p><strong>Arguments</strong></p>
 
                 <ul>
-                    <li><span class="code">elements</span> - (optional) A string selector, HTML element, or array of HTML elements to add <span class="code">.waves-effect</span> and other <span class="code">classes</span> to.</li>
-                    <li><span class="code">classes</span> - (optional) Waves classes to add to theses elements, for example: <span class="code">'waves-light waves-classic'</span>.</li>
+                    <li><span class="code">elements</span> - A string selector, HTML element, or array of HTML elements to add <span class="code">.waves-effect</span> and other <span class="code">classes</span> to.</li>
+                    <li><span class="code">classes</span> - (optional) Waves classes to add to theses elements, for example: <span class="code">'waves-light waves-classic'</span>. Accepts a single string, or array of classes.</li>
                     <li><span class="code">drag</span> - (optional) Ripple effect on <span class="code">mousemove</span> event. Default is <span class="code">false</span>.</li>
                 </ul>
 
 {{#code class="lang-javascript"}}
-// Adds .waves-effect to input elements
-Waves.attach();
-                
 // Adds .waves-effect and .waves-light to <button> elems
 Waves.attach('button', 'waves-light');
                 
 // Make .box ripple when user moves the mouse over it
+// with no additional classes
 Waves.attach('.box', null, true);
 {{/code}}
             </div>
@@ -690,7 +688,7 @@ Waves.attach('.box', null, true);
 
                 // Init Waves
                 Waves.init();
-                Waves.attach('.drag-ripple', null, true);
+                Waves.attach('.drag-ripple', 'waves-block', true);
                 Waves.attach('#bg-pattern', null, true);
 
                 init();
