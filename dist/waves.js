@@ -466,8 +466,7 @@
      * or skimming effect should be applied to the elements.
      */
     Waves.attach = function(elements, classes, drag) {
-        
-        classes     = classes || ['waves-block'];
+        classes = classes || [];
         
         var es = [];
         
