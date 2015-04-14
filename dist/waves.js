@@ -466,31 +466,31 @@
      * or skimming effect should be applied to the elements.
      */
     Waves.attach = function(elements, classes, drag) {
-        classes = classes || [];
-        
-        var es = [];
-        
         if (typeof elements == 'string' || elements instanceof String) {
             // selector
-            es = $$(elements);
+            elements = $$(elements);
         } else if (Object.prototype.toString.call(elements) === '[object Array]') {
             // array of HTML elements
-            es = elements;
+            elements = elements;
         } else {
             // single HTML element
-            es = [elements];
+            elements = [elements];
         }
         
-        for (var i=0; i<es.length; i+=1) {
-            
-            var element = es[i];
+        classes = classes || '';
+        if (Object.prototype.toString.call(classes) === '[object Array]') {
+            classes = classes.join(' ');
+        }
+        
+        for (var i=0; i<elements.length; i+=1) {
+            var element = elements[i];
             
             if (element.tagName.toLowerCase() === 'input') {
                 Effect.wrapInput([element]);
                 element = element.parentElement;
             }
 
-            element.className += ' waves-effect ' + classes.join(' ');
+            element.className += ' waves-effect ' + classes;
             
             if (drag) {
                 element.addEventListener('mousemove', dragEffect, false);
