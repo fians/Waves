@@ -497,6 +497,58 @@ Waves.attach('button', 'waves-light');
 // with no additional classes
 Waves.attach('.box', null, true);
 {{/code}}
+                
+                <hr>
+                <h3 class="code-head">ripple(elements, options)</h3>
+                <p>Cause a ripple to occur in an element.</p>
+                <p><strong>Arguments</strong></p>
+                <ul>
+                    <li><span class="code">elements</span> - A string selector for elements to cause the ripple in. <strong>Note:</strong> the elements must have the <span class="code">.waves-effect</span> class already applied, it can be added via <span class="code">Waves.attach(elements)</span></li>
+                    <li><span class="code">options</span> - (optional) Specify how long to wait between starting and stopping the ripple, and it's position inside the element.</li>
+                </ul>
+      
+{{#code class="lang-javascript"}}
+// Default values for options
+var options = {
+    wait: 0,        // null = infinite
+    position: null  // null = centre
+};
+{{/code}}
+                
+{{#code class="lang-javascript"}}
+// Cause a ripple to occur on .box
+Waves.ripple('.box');
+                
+// Ripple with a 1s delay between starting
+// and stopping the ripple, centred at 
+// (20px, 20px) inside .box
+var options = {
+    wait: 1000, //ms
+    position: {
+        x: 20, //px
+        y: 20  //px
+    }
+};
+Waves.ripple('.box', options);
+{{/code}}
+                
+                <hr>
+                <h3 class="code-head">calm(elements)</h3>
+                <p>Remove all ripples from inside an element.</p>
+                <p><strong>Arguments</strong></p>
+                <ul>
+                    <li><span class="code">elements</span> - A string selector for elements to remove ripples from.
+                </ul>
+                
+{{#code class="lang-javascript"}}
+// Cause a non-terminating ripple at centre of .box
+Waves.ripple('.box', {wait: null});
+                
+// ...
+                
+// Clear all ripples from .box
+Waves.calm('.box');
+{{/code}}
             </div>
         </div>
 
@@ -690,6 +742,7 @@ Waves.attach('.box', null, true);
                 Waves.init();
                 Waves.attach('.drag-ripple', 'waves-block', true);
                 Waves.attach('#bg-pattern', null, true);
+                
 
                 init();
 

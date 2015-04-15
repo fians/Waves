@@ -240,7 +240,7 @@
                 '-moz-transform': scale + ' ' + translate,
                 '-ms-transform': scale + ' ' + translate,
                 '-o-transform': scale + ' ' + translate,
-                'transform': scale + ' ' + translate,
+                'transform': scale + ' ' + translate
             };
 
             ripple.setAttribute('style', convertStyle(style));
@@ -495,6 +495,73 @@
             if (drag) {
                 element.addEventListener('mousemove', dragEffect, false);
             }
+        }
+    };
+    
+    
+    /**
+     * Cause a ripple to appear in an element via code.
+     */
+    Waves.ripple = function(elements, options) {
+        elements = $$(elements);
+        
+        options = options || {};
+        options.wait     = ('wait' in options) ? options.wait : 0;
+        options.position = ('position' in options) ? options.position : null;  // default = centre of element
+        
+        for (var i=0; i<elements.length; i+=1) {
+            var element = elements[i],
+                pos     = options.position || {
+                    x: element.clientWidth/2, 
+                    y: element.clientHeight/2
+                };
+            
+            var off     = offset(element),
+                centre  = {
+                    x: off.left + pos.x,
+                    y: off.top + pos.y
+                };
+            
+            var mousedown = {
+                type: 'mousedown',
+                button: 1,
+                pageX: centre.x,
+                pageY: centre.y
+            };
+            
+            Effect.show(mousedown, element);
+            
+            if (options.wait >= 0 && options.wait !== null) {
+                var mouseup = {
+                    type: 'mouseup',
+                    button: 1
+                };
+
+                setTimeout(hideRipple(mouseup, element), options.wait);
+            }
+        }
+        
+        function hideRipple(mouseup, element) {
+            return function() {
+                Effect.hide(mouseup, element);
+            };
+        }
+    };
+    
+    /**
+     * Remove all ripples from an element.
+     */
+    Waves.calm = function(elements) {
+        elements = $$(elements);
+        
+        for (var i=0; i<elements.length; i+=1) {
+            var element = elements[i];
+            var mouseup = {
+                type: 'mouseup',
+                button: 1
+            };
+
+            Effect.hide(mouseup, element);
         }
     };
 
