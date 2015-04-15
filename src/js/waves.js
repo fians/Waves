@@ -240,7 +240,7 @@
                 '-moz-transform': scale + ' ' + translate,
                 '-ms-transform': scale + ' ' + translate,
                 '-o-transform': scale + ' ' + translate,
-                'transform': scale + ' ' + translate,
+                'transform': scale + ' ' + translate
             };
 
             ripple.setAttribute('style', convertStyle(style));
