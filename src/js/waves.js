@@ -384,57 +384,6 @@
             }
         }
     }
-    
-    /**
-     * The dragging ripple effect.
-     * Only works with mouse events for the time being.
-     */
-    var lastDrag    = new Date();
-    var lastCoord   = {
-        x: 0, 
-        y: 0
-    };
-    
-    function dragEffect(e) {
-        
-        if (!TouchHandler.allowEvent(e)) {
-            return;
-        }
-        
-        var element = getWavesEffectElement(e);
-        
-        if (lastDrag.getTime() < (e.timeStamp - 200) || allowRipple(element)) {
-            
-            lastDrag    = new Date();
-            lastCoord   = {x: e.x, y: e.y};
-            
-            var velocity = null;
-            
-            if (e.movementX || e.movementY) {
-                velocity = {
-                    x: e.movementX, 
-                    y: e.movementY
-                };
-            }
-            
-            Effect.show(e, element, velocity);
-            Effect.hide(e, element);
-        }
-        
-        function allowRipple(element) {
-            
-            var v = {
-                x: e.x - lastCoord.x, 
-                y: e.y - lastCoord.y
-            };
-            
-            return (Math.max(element.clientWidth, element.clientTop) / 7) < magnitude(v);
-        }
-        
-        function magnitude(coord) {
-            return Math.sqrt(Math.pow(coord.x, 2) + Math.pow(coord.y, 2));
-        }
-    }
 
     Waves.init = function(options) {
         
@@ -465,7 +414,8 @@
      * waves classes to a set of elements. Set drag to true if the ripple mouseover
      * or skimming effect should be applied to the elements.
      */
-    Waves.attach = function(elements, classes, drag) {
+    Waves.attach = function(elements, classes) {
+        
         if (typeof elements == 'string' || elements instanceof String) {
             // selector
             elements = $$(elements);
@@ -491,10 +441,6 @@
             }
 
             element.className += ' waves-effect ' + classes;
-            
-            if (drag) {
-                element.addEventListener('mousemove', dragEffect, false);
-            }
         }
     };
     
@@ -503,6 +449,7 @@
      * Cause a ripple to appear in an element via code.
      */
     Waves.ripple = function(elements, options) {
+        
         if (typeof elements === 'string' || elements instanceof String) {
             elements = $$(elements);
         } else if (Object.prototype.toString.call(elements) !== '[object Array]') {
