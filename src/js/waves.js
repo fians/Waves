@@ -503,7 +503,11 @@
      * Cause a ripple to appear in an element via code.
      */
     Waves.ripple = function(elements, options) {
-        elements = $$(elements);
+        if (typeof elements === 'string' || elements instanceof String) {
+            elements = $$(elements);
+        } else if (Object.prototype.toString.call(elements) !== '[object Array]') {
+            elements = [elements];
+        }
         
         options = options || {};
         options.wait     = ('wait' in options) ? options.wait : 0;
