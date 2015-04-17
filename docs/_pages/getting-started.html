@@ -1,0 +1,179 @@
+<div id="getting-started" class="content section page hide">
+            <h1>Getting Started</h1>
+
+            <div class="box shadow">
+
+                <p>
+                    It's easy to use Waves. Download the latest version of Waves from <a href="https://github.com/publicis-indonesia/Waves/releases">Github repository</a>. Just include waves.min.css and waves.min.js to your HTML file. And Waves is ready to use!
+                </p>
+
+{{#code class="lang-markup"}}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Waves example</title>
+
+        <link rel="stylesheet" type="text/css" href="/path/to/waves.min.css" />
+
+    </head>
+    <body>
+        <a href="#" class="waves-effect waves-button">Click Here</a>
+
+        <script type="text/javascript" src="/path/to/waves.min.js"></script>
+        <script type="text/javascript">
+            Waves.init();
+        </script>
+    </body>
+</html>
+{{/code}}
+
+                <p>
+                    <strong>Advanced:</strong> <br>
+                    Waves also provide LESS, SCSS, and SASS source. So, feel free to used it :)
+                </p>
+
+                <p>
+                    To put Waves effect on your buttons, just add <code class="language-css">.waves-effect</code> and <code class="language-css">.waves-button</code> class to your buttons.
+                </p>
+
+{{#code class="lang-markup"}}
+<button class="waves-effect waves-button">Click Here</button>
+
+<!-- It also support a, input submit and input button tag -->
+<a href="#" class="waves-effect waves-button">A Tag</a>
+<input type="submit" class="waves-effect waves-button" value="Input Submit">
+<input type="button" class="waves-effect waves-button" value="Input Button">
+{{/code}}
+
+                <p>
+                    Normally, the effect will not work on single tag element like <code class="language-markup">&lt;input&gt;</code>. That's why Waves will wrap <code class="language-markup">&lt;input&gt;</code> inside <code class="language-markup">&lt;i&gt;</code> automatically if you display the effect.
+                </p>
+
+{{#code class="lang-markup"}}
+<!-- Before displaying the effect -->
+<input class="waves-button-input" type="submit" value="Button C">
+
+<!-- After displaying the effect -->
+<i class="waves-effect waves-button waves-input-wrapper" style="width:85px;height:36px;">
+    <input class="waves-button-input" type="submit" value="Button C">
+</i>
+{{/code}}
+
+                <p>
+                    Waves can also be applied with icons (like FontAwesome) by using <code class="language-css">waves-circle</code>, so you can give the icons Waves effect. It's simple, just give additional <code class="language-css">.waves-effect</code> and <code class="language-css">.waves-circle</code> class to your <code class="language-markup">&lt;i&gt;</code> tags and Waves will wrap icon inside circle spot that will prevent Waves effect spreading.
+                </p>
+
+{{#code class="lang-markup"}}
+<i class="fa fa-gear waves-effect waves-circle"></i>
+{{/code}}
+
+                <p>
+                    You can also give Waves effect to other element tag like <code class="language-markup">&lt;div&gt;</code> or <code class="language-markup">&lt;img&gt;</code>. All you need to do is just put <code class="language-css">.waves-effect</code> class. For element that not have closing tag like <code class="language-markup">&lt;img&gt;</code>, you have to wrap it inside <code class="language-markup">&lt;span&gt;</code>, and for element that have blocky display like <code class="language-markup">&lt;div&gt;</code>, you need to put <code class="language-css">.waves-block</code> class to keep its shape.
+                </p>
+
+{{#code class="lang-markup"}}
+<!-- For single tag element -->
+<span class="waves-effect">
+    <img src="/path/to/images.jpg">
+</span>
+
+<!-- For blocky display to keep its shape -->
+<div class="waves-effect waves-block">
+    Block A
+</div>
+{{/code}}
+
+                <h2>Styling</h2>
+
+                <p>
+                    Waves give you capabilities to color your <code class="language-css">.waves-effect</code>. You can do this by set up the color and background-color/background properties on your element style (or CSS file).
+                </p>
+
+{{#code class="lang-markup"}}
+<!-- Put color in inline style -->
+<span class="waves-effect waves-button" style="background: #01BCFF;color: #fff;">
+    <button>Button B</button>
+</span>
+
+<!-- Put color inside style tag or css file -->
+<style>
+    .blue-button {
+        background: #01BCFF;
+        color: #FFF;
+    }
+</style>
+
+<span class="waves-effect waves-button blue-button">
+    <button>Button B</button>
+</span>
+{{/code}}
+
+                <p>
+                    By default, Waves ripple is darker. If you want the ripple is lighter, you can set <code class="language-css">.waves-light</code> along side <code class="language-css">.waves-effect</code> class. Make sure the element has been colored, because if it haven't colored yet, you cannot see the light ripple.
+                </p>
+
+{{#code class="lang-markup"}}
+<style>
+    .blue-button {
+        background: #01BCFF;
+        color: #FFF;
+    }
+</style>
+
+<span class="waves-effect waves-button waves-light blue-button">
+    <button>Button B</button>
+</span>
+{{/code}}
+
+                <p>
+                    Not only give your "Waves effect", Waves also provide float effect when you click an element
+                    by adding <code class="language-css">.waves-float</code> class to the element. Once again, before put float effect, your have to make sure the element has been colored, to prevent weird shadow on the element.
+                </p>
+
+{{#code class="lang-markup"}}
+<style>
+    .blue-button {
+        background: #01BCFF;
+        color: #FFF;
+    }
+</style>
+
+<span class="waves-effect waves-button waves-float blue-button">
+    <button>Button B</button>
+</span>
+{{/code}}
+
+                <h2>Quick Fix</h2>
+
+                <p>
+                    <strong>IE Tap highlight on Windows Phone</strong>
+                </p>
+
+                <p>
+                    By default if you access a web page using IE in Windows Phone, you will get tap highlight
+                    effect when you tapping a link or button and this highlight will shadowed Waves effect. To prevent this thing happen, you will need to add <code>msapplication-tap-highlight</code> meta tag on your header.
+                </p>
+
+{{#code class="lang-markup"}}
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Remove Tap Highlight on Windows Phone IE -->
+        <meta name="msapplication-tap-highlight" content="no"/>
+
+        <title>Your Web Page</title>
+
+        <link rel="stylesheet" type="text/css" href="/path/to/waves.css" />
+    </head>
+    <body>
+
+        <script type="text/javascript" src="/path/to/waves.js">\</script\>
+        <script type="text/javascript">
+            Waves.init();
+        </script>
+    </body>
+</html>
+{{/code}}
+
+            </div>
+        </div>

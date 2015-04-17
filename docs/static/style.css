@@ -402,16 +402,6 @@ ul li {
     left: 50%;
 }
 
-#example #box-drag-ripple {
-    top: 1450px;
-    margin-bottom: 20px;
-    height: 350px;
-}
-
-#example.show #box-drag-ripple {
-    left: 50%;
-}
-
 /**
  * Source code popup
  */
