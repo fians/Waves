@@ -174,21 +174,20 @@
 
             var ripples = el.getElementsByClassName('waves-rippling');
 
-            for (var i=0; i<ripples.length; i+=1) {
+            for (var i = 0, len = ripples.length; i < len; i++) {
                 removeRipple(e, el, ripples[i]);
             }
         },
 
         // Little hack to make <input> can perform waves effect
         wrapInput: function(elements) {
+            var element;
+            for (var i = 0, len = elements.length; i < len; i++) {
+                element = elements[i];
 
-            for (var a = 0; a < elements.length; a++) {
+                if (element.tagName.toLowerCase() === 'input') {
 
-                var el = elements[a];
-
-                if (el.tagName.toLowerCase() === 'input') {
-
-                    var parent = el.parentNode;
+                    var parent = element.parentNode;
 
                     // If input already have parent just pass through
                     if (parent.tagName.toLowerCase() === 'i' && parent.className.indexOf('waves-effect') !== -1) {
@@ -197,20 +196,20 @@
 
                     // Put element class and style to the specified parent
                     var wrapper         = document.createElement('i');
-                    wrapper.className   = el.className + ' waves-input-wrapper';
-                    el.className        = 'waves-button-input';
+                    wrapper.className   = element.className + ' waves-input-wrapper';
+                    element.className   = 'waves-button-input';
 
                     // Put element as child
-                    parent.replaceChild(wrapper, el);
-                    wrapper.appendChild(el);
+                    parent.replaceChild(wrapper, element);
+                    wrapper.appendChild(element);
 
                     // Apply element color and background color to wrapper
-                    var elementStyle    = window.getComputedStyle(el, null);
+                    var elementStyle    = window.getComputedStyle(element, null);
                     var color           = elementStyle.color;
                     var backgroundColor = elementStyle.backgroundColor;
 
                     wrapper.setAttribute('style', 'color:'+color+';background:'+backgroundColor);
-                    el.setAttribute('style', 'background-color:rgba(0,0,0,0);');
+                    element.setAttribute('style', 'background-color:rgba(0,0,0,0);');
                 }
             }
         }
@@ -406,12 +405,14 @@
     }
 
     Waves.init = function(options) {
+        var body = document.body;
 
         options = options || {};
 
         if ('duration' in options) {
             Effect.duration = options.duration;
         }
+
         if ('delay' in options) {
             Effect.delay = options.delay;
         }
@@ -420,12 +421,12 @@
         Effect.wrapInput($$('.waves-effect'));
 
         if (isTouchAvailable) {
-            document.body.addEventListener('touchstart', showEffect, false);
-            document.body.addEventListener('touchcancel', TouchHandler.registerEvent, false);
-            document.body.addEventListener('touchend', TouchHandler.registerEvent, false);
+            body.addEventListener('touchstart', showEffect, false);
+            body.addEventListener('touchcancel', TouchHandler.registerEvent, false);
+            body.addEventListener('touchend', TouchHandler.registerEvent, false);
         }
 
-        document.body.addEventListener('mousedown', showEffect, false);
+        body.addEventListener('mousedown', showEffect, false);
     };
 
 
@@ -438,12 +439,13 @@
         elements = getWavesElements(elements);
         classes = classes || '';
 
-        if (Object.prototype.toString.call(classes) === '[object Array]') {
+        if (toString.call(classes) === '[object Array]') {
             classes = classes.join(' ');
         }
 
-        for (var i=0; i<elements.length; i+=1) {
-            var element = elements[i];
+        var element;
+        for (var i = 0, len = elements.length; i < len; i++) {
+            element = elements[i];
 
             if (element.tagName.toLowerCase() === 'input') {
                 Effect.wrapInput([element]);
@@ -460,47 +462,50 @@
      */
     Waves.ripple = function(elements, options) {
         elements = getWavesElements(elements);
+        var elementsLen = elements.length;
 
-        options = options || {};
-        options.wait     = ('wait' in options) ? options.wait : 0;
-        options.position = ('position' in options) ? options.position : null;  // default = centre of element
+        options          = options || {};
+        options.wait     = options.wait || 0;
+        options.position = options.position || null; // default = centre of element
 
-        for (var i=0; i<elements.length; i+=1) {
-            var element = elements[i],
-                pos     = options.position || {
-                    x: element.clientWidth/2,
-                    y: element.clientHeight/2
-                };
 
-            var off     = offset(element),
-                centre  = {
-                    x: off.left + pos.x,
-                    y: off.top + pos.y
-                };
-
+        if (elementsLen) {
+            var element, pos, off, centre = {}, i = 0;
             var mousedown = {
                 type: 'mousedown',
-                button: 1,
-                pageX: centre.x,
-                pageY: centre.y
+                button: 1
+            };
+            var hideRipple = function(mouseup, element) {
+                return function() {
+                    Effect.hide(mouseup, element);
+                };
             };
 
-            Effect.show(mousedown, element);
-
-            if (options.wait >= 0 && options.wait !== null) {
-                var mouseup = {
-                    type: 'mouseup',
-                    button: 1
+            for (; i < elementsLen; i++) {
+                element = elements[i];
+                pos = options.position || {
+                    x: element.clientWidth / 2,
+                    y: element.clientHeight / 2
                 };
 
-                setTimeout(hideRipple(mouseup, element), options.wait);
-            }
-        }
+                off      = offset(element);
+                centre.x = off.left + pos.x;
+                centre.y = off.top + pos.y;
 
-        function hideRipple(mouseup, element) {
-            return function() {
-                Effect.hide(mouseup, element);
-            };
+                mousedown.pageX = centre.x;
+                mousedown.pageY = centre.y;
+
+                Effect.show(mousedown, element);
+
+                if (options.wait >= 0 && options.wait !== null) {
+                    var mouseup = {
+                        type: 'mouseup',
+                        button: 1
+                    };
+
+                    setTimeout(hideRipple(mouseup, element), options.wait);
+                }
+            }
         }
     };
 
@@ -509,15 +514,13 @@
      */
     Waves.calm = function(elements) {
         elements = getWavesElements(elements);
+        var mouseup = {
+            type: 'mouseup',
+            button: 1
+        };
 
-        for (var i=0; i<elements.length; i+=1) {
-            var element = elements[i];
-            var mouseup = {
-                type: 'mouseup',
-                button: 1
-            };
-
-            Effect.hide(mouseup, element);
+        for (var i = 0, len = elements.length; i < len; i++) {
+            Effect.hide(mouseup, elements[i]);
         }
     };
 
