@@ -145,9 +145,9 @@
                 'left': relativeX+'px'
             };
 
-            ripple.className = ripple.className + ' waves-notransition';
+            ripple.classList.add('waves-notransition');
             ripple.setAttribute('style', convertStyle(rippleStyle));
-            ripple.className = ripple.className.replace('waves-notransition', '');
+            ripple.classList.remove('waves-notransition');
 
             // Scale the ripple
             rippleStyle['-webkit-transform'] = scale + ' ' + translate;
@@ -188,14 +188,14 @@
                     var parent = element.parentNode;
 
                     // If input already have parent just pass through
-                    if (parent.tagName.toLowerCase() === 'i' && parent.className.indexOf('waves-effect') !== -1) {
+                    if (parent.tagName.toLowerCase() === 'i' && parent.classList.contains('waves-effect')) {
                         continue;
                     }
 
                     // Put element class and style to the specified parent
-                    var wrapper         = document.createElement('i');
-                    wrapper.className   = element.className + ' waves-input-wrapper';
-                    element.className   = 'waves-button-input';
+                    var wrapper       = document.createElement('i');
+                    wrapper.classList.add('waves-input-wrapper');
+                    element.className = 'waves-button-input';
 
                     // Put element as child
                     parent.replaceChild(wrapper, element);
@@ -220,7 +220,7 @@
      */
     function removeRipple(e, el, ripple) {
 
-        ripple.className = ripple.className.replace('waves-rippling', '');
+        ripple.classList.remove('waves-rippling');
 
         var relativeX   = ripple.getAttribute('data-x');
         var relativeY   = ripple.getAttribute('data-y');
@@ -328,10 +328,7 @@
         var target = e.target || e.srcElement;
 
         while (target.parentElement !== null) {
-            if (!(target instanceof SVGElement) && target.className.indexOf('waves-effect') !== -1) {
-                element = target;
-                break;
-            } else if (target.classList.contains('waves-effect')) {
+            if (target.classList.contains('waves-effect')) {
                 element = target;
                 break;
             }
@@ -435,11 +432,12 @@
      */
     Waves.attach = function(elements, classes) {
         elements = getWavesElements(elements);
-        classes = classes || '';
 
         if (toString.call(classes) === '[object Array]') {
             classes = classes.join(' ');
         }
+
+        classes = classes ? ' ' + classes : '';
 
         var element;
         for (var i = 0, len = elements.length; i < len; i++) {
@@ -450,7 +448,7 @@
                 element = element.parentElement;
             }
 
-            element.className += ' waves-effect ' + classes;
+            element.className += ' waves-effect' + classes;
         }
     };
 
