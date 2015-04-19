@@ -46,19 +46,24 @@
         return isWindow(elem) ? elem : elem.nodeType === 9 && elem.defaultView;
     }
 
-    function isDOMElement(elem) {
-        return elem && elem.nodeType && elem.nodeType === 1;
+    function isObject(value) {
+        var type = typeof value;
+        return type === 'function' || type === 'object' && !!value;
     }
 
-    function getWavesElements(selector) {
-        var type = toString.call(selector);
+    function isDOMNode(obj) {
+        return isObject(obj) && obj.nodeType > 0;
+    }
 
-        if (type === '[object String]') {
-            return $$(selector);
-        } else if (type === '[object NodeList]' || type === '[object HTMLCollection]' || selector instanceof jQuery) {
-            return selector;
-        } else if (isDOMElement(selector)) {
-            return [selector];
+    function getWavesElements(nodes) {
+        var stringRepr = toString.call(nodes);
+
+        if (stringRepr === '[object String]') {
+            return $$(nodes);
+        } else if (isObject(nodes) && /^\[object (HTMLCollection|NodeList|Object)\]$/.test(stringRepr) && nodes.hasOwnProperty('length')) {
+            return nodes;
+        } else if (isDOMNode(nodes)) {
+            return [nodes];
         }
 
         return [];
@@ -178,9 +183,9 @@
 
         // Little hack to make <input> can perform waves effect
         wrapInput: function(elements) {
-            
+
             for (var i = 0, len = elements.length; i < len; i++) {
-                
+
                 var element = elements[i];
 
                 if (element.tagName.toLowerCase() === 'input') {
@@ -521,7 +526,7 @@
             Effect.hide(mouseup, elements[i]);
         }
     };
-    
+
     /**
      * Deprecated API fallback
      */
