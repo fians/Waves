@@ -8,11 +8,11 @@
  */
 
 ;(function(window, factory) {
-    "use strict";
+    'use strict';
 
     // AMD. Register as an anonymous module.  Wrap in function so we have access
     // to root via `this`.
-    if (typeof define === "function" && define.amd) {
+    if (typeof define === 'function' && define.amd) {
         define([], function() {
             return factory.apply(window);
         });
@@ -20,7 +20,7 @@
 
     // Node. Does not work with strict CommonJS, but only CommonJS-like
     // environments that support module.exports, like Node.
-    else if (typeof exports === "object") {
+    else if (typeof exports === 'object') {
         module.exports = factory.call(window);
     }
 
@@ -28,8 +28,8 @@
     else {
         window.Waves = factory.call(window);
     }
-})(typeof global === "object" ? global : this, function () {
-    "use strict";
+})(typeof global === 'object' ? global : this, function() {
+    'use strict';
 
     var Waves            = Waves || {};
     var $$               = document.querySelectorAll.bind(document);
@@ -66,7 +66,7 @@
 
     function offset(elem) {
         var docElem, win,
-            box = {top: 0, left: 0},
+            box = { top: 0, left: 0 },
             doc = elem && elem.ownerDocument;
 
         docElem = doc.documentElement;
@@ -81,12 +81,12 @@
         };
     }
 
-    function convertStyle(obj) {
+    function convertStyle(styleObj) {
         var style = '';
 
-        for (var a in obj) {
-            if (obj.hasOwnProperty(a)) {
-                style += (a + ':' + obj[a] + ';');
+        for (var prop in styleObj) {
+            if (styleObj.hasOwnProperty(prop)) {
+                style += (prop + ':' + styleObj[prop] + ';');
             }
         }
 
@@ -108,19 +108,19 @@
                 return false;
             }
 
-            var el = element || this;
+            element = element || this;
 
             // Create ripple
             var ripple = document.createElement('div');
             ripple.className = 'waves-ripple waves-rippling';
-            el.appendChild(ripple);
+            element.appendChild(ripple);
 
             // Get click coordinate and element witdh
-            var pos         = offset(el);
-            var relativeY   = (e.pageY - pos.top);
-            var relativeX   = (e.pageX - pos.left);
-            var scale       = 'scale('+((el.clientWidth / 100) * 3)+')';
-            var translate   = 'translate(0,0)';
+            var pos       = offset(element);
+            var relativeY = (e.pageY - pos.top);
+            var relativeX = (e.pageX - pos.left);
+            var scale     = 'scale(' + ((element.clientWidth / 100) * 3) + ')';
+            var translate = 'translate(0,0)';
 
             if (velocity) {
                 translate = 'translate(' + (velocity.x) + 'px, ' + (velocity.y) + 'px)';
@@ -128,8 +128,8 @@
 
             // Support for touch devices
             if ('touches' in e && e.touches.length) {
-              relativeY   = (e.touches[0].pageY - pos.top);
-              relativeX   = (e.touches[0].pageX - pos.left);
+                relativeY = (e.touches[0].pageY - pos.top);
+                relativeX = (e.touches[0].pageX - pos.left);
             }
 
             // Attach data to element
@@ -141,8 +141,8 @@
 
             // Set ripple position
             var rippleStyle = {
-                'top': relativeY+'px',
-                'left': relativeX+'px'
+                top: relativeY + 'px',
+                left: relativeX + 'px'
             };
 
             ripple.classList.add('waves-notransition');
@@ -167,13 +167,12 @@
         },
 
         hide: function(e, element) {
+            element = element || this;
 
-            var el = element ? element : this;
-
-            var ripples = el.getElementsByClassName('waves-rippling');
+            var ripples = element.getElementsByClassName('waves-rippling');
 
             for (var i = 0, len = ripples.length; i < len; i++) {
-                removeRipple(e, el, ripples[i]);
+                removeRipple(e, element, ripples[i]);
             }
         },
 
@@ -206,7 +205,7 @@
                     var color           = elementStyle.color;
                     var backgroundColor = elementStyle.backgroundColor;
 
-                    wrapper.setAttribute('style', 'color:'+color+';background:'+backgroundColor);
+                    wrapper.setAttribute('style', 'color:' + color + ';background:' + backgroundColor);
                     element.setAttribute('style', 'background-color:rgba(0,0,0,0);');
                 }
             }
@@ -222,10 +221,10 @@
 
         ripple.classList.remove('waves-rippling');
 
-        var relativeX   = ripple.getAttribute('data-x');
-        var relativeY   = ripple.getAttribute('data-y');
-        var scale       = ripple.getAttribute('data-scale');
-        var translate   = ripple.getAttribute('data-translate');
+        var relativeX = ripple.getAttribute('data-x');
+        var relativeY = ripple.getAttribute('data-y');
+        var scale     = ripple.getAttribute('data-scale');
+        var translate = ripple.getAttribute('data-translate');
 
         // Get delay beetween mousedown and mouse leave
         var diff = Date.now() - Number(ripple.getAttribute('data-hold'));
@@ -234,6 +233,7 @@
         if (delay < 0) {
             delay = 0;
         }
+
         if (e.type === 'mousemove') {
             delay = 150;
         }
@@ -244,9 +244,9 @@
         setTimeout(function() {
 
             var style = {
-                'top': relativeY+'px',
-                'left': relativeX+'px',
-                'opacity': '0',
+                top: relativeY + 'px',
+                left: relativeX + 'px',
+                opacity: '0',
 
                 // Duration
                 '-webkit-transition-duration': duration + 'ms',
@@ -265,7 +265,7 @@
             setTimeout(function() {
                 try {
                     el.removeChild(ripple);
-                } catch(e) {
+                } catch (e) {
                     return false;
                 }
             }, duration);
@@ -289,23 +289,24 @@
 
             var allow = true;
 
-            if ((e.type === 'mousedown' || e.type === 'mousemove') && TouchHandler.touches > 0) {
+            if (/^(mousedown|mousemove)$/.test(e.type) && TouchHandler.touches) {
                 allow = false;
             }
 
             return allow;
         },
         registerEvent: function(e) {
+            var eType = e.type;
 
-            if (e.type === 'touchstart') {
+            if (eType === 'touchstart') {
 
-                TouchHandler.touches += 1; //push
+                TouchHandler.touches += 1; // push
 
-            } else if (e.type === 'touchend' || e.type === 'touchcancel') {
+            } else if (/^(touchend|touchcancel)$/.test(eType)) {
 
                 setTimeout(function() {
-                    if (TouchHandler.touches > 0) {
-                        TouchHandler.touches -= 1; //pop after 500ms
+                    if (TouchHandler.touches) {
+                        TouchHandler.touches -= 1; // pop after 500ms
                     }
                 }, 500);
 
