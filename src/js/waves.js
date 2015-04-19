@@ -101,8 +101,6 @@
         // Effect delay (check for scroll before showing effect)
         delay: 200,
 
-        drag: true,
-
         show: function(e, element, velocity) {
 
             // Disable right click
