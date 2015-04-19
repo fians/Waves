@@ -178,9 +178,10 @@
 
         // Little hack to make <input> can perform waves effect
         wrapInput: function(elements) {
-            var element;
+            
             for (var i = 0, len = elements.length; i < len; i++) {
-                element = elements[i];
+                
+                var element = elements[i];
 
                 if (element.tagName.toLowerCase() === 'input') {
 
@@ -193,7 +194,7 @@
 
                     // Put element class and style to the specified parent
                     var wrapper       = document.createElement('i');
-                    wrapper.classList.add('waves-input-wrapper');
+                    wrapper.className = element.className + ' waves-input-wrapper';
                     element.className = 'waves-button-input';
 
                     // Put element as child
