@@ -1,6 +1,6 @@
 
 /*!
- * Waves v0.6.6
+ * Waves v0.7.0
  * http://fian.my.id/Waves 
  * 
  * Copyright 2014 Alfiana E. Sibuea and other contributors 
@@ -58,7 +58,7 @@
         -moz-transition-property: -moz-transform, opacity;
         -o-transition-property: -o-transform, opacity;
         transition-property: transform, opacity;
-        @include waves-transform(scale(0));
+        @include waves-transform(scale(0) translate(0,0));
         pointer-events: none;
     }
 
@@ -145,6 +145,7 @@
 .waves-float {
     -webkit-mask-image: none;
     @include waves-box-shadow(0px 1px 1.5px 1px rgba(0, 0, 0, 0.12));
+    @include waves-transition(all 300ms);
 
     &:active {
         @include waves-box-shadow(0px 8px 20px 1px rgba(0, 0, 0, 0.30));
