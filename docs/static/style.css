@@ -488,6 +488,11 @@ ul li {
     line-height: 1.35;
 }
 
+.content .box code {
+    display: inline-block;
+    padding: 0px 5px;
+}
+
 .content .box p {
     line-height: 160%;
 }

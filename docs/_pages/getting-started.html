@@ -4,7 +4,7 @@
             <div class="box shadow">
 
                 <p>
-                    It's easy to use Waves. Download the latest version of Waves from <a href="https://github.com/publicis-indonesia/Waves/releases">Github repository</a>. Just include waves.min.css and waves.min.js to your HTML file. And Waves is ready to use!
+                    Download the latest version of Waves from <a href="https://github.com/publicis-indonesia/Waves/releases">Github repository</a>. You can also install it via Bower with <code class="language-css">bower install Waves</code> or via npm with <code class="language-css">npm install node-waves</code>. Include waves.min.css and waves.min.js to your HTML file and Waves is ready to use!
                 </p>
 
 {{#code class="lang-markup"}}
@@ -17,12 +17,9 @@
 
     </head>
     <body>
-        <a href="#" class="waves-effect waves-button">Click Here</a>
+        <a href="#" class="button">Click Here</a>
 
         <script type="text/javascript" src="/path/to/waves.min.js"></script>
-        <script type="text/javascript">
-            Waves.init();
-        </script>
     </body>
 </html>
 {{/code}}
@@ -31,116 +28,105 @@
                     <strong>Advanced:</strong> <br>
                     Waves also provide LESS, SCSS, and SASS source. So, feel free to used it :)
                 </p>
-
+                
+                <h2>Attach the effect</h2>
+                
                 <p>
-                    To put Waves effect on your buttons, just add <code class="language-css">.waves-effect</code> and <code class="language-css">.waves-button</code> class to your buttons.
+                    To attach Waves's effect (or we usually called it as "the ripple") to HTML element, you can use <code class="language-js">Waves.attach()</code>
                 </p>
-
+                
 {{#code class="lang-markup"}}
-<button class="waves-effect waves-button">Click Here</button>
-
-<!-- It also support a, input submit and input button tag -->
-<a href="#" class="waves-effect waves-button">A Tag</a>
-<input type="submit" class="waves-effect waves-button" value="Input Submit">
-<input type="button" class="waves-effect waves-button" value="Input Button">
+<a href="#" class="button">Click Here</a>
+                
+<script type="text/javascript">
+    Waves.attach('.button');
+</script>         
 {{/code}}
-
+                
                 <p>
-                    Normally, the effect will not work on single tag element like <code class="language-markup">&lt;input&gt;</code>. That's why Waves will wrap <code class="language-markup">&lt;input&gt;</code> inside <code class="language-markup">&lt;i&gt;</code> automatically if you display the effect.
+                    <code class="language-js">Waves.attach()</code> comes with 2 parameters, the first is DOM element that you want to be attached (or string that represent it, like jQuery), and the second one is array of CSS classes that will be put on the element.
                 </p>
-
+                
 {{#code class="lang-markup"}}
-<!-- Before displaying the effect -->
-<input class="waves-button-input" type="submit" value="Button C">
-
-<!-- After displaying the effect -->
-<i class="waves-effect waves-button waves-input-wrapper" style="width:85px;height:36px;">
-    <input class="waves-button-input" type="submit" value="Button C">
-</i>
+<a href="#" class="button">Click Here</a>
+                
+<script type="text/javascript">
+    Waves.attach('.button', ['waves-button', 'waves-float']);
+</script>         
 {{/code}}
-
+                
+                <h2>Initialize</h2>
+                
                 <p>
-                    Waves can also be applied with icons (like FontAwesome) by using <code class="language-css">waves-circle</code>, so you can give the icons Waves effect. It's simple, just give additional <code class="language-css">.waves-effect</code> and <code class="language-css">.waves-circle</code> class to your <code class="language-markup">&lt;i&gt;</code> tags and Waves will wrap icon inside circle spot that will prevent Waves effect spreading.
+                    After you attach Waves to your HTML element, you can initialize Waves with <code class="language-js">Waves.init()</code> to start the effect. You can also configure Waves by passing option parameter on <code class="language-js">Waves.init()</code>. Please see API page for further information.
                 </p>
-
+                
 {{#code class="lang-markup"}}
-<i class="fa fa-gear waves-effect waves-circle"></i>
+<a href="#" class="button">Click Here</a>
+                
+<script type="text/javascript">
+    Waves.attach('.button', ['waves-button', 'waves-float']);
+    Waves.init();
+</script>         
 {{/code}}
-
                 <p>
-                    You can also give Waves effect to other element tag like <code class="language-markup">&lt;div&gt;</code> or <code class="language-markup">&lt;img&gt;</code>. All you need to do is just put <code class="language-css">.waves-effect</code> class. For element that not have closing tag like <code class="language-markup">&lt;img&gt;</code>, you have to wrap it inside <code class="language-markup">&lt;span&gt;</code>, and for element that have blocky display like <code class="language-markup">&lt;div&gt;</code>, you need to put <code class="language-css">.waves-block</code> class to keep its shape.
+                    Waves is designed to be flexible. It means you still be able to attach the effect to another element after <code class="language-js">Waves.init()</code>. 
                 </p>
 
 {{#code class="lang-markup"}}
-<!-- For single tag element -->
-<span class="waves-effect">
-    <img src="/path/to/images.jpg">
-</span>
-
-<!-- For blocky display to keep its shape -->
-<div class="waves-effect waves-block">
-    Block A
+<a href="#" class="button">Click Here</a>
+                
+<script type="text/javascript">
+    // This is ok.
+    Waves.init();
+    Waves.attach('.button', ['waves-button', 'waves-float']);
+</script>         
+{{/code}}
+                
+                <h2>Helper classes</h2>
+                
+                <p>
+                    In a couple examples above, you already see some Waves classes on <code class="language-js">Waves.attach()</code>. Waves provide several classes to help you styling your effect. Here we go.
+                </p>
+                
+                <ul>
+                    <li>
+                        <code class="language-css">.waves-button</code> for semi-rounded button style.
+                    </li>
+                    <li>
+                        <code class="language-css">.waves-float</code> for float effect when the element is clicked.
+                    </li>
+                    <li>
+                        <code class="language-css">.waves-circle</code> for circle (rounded) style.
+                    </li>
+                    <li>
+                        <code class="language-css">.waves-block</code> for adding <code class="language-css">display: block;</code> to element.
+                    </li>
+                </ul>
+                
+                <h2>Images + Waves</h2>
+                
+                <p>
+                    Waves need special touch when attached on <code class="language-markup">&lt;img&gt;</code>. You have to wrap it inside <code class="language-markup">&lt;div&gt;</code> or any element that contain <code class="language-css">.waves-block</code> to make it working.
+                </p>
+                
+{{#code class="lang-markup"}}
+<div class="image">
+    <img src="/path/to/img.png">
 </div>
-{{/code}}
+                
+<script type="text/javascript">
+    Waves.attach('.image');
+</script>         
 
-                <h2>Styling</h2>
-
-                <p>
-                    Waves give you capabilities to color your <code class="language-css">.waves-effect</code>. You can do this by set up the color and background-color/background properties on your element style (or CSS file).
-                </p>
-
-{{#code class="lang-markup"}}
-<!-- Put color in inline style -->
-<span class="waves-effect waves-button" style="background: #01BCFF;color: #fff;">
-    <button>Button B</button>
+<!-- OR -->
+<span class="image">
+    <img src="/path/to/img.png">
 </span>
 
-<!-- Put color inside style tag or css file -->
-<style>
-    .blue-button {
-        background: #01BCFF;
-        color: #FFF;
-    }
-</style>
-
-<span class="waves-effect waves-button blue-button">
-    <button>Button B</button>
-</span>
-{{/code}}
-
-                <p>
-                    By default, Waves ripple is darker. If you want the ripple is lighter, you can set <code class="language-css">.waves-light</code> along side <code class="language-css">.waves-effect</code> class. Make sure the element has been colored, because if it haven't colored yet, you cannot see the light ripple.
-                </p>
-
-{{#code class="lang-markup"}}
-<style>
-    .blue-button {
-        background: #01BCFF;
-        color: #FFF;
-    }
-</style>
-
-<span class="waves-effect waves-button waves-light blue-button">
-    <button>Button B</button>
-</span>
-{{/code}}
-
-                <p>
-                    Not only give your "Waves effect", Waves also provide float effect when you click an element
-                    by adding <code class="language-css">.waves-float</code> class to the element. Once again, before put float effect, your have to make sure the element has been colored, to prevent weird shadow on the element.
-                </p>
-
-{{#code class="lang-markup"}}
-<style>
-    .blue-button {
-        background: #01BCFF;
-        color: #FFF;
-    }
-</style>
-
-<span class="waves-effect waves-button waves-float blue-button">
-    <button>Button B</button>
-</span>
+<script type="text/javascript">
+    Waves.attach('.image', ['waves-block']);
+</script>
 {{/code}}
 
                 <h2>Quick Fix</h2>
