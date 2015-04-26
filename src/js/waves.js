@@ -224,6 +224,11 @@
      * a separate function to pass the JSLint...
      */
     function removeRipple(e, el, ripple) {
+        
+        // Check if the ripple still exist
+        if (!ripple) {
+            return;
+        }
 
         ripple.classList.remove('waves-rippling');
 
