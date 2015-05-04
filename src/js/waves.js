@@ -209,6 +209,22 @@
         wrapper.setAttribute('style', 'color:' + color + ';background:' + backgroundColor);
         element.setAttribute('style', 'background-color:rgba(0,0,0,0);');
     }
+    
+    // Wrap <img> tag inside a span
+    function wrapImgTag(element) {
+        
+        var parent = element.parentNode;
+        
+        // If input already have parent just pass through
+        if (parent.tagName.toLowerCase() === 'i' && parent.classList.contains('waves-effect')) {
+            return;
+        }
+        
+        // Put element as child
+        var wrapper  = document.createElement('i');
+        parent.replaceChild(wrapper, element);
+        wrapper.appendChild(element);
+    }
 
 
     /**
@@ -432,6 +448,7 @@
      * or skimming effect should be applied to the elements.
      */
     Waves.attach = function(elements, classes) {
+        
         elements = getWavesElements(elements);
 
         if (toString.call(classes) === '[object Array]') {
@@ -441,11 +458,18 @@
         classes = classes ? ' ' + classes : '';
 
         var element;
+        
         for (var i = 0, len = elements.length; i < len; i++) {
+            
             element = elements[i];
 
             if (element.tagName.toLowerCase() === 'input') {
                 wrapInputTag(element);
+                element = element.parentElement;
+            }
+            
+            if (element.tagName.toLowerCase() === 'img') {
+                wrapImgTag(element);
                 element = element.parentElement;
             }
 
