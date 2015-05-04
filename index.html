@@ -14,7 +14,7 @@
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="./static/prims.css">
         <link rel="stylesheet" type="text/css" href="./static/snarl.min.css">
-        <link rel="stylesheet" type="text/css" href="./static/waves.min.css?v=0.7.1">
+        <link rel="stylesheet" type="text/css" href="./static/waves.min.css?v=0.7.2">
 
         <link rel="stylesheet" type="text/css" href="./static/style.css">
 
@@ -51,7 +51,7 @@
 <div id="landing" class="section hide">
     <h1>Waves</h1>
     <p>Click effect inspired by Google's Material Design</p>
-    <p>v0.7.1</p>
+    <p>v0.7.2</p>
     <div class="button">
         <a href="#examples" class="waves-effect waves-button waves-float">See the examples</a>
         <br>
@@ -151,15 +151,13 @@
         <div class="clear"></div>
 
         <p class="text-center">
-            <span class="img-wrapper">
-                <img src="https://farm2.staticflickr.com/1297/1091511802_2fb2451ecc_n.jpg">
-            </span>
+            <img class="waves-image" src="https://farm2.staticflickr.com/1297/1091511802_2fb2451ecc_n.jpg">
         </p>
 
         <script type="text/javascript">
             Waves.attach('.flat-box', ['waves-block']);
             Waves.attach('.float-box', ['waves-block', 'waves-float']);
-            Waves.attach('.img-wrapper');
+            Waves.attach('.waves-image');
         </script>
 
         <p class="text-center">
@@ -289,15 +287,13 @@
 &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
 
 &lt;p class=&quot;text-center&quot;&gt;
-    &lt;span class=&quot;img-wrapper&quot;&gt;
-        &lt;img src=&quot;https://farm2.staticflickr.com/1297/1091511802_2fb2451ecc_n.jpg&quot;&gt;
-    &lt;/span&gt;
+    &lt;img class=&quot;waves-image&quot; src=&quot;https://farm2.staticflickr.com/1297/1091511802_2fb2451ecc_n.jpg&quot;&gt;
 &lt;/p&gt;
 
 &lt;script type=&quot;text/javascript&quot;&gt;
     Waves.attach('.flat-box', ['waves-block']);
     Waves.attach('.float-box', ['waves-block', 'waves-float']);
-    Waves.attach('.img-wrapper');
+    Waves.attach('.waves-image');
 &lt;/script&gt;
 </code></pre>                    </div>
                 </div>
@@ -431,30 +427,7 @@
                         <code class="language-css">.waves-block</code> for adding <code class="language-css">display: block;</code> to element.
                     </li>
                 </ul>
-                
-                <h2>Images + Waves</h2>
-                
-                <p>
-                    Waves need special touch when attached on <code class="language-markup">&lt;img&gt;</code>. You have to wrap it inside <code class="language-markup">&lt;div&gt;</code> or any element that contain <code class="language-css">.waves-block</code> to make it working.
-                </p>
-                
-<pre><code class="lang-markup">&lt;div class=&quot;image&quot;&gt;
-    &lt;img src=&quot;/path/to/img.png&quot;&gt;
-&lt;/div&gt;
-                
-&lt;script type=&quot;text/javascript&quot;&gt;
-    Waves.attach('.image');
-&lt;/script&gt;         
 
-&lt;!-- OR --&gt;
-&lt;span class=&quot;image&quot;&gt;
-    &lt;img src=&quot;/path/to/img.png&quot;&gt;
-&lt;/span&gt;
-
-&lt;script type=&quot;text/javascript&quot;&gt;
-    Waves.attach('.image', ['waves-block']);
-&lt;/script&gt;
-</code></pre>
                 <h2>Quick Fix</h2>
 
                 <p>
@@ -486,7 +459,8 @@
 &lt;/html&gt;
 </code></pre>
             </div>
-        </div>;
+        </div>
+;
         
         <div id="api" class="content section page hide">
             <h1>API</h1>
