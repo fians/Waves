@@ -179,44 +179,36 @@
             for (var i = 0, len = ripples.length; i < len; i++) {
                 removeRipple(e, element, ripples[i]);
             }
-        },
-
-        // Little hack to make <input> can perform waves effect
-        wrapInput: function(elements) {
-
-            for (var i = 0, len = elements.length; i < len; i++) {
-
-                var element = elements[i];
-
-                if (element.tagName.toLowerCase() === 'input') {
-
-                    var parent = element.parentNode;
-
-                    // If input already have parent just pass through
-                    if (parent.tagName.toLowerCase() === 'i' && parent.classList.contains('waves-effect')) {
-                        continue;
-                    }
-
-                    // Put element class and style to the specified parent
-                    var wrapper       = document.createElement('i');
-                    wrapper.className = element.className + ' waves-input-wrapper';
-                    element.className = 'waves-button-input';
-
-                    // Put element as child
-                    parent.replaceChild(wrapper, element);
-                    wrapper.appendChild(element);
-
-                    // Apply element color and background color to wrapper
-                    var elementStyle    = window.getComputedStyle(element, null);
-                    var color           = elementStyle.color;
-                    var backgroundColor = elementStyle.backgroundColor;
-
-                    wrapper.setAttribute('style', 'color:' + color + ';background:' + backgroundColor);
-                    element.setAttribute('style', 'background-color:rgba(0,0,0,0);');
-                }
-            }
         }
     };
+    
+    // Little hack to make <input> can perform waves effect
+    function wrapInputTag(element) {
+
+        var parent = element.parentNode;
+
+        // If input already have parent just pass through
+        if (parent.tagName.toLowerCase() === 'i' && parent.classList.contains('waves-effect')) {
+            return;
+        }
+
+        // Put element class and style to the specified parent
+        var wrapper       = document.createElement('i');
+        wrapper.className = element.className + ' waves-input-wrapper';
+        element.className = 'waves-button-input';
+
+        // Put element as child
+        parent.replaceChild(wrapper, element);
+        wrapper.appendChild(element);
+
+        // Apply element color and background color to wrapper
+        var elementStyle    = window.getComputedStyle(element, null);
+        var color           = elementStyle.color;
+        var backgroundColor = elementStyle.backgroundColor;
+
+        wrapper.setAttribute('style', 'color:' + color + ';background:' + backgroundColor);
+        element.setAttribute('style', 'background-color:rgba(0,0,0,0);');
+    }
 
 
     /**
@@ -424,9 +416,6 @@
             Effect.delay = options.delay;
         }
 
-        //Wrap input inside <i> tag
-        Effect.wrapInput($$('.waves-effect'));
-
         if (isTouchAvailable) {
             body.addEventListener('touchstart', showEffect, false);
             body.addEventListener('touchcancel', TouchHandler.registerEvent, false);
@@ -456,7 +445,7 @@
             element = elements[i];
 
             if (element.tagName.toLowerCase() === 'input') {
-                Effect.wrapInput([element]);
+                wrapInputTag(element);
                 element = element.parentElement;
             }
 
