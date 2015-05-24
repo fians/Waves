@@ -120,21 +120,27 @@
             ripple.className = 'waves-ripple waves-rippling';
             element.appendChild(ripple);
 
-            // Get click coordinate and element witdh
+            // Get click coordinate and element width
             var pos       = offset(element);
-            var relativeY = (e.pageY - pos.top);
-            var relativeX = (e.pageX - pos.left);
+            // Support for synthetic events
+            var relativeY = 0;
+            var relativeX = 0;
+            // Support for touch devices
+            if('touches' in e && e.touches[0].pageX && e.touches[0].pageY) {
+                relativeY   = (e.touches[0].pageY - pos.top);
+                relativeX   = (e.touches[0].pageX - pos.left);
+
+            }
+            //Normal case
+            else if(e.pageX && e.pageY) {
+                relativeY   = (e.pageY - pos.top);
+                relativeX   = (e.pageX - pos.left);
+            }
             var scale     = 'scale(' + ((element.clientWidth / 100) * 3) + ')';
             var translate = 'translate(0,0)';
 
             if (velocity) {
                 translate = 'translate(' + (velocity.x) + 'px, ' + (velocity.y) + 'px)';
-            }
-
-            // Support for touch devices
-            if ('touches' in e && e.touches.length) {
-                relativeY = (e.touches[0].pageY - pos.top);
-                relativeX = (e.touches[0].pageX - pos.left);
             }
 
             // Attach data to element
