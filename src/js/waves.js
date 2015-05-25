@@ -128,7 +128,6 @@
             if('touches' in e && e.touches.length) {
                 relativeY   = (e.touches[0].pageY - pos.top);
                 relativeX   = (e.touches[0].pageX - pos.left);
-
             }
             //Normal case
             else {
