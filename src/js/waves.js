@@ -125,7 +125,7 @@
             var relativeY = 0;
             var relativeX = 0;
             // Support for touch devices
-            if('touches' in e) {
+            if('touches' in e && e.touches.length) {
                 relativeY   = (e.touches[0].pageY - pos.top);
                 relativeX   = (e.touches[0].pageX - pos.left);
 
