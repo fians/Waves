@@ -122,20 +122,23 @@
 
             // Get click coordinate and element width
             var pos       = offset(element);
-            // Support for synthetic events
             var relativeY = 0;
             var relativeX = 0;
             // Support for touch devices
-            if('touches' in e && e.touches[0].pageX && e.touches[0].pageY) {
+            if('touches' in e) {
                 relativeY   = (e.touches[0].pageY - pos.top);
                 relativeX   = (e.touches[0].pageX - pos.left);
 
             }
             //Normal case
-            else if(e.pageX && e.pageY) {
+            else {
                 relativeY   = (e.pageY - pos.top);
                 relativeX   = (e.pageX - pos.left);
             }
+            // Support for synthetic events
+            relativeX = relativeX >= 0 ? relativeX : 0;
+            relativeY = relativeY >= 0 ? relativeY : 0;
+
             var scale     = 'scale(' + ((element.clientWidth / 100) * 3) + ')';
             var translate = 'translate(0,0)';
 
