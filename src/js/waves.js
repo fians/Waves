@@ -477,7 +477,9 @@
                 element = element.parentElement;
             }
 
-            element.className += ' waves-effect' + classes;
+            if (element.className.indexOf('waves-effect') === -1) {
+				element.className += ' waves-effect' + classes;
+			}
         }
     };
 
