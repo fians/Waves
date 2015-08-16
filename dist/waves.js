@@ -120,21 +120,29 @@
             ripple.className = 'waves-ripple waves-rippling';
             element.appendChild(ripple);
 
-            // Get click coordinate and element witdh
+            // Get click coordinate and element width
             var pos       = offset(element);
-            var relativeY = (e.pageY - pos.top);
-            var relativeX = (e.pageX - pos.left);
+            var relativeY = 0;
+            var relativeX = 0;
+            // Support for touch devices
+            if('touches' in e && e.touches.length) {
+                relativeY   = (e.touches[0].pageY - pos.top);
+                relativeX   = (e.touches[0].pageX - pos.left);
+            }
+            //Normal case
+            else {
+                relativeY   = (e.pageY - pos.top);
+                relativeX   = (e.pageX - pos.left);
+            }
+            // Support for synthetic events
+            relativeX = relativeX >= 0 ? relativeX : 0;
+            relativeY = relativeY >= 0 ? relativeY : 0;
+
             var scale     = 'scale(' + ((element.clientWidth / 100) * 3) + ')';
             var translate = 'translate(0,0)';
 
             if (velocity) {
                 translate = 'translate(' + (velocity.x) + 'px, ' + (velocity.y) + 'px)';
-            }
-
-            // Support for touch devices
-            if ('touches' in e && e.touches.length) {
-                relativeY = (e.touches[0].pageY - pos.top);
-                relativeX = (e.touches[0].pageX - pos.left);
             }
 
             // Attach data to element
@@ -181,16 +189,16 @@
             }
         }
     };
-    
+
     /**
      * Collection of wrapper for HTML element that only have single tag
      * like <input> and <img>
      */
     var TagWrapper = {
-        
+
         // Wrap <input> tag so it can perform the effect
         input: function(element) {
-            
+
             var parent = element.parentNode;
 
             // If input already have parent just pass through
@@ -214,12 +222,12 @@
 
             wrapper.setAttribute('style', 'color:' + color + ';background:' + backgroundColor);
             element.setAttribute('style', 'background-color:rgba(0,0,0,0);');
-            
+
         },
-        
+
         // Wrap <img> tag so it can perform the effect
         img: function(element) {
-            
+
             var parent = element.parentNode;
 
             // If input already have parent just pass through
@@ -231,7 +239,7 @@
             var wrapper  = document.createElement('i');
             parent.replaceChild(wrapper, element);
             wrapper.appendChild(element);
-            
+
         }
     };
 
@@ -240,7 +248,7 @@
      * a separate function to pass the JSLint...
      */
     function removeRipple(e, el, ripple) {
-        
+
         // Check if the ripple still exist
         if (!ripple) {
             return;
@@ -371,6 +379,11 @@
      */
     function showEffect(e) {
 
+        // Disable effect if element has "disabled" property on it
+        if (e.target.getAttribute('disabled') !== null) {
+            return;
+        }
+
         TouchHandler.registerEvent(e);
 
         var element = getWavesEffectElement(e);
@@ -456,7 +469,7 @@
      * or skimming effect should be applied to the elements.
      */
     Waves.attach = function(elements, classes) {
-        
+
         elements = getWavesElements(elements);
 
         if (toString.call(classes) === '[object Array]') {
@@ -466,18 +479,20 @@
         classes = classes ? ' ' + classes : '';
 
         var element, tagName;
-        
+
         for (var i = 0, len = elements.length; i < len; i++) {
-            
+
             element = elements[i];
             tagName = element.tagName.toLowerCase();
-            
+
             if (['input', 'img'].indexOf(tagName) !== -1) {
                 TagWrapper[tagName](element);
                 element = element.parentElement;
             }
 
-            element.className += ' waves-effect' + classes;
+            if (element.className.indexOf('waves-effect') === -1) {
+				element.className += ' waves-effect' + classes;
+			}
         }
     };
 

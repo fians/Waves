@@ -189,16 +189,16 @@
             }
         }
     };
-    
+
     /**
      * Collection of wrapper for HTML element that only have single tag
      * like <input> and <img>
      */
     var TagWrapper = {
-        
+
         // Wrap <input> tag so it can perform the effect
         input: function(element) {
-            
+
             var parent = element.parentNode;
 
             // If input already have parent just pass through
@@ -222,12 +222,12 @@
 
             wrapper.setAttribute('style', 'color:' + color + ';background:' + backgroundColor);
             element.setAttribute('style', 'background-color:rgba(0,0,0,0);');
-            
+
         },
-        
+
         // Wrap <img> tag so it can perform the effect
         img: function(element) {
-            
+
             var parent = element.parentNode;
 
             // If input already have parent just pass through
@@ -239,7 +239,7 @@
             var wrapper  = document.createElement('i');
             parent.replaceChild(wrapper, element);
             wrapper.appendChild(element);
-            
+
         }
     };
 
@@ -248,7 +248,7 @@
      * a separate function to pass the JSLint...
      */
     function removeRipple(e, el, ripple) {
-        
+
         // Check if the ripple still exist
         if (!ripple) {
             return;
@@ -379,6 +379,11 @@
      */
     function showEffect(e) {
 
+        // Disable effect if element has "disabled" property on it
+        if (e.target.getAttribute('disabled') !== null) {
+            return;
+        }
+
         TouchHandler.registerEvent(e);
 
         var element = getWavesEffectElement(e);
@@ -464,7 +469,7 @@
      * or skimming effect should be applied to the elements.
      */
     Waves.attach = function(elements, classes) {
-        
+
         elements = getWavesElements(elements);
 
         if (toString.call(classes) === '[object Array]') {
@@ -474,12 +479,12 @@
         classes = classes ? ' ' + classes : '';
 
         var element, tagName;
-        
+
         for (var i = 0, len = elements.length; i < len; i++) {
-            
+
             element = elements[i];
             tagName = element.tagName.toLowerCase();
-            
+
             if (['input', 'img'].indexOf(tagName) !== -1) {
                 TagWrapper[tagName](element);
                 element = element.parentElement;
