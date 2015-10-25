@@ -380,13 +380,19 @@
     function showEffect(e) {
 
         // Disable effect if element has "disabled" property on it
-        if (e.target.getAttribute('disabled') !== null) {
+        // In some cases, the event is not triggered by the current element
+        // if (e.target.getAttribute('disabled') !== null) {
+        //     return;
+        // }
+
+        var element = getWavesEffectElement(e);
+
+        // Make it sure the element has either disabled property, disabled attribute or 'disabled' class
+        if (element.disabled || element.getAttribute('disabled') || element.classList.contains('disabled')) {
             return;
         }
 
         TouchHandler.registerEvent(e);
-
-        var element = getWavesEffectElement(e);
 
         if (element !== null) {
 
@@ -491,8 +497,8 @@
             }
 
             if (element.className.indexOf('waves-effect') === -1) {
-				element.className += ' waves-effect' + classes;
-			}
+                element.className += ' waves-effect' + classes;
+            }
         }
     };
 
