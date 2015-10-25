@@ -96,7 +96,7 @@ module.exports = function(grunt) {
                 call: function(grunt, options, async) {
                     var done = async();
                     var exec = require('child_process').exec;
-                    exec('cd node_modules/less2stylus && ./less2stylus ../../src/less/waves.less', function (error, stdout, stderr) {
+                    exec('cd node_modules/less2stylus && node ./less2stylus ../../src/less/waves.less', function (error, stdout, stderr) {
                         grunt.log.writeln('Executing less2styus...');
 
                         if (error) {
