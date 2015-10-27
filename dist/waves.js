@@ -387,14 +387,14 @@
 
         var element = getWavesEffectElement(e);
 
-        // Make it sure the element has either disabled property, disabled attribute or 'disabled' class
-        if (element.disabled || element.getAttribute('disabled') || element.classList.contains('disabled')) {
-            return;
-        }
-
-        TouchHandler.registerEvent(e);
-
         if (element !== null) {
+
+            // Make it sure the element has either disabled property, disabled attribute or 'disabled' class
+            if (element.disabled || element.getAttribute('disabled') || element.classList.contains('disabled')) {
+                return;
+            }
+
+            TouchHandler.registerEvent(e);
 
             if (e.type === 'touchstart' && Effect.delay) {
 
