@@ -1,8 +1,9 @@
 {
   "name": "node-waves",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "Click effect insipired by Google Material Design",
   "author": "Alfiana E. Sibuea <alfian.sibuea@gmail.com>",
+  "license": "MIT",
   "main": "src/js/waves.js",
   "devDependencies": {
     "grunt": "^0.4.5",

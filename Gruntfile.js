@@ -53,7 +53,16 @@ module.exports = function(grunt) {
         uglify: {
             options: {
                 mangle: true,  // false when debugging
-                compress: true,  // false when debugging
+                compress: {
+                    sequences: true,
+                    dead_code: true,
+                    conditionals: true,
+                    booleans: true,
+                    unused: true,
+                    if_return: true,
+                    join_vars: true,
+                    drop_console: true
+                },
                 sourceMap: true,
                 sourceMapName: 'dist/waves.min.js.map',
                 preserveComments: 'some'
@@ -87,7 +96,7 @@ module.exports = function(grunt) {
                 call: function(grunt, options, async) {
                     var done = async();
                     var exec = require('child_process').exec;
-                    exec('cd node_modules/less2stylus && ./less2stylus ../../src/less/waves.less', function (error, stdout, stderr) {
+                    exec('cd node_modules/less2stylus && node ./less2stylus ../../src/less/waves.less', function (error, stdout, stderr) {
                         grunt.log.writeln('Executing less2styus...');
 
                         if (error) {
