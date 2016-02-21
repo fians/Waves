@@ -16,10 +16,6 @@ Waves using [Situs](https://github.com/fians/situs) to generate documentation. H
 7. Run `grunt` to watch the directory, or simply `grunt build` to do a single build.
 8. Now just start Situs server (`situs server`), then visit [http://localhost:4000/](http://localhost:4000/) on your browser.
 
-## Notes
-
-Thanks for [BrowserStack](http://www.browserstack.com/) by providing a great testing tools for this projects.
-
 
 ## License
 Waves created by [Alfiana Sibuea](http://fian.my.id), and released under [MIT license](https://github.com/fians/Waves/blob/master/LICENSE). 
