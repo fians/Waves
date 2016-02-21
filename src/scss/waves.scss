@@ -155,8 +155,3 @@
 .waves-block {
     display: block;
 }
-
-/* Firefox Bug: link not triggered */
-a.waves-effect .waves-ripple {
-    z-index: -1;
-}
