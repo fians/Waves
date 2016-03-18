@@ -557,7 +557,11 @@
 
                 mousedown.pageX = centre.x;
                 mousedown.pageY = centre.y;
-
+                
+                if ('duration' in options) {
+                    Effect.duration = options.duration;
+                }
+                
                 Effect.show(mousedown, element);
 
                 if (options.wait >= 0 && options.wait !== null) {
