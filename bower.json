@@ -5,7 +5,7 @@
     "Alfiana E. Sibuea <alfian.sibuea@gmail.com>"
   ],
   "description": "Click effect inspired by Google's Material Design",
-  "main": ["dist/waves.min.js", "dist/waves.min.css"],
+  "main": ["dist/waves.js", "dist/waves.css"],
   "keywords": [
     "click",
     "material-design"
