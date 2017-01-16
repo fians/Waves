@@ -40,3 +40,4 @@ tests/
 
 # Apple stuff
 .DS_Store
+.idea/
