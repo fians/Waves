@@ -5,7 +5,7 @@
   "author": "Alfiana E. Sibuea <alfian.sibuea@gmail.com>",
   "license": "MIT",
   "main": "src/js/waves.js",
-  "typings": "src/typings/waves.d.ts",
+  "types": "src/typings/waves.d.ts",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-clean": "^0.6.0",
