@@ -2,7 +2,7 @@
  * Waves v0.8.0
  * http://fian.my.id/Waves
  *
- * Copyright 2014-2016 Alfiana E. Sibuea and other contributors
+ * Copyright 2014-2017 Alfiana E. Sibuea and other contributors
  * Released under the MIT license
  * https://github.com/fians/Waves/blob/master/LICENSE
  */
@@ -557,7 +557,11 @@
 
                 mousedown.pageX = centre.x;
                 mousedown.pageY = centre.y;
-
+                
+                if ('duration' in options) {
+                    Effect.duration = options.duration;
+                }
+                
                 Effect.show(mousedown, element);
 
                 if (options.wait >= 0 && options.wait !== null) {
