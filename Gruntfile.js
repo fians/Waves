@@ -46,7 +46,8 @@ module.exports = function(grunt) {
             options: {
                 globals: {
                     console: true
-                }
+                },
+                reporterOutput: ''
             }
         },
    
