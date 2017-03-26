@@ -105,6 +105,10 @@
 
         // Effect delay (check for scroll before showing effect)
         delay: 200,
+        
+        // Selector to find element to apply effect to.
+        // Can contain multiple classes (like ".btn, .nav a")
+        elementSelector: ".waves-effect",
 
         show: function(e, element, velocity) {
 
@@ -357,6 +361,18 @@
         }
     };
 
+    /**
+     * Browser-compatible version of Element.matches().
+     */
+    function matches(element, selector) {
+        var match = document.documentElement.matches ||
+            document.documentElement.matchesSelector ||
+            document.documentElement.webkitMatchesSelector ||
+            document.documentElement.mozMatchesSelector ||
+            document.documentElement.msMatchesSelector ||
+            document.documentElement.oMatchesSelector;
+        return match.call(element, selector);
+    }
 
     /**
      * Delegated click handler for .waves-effect element.
@@ -372,7 +388,7 @@
         var target = e.target || e.srcElement;
 
         while (target.parentElement) {
-            if ( (!(target instanceof SVGElement)) && target.classList.contains('waves-effect')) {
+            if ( (!(target instanceof SVGElement)) && matches(target, Effect.elementSelector)) {
                 element = target;
                 break;
             }
@@ -386,12 +402,6 @@
      * Bubble the click and show effect if .waves-effect elem was found
      */
     function showEffect(e) {
-
-        // Disable effect if element has "disabled" property on it
-        // In some cases, the event is not triggered by the current element
-        // if (e.target.getAttribute('disabled') !== null) {
-        //     return;
-        // }
 
         var element = getWavesEffectElement(e);
 
@@ -474,6 +484,10 @@
 
         if ('delay' in options) {
             Effect.delay = options.delay;
+        }
+
+        if ('elementSelector' in options) {
+            Effect.elementSelector = options.elementSelector;
         }
 
         if (isTouchAvailable) {

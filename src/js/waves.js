@@ -365,13 +365,13 @@
      * Browser-compatible version of Element.matches().
      */
     function matches(element, selector) {
-        var matches = document.documentElement.matches ||
+        var match = document.documentElement.matches ||
             document.documentElement.matchesSelector ||
             document.documentElement.webkitMatchesSelector ||
             document.documentElement.mozMatchesSelector ||
             document.documentElement.msMatchesSelector ||
             document.documentElement.oMatchesSelector;
-        return matches.call(element, selector);
+        return match.call(element, selector);
     }
 
     /**
