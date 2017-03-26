@@ -526,10 +526,16 @@
                 TagWrapper[tagName](element);
                 element = element.parentElement;
             }
+            
+            if (element.className.indexOf(classes) === -1) {
+                element.className += ' '+classes;
+            }
 
             if (element.className.indexOf('waves-effect') === -1) {
-                element.className += ' waves-effect' + classes;
+                element.className += ' waves-effect';
             }
+            
+            
         }
     };
 
