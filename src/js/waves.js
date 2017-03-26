@@ -403,12 +403,6 @@
      */
     function showEffect(e) {
 
-        // Disable effect if element has "disabled" property on it
-        // In some cases, the event is not triggered by the current element
-        // if (e.target.getAttribute('disabled') !== null) {
-        //     return;
-        // }
-
         var element = getWavesEffectElement(e);
 
         if (element !== null) {
