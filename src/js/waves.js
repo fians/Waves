@@ -498,15 +498,29 @@
 
         body.addEventListener('mousedown', showEffect, false);
     };
+    
+    Waves.destroy = function() {
+        
+        var body = document.body;
+        
+        if (isTouchAvailable) {
+            body.removeEventListener('touchstart', showEffect, false);
+            body.removeEventListener('touchcancel', TouchHandler.registerEvent, false);
+            body.removeEventListener('touchend', TouchHandler.registerEvent, false);
+        }
+
+        body.removeEventListener('mousedown', showEffect, false);
+        
+    };
 
 
     /**
-     * Attach Waves to dynamically loaded inputs, or add .waves-effect and other
+     * Toggle (Attach/Detach) Waves to dynamically loaded inputs, or add .waves-effect and other
      * waves classes to a set of elements. Set drag to true if the ripple mouseover
      * or skimming effect should be applied to the elements.
      */
-    Waves.attach = function(elements, classes) {
-
+    function toggleWaves(elements, classes, type) {
+        
         elements = getWavesElements(elements);
 
         if (toString.call(classes) === '[object Array]') {
@@ -527,16 +541,40 @@
                 element = element.parentNode;
             }
             
-            if (element.className.indexOf(classes) === -1) {
-                element.className += ' '+classes;
-            }
+            if (type === 'attach') {
+                
+                if (element.className.indexOf(classes) === -1) {
+                    element.className += ' '+classes;
+                }
 
-            if (element.className.indexOf('waves-effect') === -1) {
-                element.className += ' waves-effect';
+                if (!element.classList.contains('waves-effect')) {
+                    element.classList.add('waves-effect');
+                }
+                
             }
             
+            if (type === 'detach') {
+                
+                if (element.className.indexOf(classes) !== -1) {
+                    element.className = element.className.replace(new RegExp(classes, 'g'), '');
+                }
+
+                if (element.classList.contains('waves-effect')) {
+                    element.classList.remove('waves-effect');
+                }
+                
+            }
             
         }
+        
+    }
+    
+    Waves.attach = function(elements, classes) {
+        return toggleWaves(elements, classes, 'attach');
+    };
+    
+    Waves.detach = function(elements, classes) {
+        return toggleWaves(elements, classes, 'detach');
     };
 
 
