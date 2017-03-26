@@ -387,12 +387,12 @@
         var element = null;
         var target = e.target || e.srcElement;
 
-        while (target.parentElement) {
+        while (target.parentNode) {
             if ( (!(target instanceof SVGElement)) && matches(target, Effect.elementSelector)) {
                 element = target;
                 break;
             }
-            target = target.parentElement;
+            target = target.parentNode;
         }
 
         return element;
@@ -524,7 +524,7 @@
 
             if (['input', 'img'].indexOf(tagName) !== -1) {
                 TagWrapper[tagName](element);
-                element = element.parentElement;
+                element = element.parentNode;
             }
             
             if (element.className.indexOf(classes) === -1) {
