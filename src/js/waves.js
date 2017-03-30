@@ -215,7 +215,7 @@
             }
 
             // Put element class and style to the specified parent
-            var wrapper       = document.createElement('i');
+            var wrapper       = document.createElement('span');
             wrapper.className = element.className + ' waves-input-wrapper';
             element.className = 'waves-button-input';
 
@@ -227,9 +227,6 @@
             var elementStyle    = window.getComputedStyle(element, null);
             var color           = elementStyle.color;
             var backgroundColor = elementStyle.backgroundColor;
-
-            wrapper.setAttribute('style', 'color:' + color + ';background:' + backgroundColor);
-            element.setAttribute('style', 'background-color:rgba(0,0,0,0);');
 
         },
 
