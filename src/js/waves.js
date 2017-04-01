@@ -396,6 +396,11 @@
         var element = getWavesEffectElement(e);
 
         if (element !== null) {
+            
+            var wavesElement = element.querySelector('div.waves-ripple');
+            if(wavesElement !== null){
+                wavesElement.parentNode.removeChild(wavesElement);
+            }
 
             // Make it sure the element has either disabled property, disabled attribute or 'disabled' class
             if (element.disabled || element.getAttribute('disabled') || element.classList.contains('disabled')) {
