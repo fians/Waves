@@ -214,14 +214,16 @@
             var parent = element.parentNode;
 
             // If input already have parent just pass through
-            if (parent.tagName.toLowerCase() === 'i' && parent.classList.contains('waves-effect')) {
+            if (parent.tagName.toLowerCase() === 'span' && parent.classList.contains('waves-effect')) {
                 return;
             }
 
             // Put element class and style to the specified parent
-            var wrapper       = document.createElement('i');
-            wrapper.className = element.className + ' waves-input-wrapper';
-            element.className = 'waves-button-input';
+            var wrapper       = document.createElement('span');
+            
+            // Disable transitions while modifying styles
+            wrapper.style.transition = 'none';
+            element.style.transition = 'none';
 
             // Put element as child
             parent.replaceChild(wrapper, element);
@@ -232,9 +234,18 @@
             var color           = elementStyle.color;
             var backgroundColor = elementStyle.backgroundColor;
 
-            wrapper.setAttribute('style', 'color:' + color + ';background:' + backgroundColor);
-            element.setAttribute('style', 'background-color:rgba(0,0,0,0);');
+            wrapper.style.color = color;
+            wrapper.style.background = backgroundColor;
+            element.style.background = 'transparent';
 
+            wrapper.className = element.className + ' waves-input-wrapper';
+            element.className = 'waves-button-input';
+
+            // Clear transition overrride
+            setTimeout(function() {
+              wrapper.style.transition = '';
+              element.style.transition = '';
+            }, 0);
         },
 
         // Wrap <img> tag so it can perform the effect
@@ -243,12 +254,12 @@
             var parent = element.parentNode;
 
             // If input already have parent just pass through
-            if (parent.tagName.toLowerCase() === 'i' && parent.classList.contains('waves-effect')) {
+            if (parent.tagName.toLowerCase() === 'span' && parent.classList.contains('waves-effect')) {
                 return;
             }
 
             // Put element as child
-            var wrapper  = document.createElement('i');
+            var wrapper  = document.createElement('span');
             parent.replaceChild(wrapper, element);
             wrapper.appendChild(element);
 
