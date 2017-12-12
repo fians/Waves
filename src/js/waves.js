@@ -14,7 +14,7 @@
     // to root via `this`.
     if (typeof define === 'function' && define.amd) {
         define([], function() {
-            return factory.apply(window);
+            return window.Waves = factory.apply(window);
         });
     }
 
