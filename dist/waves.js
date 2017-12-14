@@ -363,12 +363,12 @@
         var element = null;
         var target = e.target || e.srcElement;
 
-        while (target.parentElement) {
+        while (target.parentNode) {
             if ( (!(target instanceof SVGElement)) && target.classList.contains('waves-effect')) {
                 element = target;
                 break;
             }
-            target = target.parentElement;
+            target = target.parentNode;
         }
 
         return element;
@@ -493,7 +493,7 @@
 
             if (['input', 'img'].indexOf(tagName) !== -1) {
                 TagWrapper[tagName](element);
-                element = element.parentElement;
+                element = element.parentNode;
             }
 
             if (element.className.indexOf('waves-effect') === -1) {
