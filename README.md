@@ -20,4 +20,4 @@ Waves using [Situs](https://github.com/fians/situs) to generate documentation. H
 ## License
 Waves created by [Alfiana Sibuea](http://fian.my.id), and released under [MIT license](https://github.com/fians/Waves/blob/master/LICENSE). 
 
-Copyright &copy; 2014-2017 Alfiana E. Sibuea. All rights reserved.
+Copyright &copy; 2014-2018 Alfiana E. Sibuea. All rights reserved.

@@ -2,10 +2,9 @@
  * Waves v0.7.5
  * http://fian.my.id/Waves 
  * 
- * Copyright 2014-2016 Alfiana E. Sibuea and other contributors 
+ * Copyright 2014-2018 Alfiana E. Sibuea and other contributors 
  * Released under the MIT license 
- * https://github.com/fians/Waves/blob/master/LICENSE 
- */
+ * https://github.com/fians/Waves/blob/master/LICENSE */
 .waves-effect {
   position: relative;
   cursor: pointer;
@@ -71,7 +70,7 @@
   -ms-transform: translateZ(0);
   -o-transform: translateZ(0);
   transform: translateZ(0);
-  -webkit-mask-image: -webkit-radial-gradient(circle, #ffffff 100%, #000000 100%);
+  -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
 }
 .waves-button,
 .waves-button:hover,
