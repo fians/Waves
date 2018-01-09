@@ -15,7 +15,6 @@
     "grunt-contrib-jshint": "1.1.0",
     "grunt-contrib-less": "1.4.1",
     "grunt-contrib-sass": "1.0.0",
-    "grunt-contrib-stylus": "1.2.0",
     "grunt-contrib-uglify": "3.1.0",
     "grunt-contrib-watch": "1.0.0",
     "grunt-sass-convert": "^0.2.0",
