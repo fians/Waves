@@ -5,30 +5,25 @@ module.exports = function(grunt) {
 
         less: {
             build: {
-                options: {},
                 files: {
                     'dist/waves.css': 'src/less/waves.less'
                 }
             },
-            minified: {
-                options: {
-                    cleancss:true
-                },
-                files: {
-                    'dist/waves.min.css': 'src/less/waves.less'
-                }
-            },
-            // re-minify everything in tests/ so that they all
-            // have the same minification for comparision
             test: {
-                options: {
-                    cleancss:true,
-                    cleancssOptions: {
-                        keepSpecialComments:'0'
-                    }
-                },
                 files: {
-                    'tests/less/waves.min.css': 'src/less/waves.less',
+                    'tests/less/waves.css': 'src/less/waves.less',
+                }
+            }
+        },
+
+        cssmin: {
+            options: {
+                sourceMap: false
+            },
+            target: {
+                files: {
+                    'dist/waves.min.css': 'dist/waves.css',
+                    'tests/less/waves.min.css': 'tests/less/waves.css',
                     'tests/sass/waves.min.css': 'tests/sass/waves.css',
                     'tests/scss/waves.min.css': 'tests/scss/waves.css',
                     'tests/stylus/waves.min.css': 'tests/stylus/waves.css'
@@ -125,7 +120,7 @@ module.exports = function(grunt) {
         },
         
         clean: {
-            test: ['tests/*']
+            test: [], //['tests/*']
         },
 
         watch: {
@@ -231,11 +226,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-stylus');
     grunt.loadNpmTasks('grunt-sass-convert');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
     
     // Create grunt task
     grunt.registerTask('build', [
         'less:build', 
-        'less:minified', 
         'jshint', 
         'uglify', 
         'copy', 
@@ -245,6 +240,7 @@ module.exports = function(grunt) {
         'sass:test', 
         'stylus:test', 
         'less:test', 
+        'cssmin',
         'execute:test',
         'clean:test'
     ]);
