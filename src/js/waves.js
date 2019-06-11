@@ -502,7 +502,7 @@
         }
 
         if (!window.WavesReady) {
-            window.WavesReady = true
+            window.WavesReady = true;
             if (isTouchAvailable) {
                 body.addEventListener('touchstart', showEffect, false);
                 body.addEventListener('touchcancel', TouchHandler.registerEvent, false);
