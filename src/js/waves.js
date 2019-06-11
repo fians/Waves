@@ -477,13 +477,16 @@
             Effect.delay = options.delay;
         }
 
-        if (isTouchAvailable) {
-            body.addEventListener('touchstart', showEffect, false);
-            body.addEventListener('touchcancel', TouchHandler.registerEvent, false);
-            body.addEventListener('touchend', TouchHandler.registerEvent, false);
-        }
+        if (!window.WavesReady) {
+            window.WavesReady = true;
+            if (isTouchAvailable) {
+                body.addEventListener('touchstart', showEffect, false);
+                body.addEventListener('touchcancel', TouchHandler.registerEvent, false);
+                body.addEventListener('touchend', TouchHandler.registerEvent, false);
+            }
 
-        body.addEventListener('mousedown', showEffect, false);
+            body.addEventListener('mousedown', showEffect, false);
+        }
     };
 
 
