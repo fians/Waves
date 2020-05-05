@@ -2,7 +2,7 @@
  * Waves v0.8.0
  * http://fian.my.id/Waves
  *
- * Copyright 2014-2017 Alfiana E. Sibuea and other contributors
+ * Copyright 2014-2018 Alfiana E. Sibuea and other contributors
  * Released under the MIT license
  * https://github.com/fians/Waves/blob/master/LICENSE
  */
@@ -14,7 +14,8 @@
     // to root via `this`.
     if (typeof define === 'function' && define.amd) {
         define([], function() {
-            return factory.apply(window);
+            window.Waves = factory.call(window);
+            return window.Waves;
         });
     }
 
