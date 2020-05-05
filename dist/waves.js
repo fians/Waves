@@ -1,5 +1,5 @@
 /*!
- * Waves v0.7.6
+ * Waves v0.8.0
  * http://fian.my.id/Waves
  *
  * Copyright 2014-2018 Alfiana E. Sibuea and other contributors
@@ -106,6 +106,10 @@
 
         // Effect delay (check for scroll before showing effect)
         delay: 200,
+        
+        // Selector to find element to apply effect to.
+        // Can contain multiple classes (like ".btn, .nav a")
+        elementSelector: ".waves-effect",
 
         show: function(e, element, velocity) {
 
@@ -211,14 +215,16 @@
             var parent = element.parentNode;
 
             // If input already have parent just pass through
-            if (parent.tagName.toLowerCase() === 'i' && parent.classList.contains('waves-effect')) {
+            if (parent.tagName.toLowerCase() === 'span' && parent.classList.contains('waves-effect')) {
                 return;
             }
 
             // Put element class and style to the specified parent
-            var wrapper       = document.createElement('i');
-            wrapper.className = element.className + ' waves-input-wrapper';
-            element.className = 'waves-button-input';
+            var wrapper       = document.createElement('span');
+            
+            // Disable transitions while modifying styles
+            wrapper.style.transition = 'none';
+            element.style.transition = 'none';
 
             // Put element as child
             parent.replaceChild(wrapper, element);
@@ -229,9 +235,18 @@
             var color           = elementStyle.color;
             var backgroundColor = elementStyle.backgroundColor;
 
-            wrapper.setAttribute('style', 'color:' + color + ';background:' + backgroundColor);
-            element.setAttribute('style', 'background-color:rgba(0,0,0,0);');
+            wrapper.style.color = color;
+            wrapper.style.background = backgroundColor;
+            element.style.background = 'transparent';
 
+            wrapper.className = element.className + ' waves-input-wrapper';
+            element.className = 'waves-button-input';
+
+            // Clear transition overrride
+            setTimeout(function() {
+              wrapper.style.transition = '';
+              element.style.transition = '';
+            }, 0);
         },
 
         // Wrap <img> tag so it can perform the effect
@@ -240,12 +255,12 @@
             var parent = element.parentNode;
 
             // If input already have parent just pass through
-            if (parent.tagName.toLowerCase() === 'i' && parent.classList.contains('waves-effect')) {
+            if (parent.tagName.toLowerCase() === 'span' && parent.classList.contains('waves-effect')) {
                 return;
             }
 
             // Put element as child
-            var wrapper  = document.createElement('i');
+            var wrapper  = document.createElement('span');
             parent.replaceChild(wrapper, element);
             wrapper.appendChild(element);
 
@@ -358,6 +373,18 @@
         }
     };
 
+    /**
+     * Browser-compatible version of Element.matches().
+     */
+    function matches(element, selector) {
+        var match = document.documentElement.matches ||
+            document.documentElement.matchesSelector ||
+            document.documentElement.webkitMatchesSelector ||
+            document.documentElement.mozMatchesSelector ||
+            document.documentElement.msMatchesSelector ||
+            document.documentElement.oMatchesSelector;
+        return match.call(element, selector);
+    }
 
     /**
      * Delegated click handler for .waves-effect element.
@@ -372,12 +399,12 @@
         var element = null;
         var target = e.target || e.srcElement;
 
-        while (target.parentElement) {
-            if ( (!(target instanceof SVGElement)) && target.classList.contains('waves-effect')) {
+        while (target.parentNode) {
+            if ( (!(target instanceof SVGElement)) && matches(target, Effect.elementSelector)) {
                 element = target;
                 break;
             }
-            target = target.parentElement;
+            target = target.parentNode;
         }
 
         return element;
@@ -387,12 +414,6 @@
      * Bubble the click and show effect if .waves-effect elem was found
      */
     function showEffect(e) {
-
-        // Disable effect if element has "disabled" property on it
-        // In some cases, the event is not triggered by the current element
-        // if (e.target.getAttribute('disabled') !== null) {
-        //     return;
-        // }
 
         var element = getWavesEffectElement(e);
 
@@ -477,6 +498,10 @@
             Effect.delay = options.delay;
         }
 
+        if ('elementSelector' in options) {
+            Effect.elementSelector = options.elementSelector;
+        }
+
         if (isTouchAvailable) {
             body.addEventListener('touchstart', showEffect, false);
             body.addEventListener('touchcancel', TouchHandler.registerEvent, false);
@@ -485,15 +510,29 @@
 
         body.addEventListener('mousedown', showEffect, false);
     };
+    
+    Waves.destroy = function() {
+        
+        var body = document.body;
+        
+        if (isTouchAvailable) {
+            body.removeEventListener('touchstart', showEffect, false);
+            body.removeEventListener('touchcancel', TouchHandler.registerEvent, false);
+            body.removeEventListener('touchend', TouchHandler.registerEvent, false);
+        }
+
+        body.removeEventListener('mousedown', showEffect, false);
+        
+    };
 
 
     /**
-     * Attach Waves to dynamically loaded inputs, or add .waves-effect and other
+     * Toggle (Attach/Detach) Waves to dynamically loaded inputs, or add .waves-effect and other
      * waves classes to a set of elements. Set drag to true if the ripple mouseover
      * or skimming effect should be applied to the elements.
      */
-    Waves.attach = function(elements, classes) {
-
+    function toggleWaves(elements, classes, type) {
+        
         elements = getWavesElements(elements);
 
         if (toString.call(classes) === '[object Array]') {
@@ -511,13 +550,43 @@
 
             if (['input', 'img'].indexOf(tagName) !== -1) {
                 TagWrapper[tagName](element);
-                element = element.parentElement;
+                element = element.parentNode;
             }
+            
+            if (type === 'attach') {
+                
+                if (element.className.indexOf(classes) === -1) {
+                    element.className += ' '+classes;
+                }
 
-            if (element.className.indexOf('waves-effect') === -1) {
-                element.className += ' waves-effect' + classes;
+                if (!element.classList.contains('waves-effect')) {
+                    element.classList.add('waves-effect');
+                }
+                
             }
+            
+            if (type === 'detach') {
+                
+                if (element.className.indexOf(classes) !== -1) {
+                    element.className = element.className.replace(new RegExp(classes, 'g'), '');
+                }
+
+                if (element.classList.contains('waves-effect')) {
+                    element.classList.remove('waves-effect');
+                }
+                
+            }
+            
         }
+        
+    }
+    
+    Waves.attach = function(elements, classes) {
+        return toggleWaves(elements, classes, 'attach');
+    };
+    
+    Waves.detach = function(elements, classes) {
+        return toggleWaves(elements, classes, 'detach');
     };
 
 
@@ -558,7 +627,11 @@
 
                 mousedown.pageX = centre.x;
                 mousedown.pageY = centre.y;
-
+                
+                if ('duration' in options) {
+                    Effect.duration = options.duration;
+                }
+                
                 Effect.show(mousedown, element);
 
                 if (options.wait >= 0 && options.wait !== null) {
