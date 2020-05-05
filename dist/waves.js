@@ -502,13 +502,16 @@
             Effect.elementSelector = options.elementSelector;
         }
 
-        if (isTouchAvailable) {
-            body.addEventListener('touchstart', showEffect, false);
-            body.addEventListener('touchcancel', TouchHandler.registerEvent, false);
-            body.addEventListener('touchend', TouchHandler.registerEvent, false);
-        }
+        if (!window.WavesReady) {
+            window.WavesReady = true;
+            if (isTouchAvailable) {
+                body.addEventListener('touchstart', showEffect, false);
+                body.addEventListener('touchcancel', TouchHandler.registerEvent, false);
+                body.addEventListener('touchend', TouchHandler.registerEvent, false);
+            }
 
-        body.addEventListener('mousedown', showEffect, false);
+            body.addEventListener('mousedown', showEffect, false);
+        }
     };
     
     Waves.destroy = function() {
@@ -522,6 +525,7 @@
         }
 
         body.removeEventListener('mousedown', showEffect, false);
+        delete window.WavesReady;
         
     };
 
