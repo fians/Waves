@@ -7,18 +7,18 @@
   "main": "src/js/waves.js",
   "types": "src/typings/waves.d.ts",
   "devDependencies": {
-    "grunt": "1.0.1",
-    "grunt-contrib-clean": "1.1.0",
+    "grunt": "1.1.0",
+    "grunt-contrib-clean": "2.0.0",
     "grunt-contrib-concat": "1.0.1",
     "grunt-contrib-copy": "1.0.0",
-    "grunt-contrib-cssmin": "^2.2.1",
-    "grunt-contrib-jshint": "1.1.0",
-    "grunt-contrib-less": "1.4.1",
+    "grunt-contrib-cssmin": "3.0.0",
+    "grunt-contrib-jshint": "2.1.0",
+    "grunt-contrib-less": "2.0.0",
     "grunt-contrib-sass": "1.0.0",
-    "grunt-contrib-uglify": "3.1.0",
-    "grunt-contrib-watch": "1.0.0",
-    "grunt-sass-convert": "^0.2.0",
-    "less2stylus": "^0.1.0"
+    "grunt-contrib-uglify": "4.0.1",
+    "grunt-contrib-watch": "1.1.0",
+    "grunt-sass-convert": "0.3.0",
+    "less2stylus": "0.1.0"
   },
   "scripts": {
     "test": ""
