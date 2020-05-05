@@ -17,8 +17,7 @@
     "grunt-contrib-sass": "1.0.0",
     "grunt-contrib-uglify": "4.0.1",
     "grunt-contrib-watch": "1.1.0",
-    "grunt-sass-convert": "0.3.0",
-    "less2stylus": "0.1.0"
+    "grunt-sass-convert": "0.3.0"
   },
   "scripts": {
     "test": ""
