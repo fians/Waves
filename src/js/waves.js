@@ -369,18 +369,29 @@
             return null;
         }
 
-        var element = null;
-        var target = e.target || e.srcElement;
+        if (e.composedPath) {
 
-        while (target.parentElement) {
-            if ( (!(target instanceof SVGElement)) && target.classList.contains('waves-effect')) {
-                element = target;
-                break;
+            for (const el of e.composedPath()) {
+                if ((!(el instanceof SVGElement)) && el.classList.contains('waves-effect')) return el;
             }
-            target = target.parentElement;
-        }
 
-        return element;
+            return null;
+
+        } else {
+
+            var element = null;
+            var target = e.target || e.srcElement;
+
+            while (target.parentElement) {
+                if ( (!(target instanceof SVGElement)) && target.classList.contains('waves-effect')) {
+                    element = target;
+                    break;
+                }
+                target = target.parentElement;
+            }
+
+            return element;
+        }
     }
 
     /**
